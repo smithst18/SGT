@@ -60,10 +60,12 @@ export const saveUser = async (req,res) =>{
   //clean the body peticion
   const cleanBody = matchedData(req);
   //creamos una copia del objeto y agregamos 2 campos
+  const hashPass = await encrypt(cleanBody.password);
+  
   const data  = {
     ...cleanBody,
     rol: 'user',
-    password: encrypt(cleanBody.password),
+    password: hashPass,
   }
 
   try{
@@ -74,6 +76,7 @@ export const saveUser = async (req,res) =>{
     res.status(200).send({message:'Usuario guardado correctamente',user:savedUser});
 
   }catch(e){
+    console.log(e);
     handleError(res,403,'Error_user_register');
   }
 

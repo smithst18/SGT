@@ -7,10 +7,15 @@ import bcrypt from 'bcrypt';
  */
 export const encrypt = async (unHashedPass) =>{
     const saltRounds = 10;
-    const salt = bcrypt.genSalt(saltRounds);
-    const hash = bcrypt.hash(unHashedPass, salt);
+    try{
+        const salt = await bcrypt.genSalt(saltRounds);
+        const hash = await bcrypt.hash(unHashedPass, salt);
 
-    return hash;
+        return hash
+    }catch(e){
+        console.log(e);
+    }
+
 }
 
 /**
@@ -20,7 +25,12 @@ export const encrypt = async (unHashedPass) =>{
  * @returns 
  */
 export const compare =  async (unHashedPass,hashedPass) =>{
-    const match = bcrypt.compare(unHashedPass, hashedPass);
-
-    return match;
+    
+    try{
+        const match = bcrypt.compare(unHashedPass, hashedPass);
+        return match;
+    }catch(e){
+        console.log(e);
+    }
+    
 }
