@@ -1,0 +1,24 @@
+POST http://localhost:3200/api/user/register
+content-type: application/json
+
+{
+    "userName": "Admin",
+    "name": "emanuel Abreu",
+    "password": "   Emanuel15",
+    "rePassword": "Emanuel15  ",
+    "type": "tec",
+    "position": "analista",
+    "document": "27571773",
+    "department": "tecnolgia"
+}
+###
+POST http://localhost:3200/api/user/login
+content-type: application/json
+
+{
+    "userName": "Admin",
+    "password": "   Emanuel15"
+}
+###
+GET http://localhost:3200/api/user/logout
+
