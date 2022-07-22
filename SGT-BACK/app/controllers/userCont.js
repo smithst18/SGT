@@ -2,7 +2,7 @@ import  { userSchema }  from "../models";
 import { matchedData } from "express-validator";
 import { handleError } from "../helpers/handleHttpErrors"
 import { encrypt, compare } from "../helpers/handlePassword";
-import { signToken } from "../services/jwt";
+import { signToken, verifyToken } from "../helpers/handleJWT";
 
 
 /**
@@ -15,21 +15,31 @@ export const login = async (req,res) =>{
   try{
     const cleanBody = matchedData(req);
 
+    const headerAuth = req.headers.authorization;
+    
     const user = await userSchema.findOne({ userName: cleanBody.userName})
-      .select('password');
-    if(!user) handleError(res,403,'Contrase;a o usuario incorrecto');
-
+    .select('sub userName name rol position department password');
+    if(!user) handleError(res,403,'No Existe el Usuario');
+    
     const math = await compare(cleanBody.password, user.password);
     if(!math) handleError(res,401,'Contrase;a incorrecta');
+    
+    if(!headerAuth){
+      //send token
+      res.status(200).send({ token: signToken(user) });
 
-    res.status(200).send({
-      token: signToken(user),
-      user:user
-    });
+    }else {
+      //send payload
+      const auth = verifyToken(headerAuth.split(' ').pop().trim());
+      auth ? res.status(200).send({ user: auth }) : handleError(res,403,'Invalid_Token');
+      
+    }
 
   }catch(e){
+
     console.log(e)
     handleError(res,403,'Error_user_login');
+    
   }
 
 };

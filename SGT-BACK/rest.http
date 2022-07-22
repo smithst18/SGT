@@ -14,6 +14,7 @@ content-type: application/json
 ###
 POST http://localhost:3200/api/user/login
 content-type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiI2MmQ4YjQ4ZDk5MGZkYzM2MmYyNTk2OGMiLCJ1c2VyTmFtZSI6ImVtYW51ZWwgQWJyZXUiLCJkb2N1bWVudCI6IjI3NTcxNzczIiwicm9sIjoidXNlciIsInBvc2l0aW9uIjoiYW5hbGlzdGEiLCJkZXBhcnRtZW50IjoidGVjbm9sZ2lhIiwiaWF0IjoxNjU4NDU0MzMwLCJleHAiOjE2NTg1NDA3MzB9.UcCtX4ZvglrAkYOM9DchW6vGTArqYab_ZYKPOL2t4vM
 
 {
     "userName": "Admin",
@@ -21,4 +22,5 @@ content-type: application/json
 }
 ###
 GET http://localhost:3200/api/user/logout
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiI2MmQ4YjQ4ZDk5MGZkYzM2MmYyNTk2OGMiLCJ1c2VyTmFtZSI6ImVtYW51ZWwgQWJyZXUiLCJkb2N1bWVudCI6IjI3NTcxNzczIiwicm9sIjoidXNlciIsInBvc2l0aW9uIjoiYW5hbGlzdGEiLCJkZXBhcnRtZW50IjoidGVjbm9sZ2lhIiwiaWF0IjoxNjU4NDU0MzMwLCJleHAiOjE2NTg1NDA3MzB9.UcCtX4ZvglrAkYOM9DchW6vGTArqYab_ZYKPOL2t4vM
 
