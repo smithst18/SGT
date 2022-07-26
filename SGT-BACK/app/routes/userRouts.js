@@ -13,6 +13,5 @@ const router = Router();
 //routes definition        //middleware
 router.post('/login',validLogin,userController.login);
 router.post('/register',validCreateUser,userController.saveUser);
-router.get('/logout',authRolMiddleware('admin'),userController.logout);
 
 export default router;

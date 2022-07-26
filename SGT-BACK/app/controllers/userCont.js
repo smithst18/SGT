@@ -24,11 +24,10 @@ export const login = async (req,res) =>{
     const math = await compare(cleanBody.password, user.password);
     if(!math) handleError(res,401,'Contrase;a incorrecta');
     
-    if(!headerAuth){
-      //send token
-      res.status(200).send({ token: signToken(user) });
-
-    }else {
+    //send token 
+    
+    if(!headerAuth) res.status(200).send({ token: signToken(user) });
+    else {
       //send payload
       const auth = verifyToken(headerAuth.split(' ').pop().trim());
       auth ? res.status(200).send({ user: auth }) : handleError(res,403,'Invalid_Token');
@@ -40,22 +39,6 @@ export const login = async (req,res) =>{
     console.log(e)
     handleError(res,403,'Error_user_login');
     
-  }
-
-};
-
-
-/**
- * controlador encargado de cerrar sesions GET
- * @param {*} req 
- * @param {*} res 
- */
-export const logout = async (req,res) =>{
-
-  try{
-    res.status(200).send('Sesion cerrada');
-  }catch(e){
-    handleError(res,403,'Error_user_logout');
   }
 
 };
