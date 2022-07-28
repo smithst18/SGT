@@ -1,16 +1,30 @@
-import { model, Schema } from "mongoose";
+import { model, Schema, Types } from "mongoose";
 
 const ticketSchema  = new Schema ({
-  userName:{
+  item:{
     type:String,
     required:true,
     trim:true,
   },
-  name:{
+  description:{
     type:String,
     required:true,
     trim:true,
   },
+  status:{
+    type:String,
+    required:true,
+    trim:true,
+  },
+  status:{
+    type:String,
+    required:true,
+    trim:true,
+  },
+  takeBy:{
+    type:Types.ObjectId,
+    ref:'user',
+  }
 },{
   timestamps:true,
   versionKey:false,

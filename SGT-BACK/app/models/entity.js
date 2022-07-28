@@ -11,10 +11,6 @@ const entitySchema  = new Schema ({
     type: Types.ObjectId,
     ref:'User'
   }],
-//   bankAcounts:[{
-//     type:Schema.Types.ObjectId,
-//     ref:'BanckAcount',
-//   }],
 },{
   timestamps:true,
   versionKey:false,

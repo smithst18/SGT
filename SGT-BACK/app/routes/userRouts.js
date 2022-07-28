@@ -5,7 +5,7 @@ import { userController } from "../controllers";
 import { sesionAuth as authMiddleware } from "../middlewares/jwtAuth";
 import { authRol as authRolMiddleware  } from "../middlewares/authRol";
 //valiations
-import { validCreateUser, validLogin } from '../middlewares/validators/user';
+import { validCreateUser, validLogin } from '../middlewares/validators/userVal';
 
 //express router instance
 const router = Router();

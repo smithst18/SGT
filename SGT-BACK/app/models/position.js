@@ -23,10 +23,6 @@ const positionSchema  = new Schema ({
     type: Types.ObjectId,
     ref:'Entity'
   },
-//   bankAcounts:[{
-//     type:Schema.Types.ObjectId,
-//     ref:'BanckAcount',
-//   }],
 },{
   timestamps:true,
   versionKey:false,
