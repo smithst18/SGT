@@ -15,8 +15,10 @@ app.use(express.urlencoded({extended:true}));
 app.use(cors());
 
 //Routes
-//user rout
+//user routs
 app.use('/api/user',routes.userRoutes);
-// ticket rout
+// ticket routs
 app.use('/api/ticket',routes.ticketRoutes);
+//entity routs
+app.use('/api/entity',routes.entityRoutes);
 export default app;

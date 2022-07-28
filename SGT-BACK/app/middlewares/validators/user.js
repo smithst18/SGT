@@ -7,7 +7,7 @@ import { confirmPass, findUser } from "./custom/userCustomValidations";
  * Middleware login validator
  */
 export const validLogin = [
-    check("userName")
+    check("nickName")
         .exists()
         .withMessage('debe existir')
         .trim()
@@ -35,7 +35,7 @@ export const validLogin = [
  * Middleware validador de datos de usuario
  */
 export const validCreateUser = [
-    check("userName")
+    check("nickName")
         .exists()
         .withMessage('debe existir')
         .trim()
@@ -101,16 +101,12 @@ export const validCreateUser = [
         .withMessage('debe ser un string')
         .isLength({min:5,max:15})
         .withMessage('minimo 5 caracteres'),
-    check("department")
-        .exists()
-        .withMessage('debe existir')
+    check("entity")
         .trim()
         .notEmpty()
         .withMessage('No debe estar vacio')
-        .isString()
-        .withMessage('debe ser un string')
-        .isLength({min:2,max:15})
-        .withMessage('minimo 2 caracteres'),
+        .isMongoId()
+        .withMessage('Debe ser mongoID'),
     (req, res, next) => validateResult(req, res, next),
     
 ];

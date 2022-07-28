@@ -1,7 +1,11 @@
-import  { User as userSchema }  from "./user";
-import { Ticket as ticketSchema } from "./ticket";
+import  { User as userModel }  from "./user";
+import { Ticket as ticketModel } from "./ticket";
+import { Entity as entityModel } from "./entity";
+import { Position as positionModel } from "./position";
 
 export { 
-    userSchema,
-    ticketSchema,
+    userModel,
+    ticketModel,
+    entityModel,
+    positionModel
 }

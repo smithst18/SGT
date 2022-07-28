@@ -1,4 +1,4 @@
-import  { userSchema }  from "../models";
+import  { userModel }  from "../models";
 import { matchedData } from "express-validator";
 import { handleError } from "../helpers/handleHttpErrors"
 import { encrypt, compare } from "../helpers/handlePassword";
@@ -17,7 +17,7 @@ export const login = async (req,res) =>{
 
     const headerAuth = req.headers.authorization;
     
-    const user = await userSchema.findOne({ userName: cleanBody.userName})
+    const user = await userModel.findOne({ userName: cleanBody.userName})
     .select('sub userName name rol position department password');
     if(!user) handleError(res,403,'No Existe el Usuario');
     
@@ -57,12 +57,11 @@ export const saveUser = async (req,res) =>{
   
   const data  = {
     ...cleanBody,
-    rol: 'user',
     password: hashPass,
   }
 
   try{
-    const savedUser = await userSchema.create(data);
+    const savedUser = await userModel.create(data);
     //se aplica para metodos que no permiten filtrado (Create)
     savedUser.set('password',undefined,{strict:false});
 

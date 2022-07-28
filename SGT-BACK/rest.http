@@ -2,15 +2,16 @@ POST http://localhost:3200/api/user/register
 content-type: application/json
 
 {
-    "userName": "Admin",
+    "nickName": "Admin",
     "name": "emanuel Abreu",
     "password": "   Emanuel15",
     "rePassword": "Emanuel15  ",
     "type": "tec",
     "position": "analista",
     "document": "27571773",
-    "department": "tecnolgia"
+    "entity": "62e1a04e94d6be4595db7067"
 }
+
 
 ###
 POST http://localhost:3200/api/user/login
@@ -18,20 +19,17 @@ content-type: application/json
 Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiI2MmQ4YjQ4ZDk5MGZkYzM2MmYyNTk2OGMiLCJ1c2VyTmFtZSI6ImVtYW51ZWwgQWJyZXUiLCJkb2N1bWVudCI6IjI3NTcxNzczIiwicm9sIjoidXNlciIsInBvc2l0aW9uIjoiYW5hbGlzdGEiLCJkZXBhcnRtZW50IjoidGVjbm9sZ2lhIiwiaWF0IjoxNjU4NDU0MzMwLCJleHAiOjE2NTg1NDA3MzB9.UcCtX4ZvglrAkYOM9DchW6vGTArqYab_ZYKPOL2t4vM
 
 {
-    "userName": "Admin",
+    "nickName": "Admin",
     "password": "   Emanuel15"
 }
-
-###
-GET http://localhost:3200/api/user/logout
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiI2MmQ4YjQ4ZDk5MGZkYzM2MmYyNTk2OGMiLCJ1c2VyTmFtZSI6ImVtYW51ZWwgQWJyZXUiLCJkb2N1bWVudCI6IjI3NTcxNzczIiwicm9sIjoidXNlciIsInBvc2l0aW9uIjoiYW5hbGlzdGEiLCJkZXBhcnRtZW50IjoidGVjbm9sZ2lhIiwiaWF0IjoxNjU4NDU0MzMwLCJleHAiOjE2NTg1NDA3MzB9.UcCtX4ZvglrAkYOM9DchW6vGTArqYab_ZYKPOL2t4vM
-
-###
+### entitys
+GET http://localhost:3200/api/entity/save-entity
+### tickets
  POST http://localhost:3200/api/ticket/save-ticket
 content-type: application/json
 # Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiI2MmQ4YjQ4ZDk5MGZkYzM2MmYyNTk2OGMiLCJ1c2VyTmFtZSI6ImVtYW51ZWwgQWJyZXUiLCJkb2N1bWVudCI6IjI3NTcxNzczIiwicm9sIjoidXNlciIsInBvc2l0aW9uIjoiYW5hbGlzdGEiLCJkZXBhcnRtZW50IjoidGVjbm9sZ2lhIiwiaWF0IjoxNjU4NDU0MzMwLCJleHAiOjE2NTg1NDA3MzB9.UcCtX4ZvglrAkYOM9DchW6vGTArqYab_ZYKPOL2t4vM
 
 {
-    "userName": "Admin",
+    "nickName": "Admin",
     "password": "   Emanuel15"
 }
