@@ -8,7 +8,7 @@ const positionSchema  = new Schema ({
     unique:true,
   },
   type:{
-    type:number,
+    type:Number,
     enum:[1,2],
     default:2,
     required:true,
