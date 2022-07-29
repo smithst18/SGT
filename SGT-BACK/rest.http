@@ -7,16 +7,16 @@ content-type: application/json
     "password": "   Emanuel15",
     "rePassword": "Emanuel15  ",
     "type": "tec",
-    "position": "analista",
+    "position": "62e1a04e94d6be4595db7067",
     "document": "27571773",
     "entity": "62e1a04e94d6be4595db7067"
 }
 
 
-###
+### login
 POST http://localhost:3200/api/user/login
 content-type: application/json
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiI2MmQ4YjQ4ZDk5MGZkYzM2MmYyNTk2OGMiLCJ1c2VyTmFtZSI6ImVtYW51ZWwgQWJyZXUiLCJkb2N1bWVudCI6IjI3NTcxNzczIiwicm9sIjoidXNlciIsInBvc2l0aW9uIjoiYW5hbGlzdGEiLCJkZXBhcnRtZW50IjoidGVjbm9sZ2lhIiwiaWF0IjoxNjU4NDU0MzMwLCJleHAiOjE2NTg1NDA3MzB9.UcCtX4ZvglrAkYOM9DchW6vGTArqYab_ZYKPOL2t4vM
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiI2MmUzMTZhNDVhZWE1MzU3MzFkOTgzZTciLCJ1c2VyTmFtZSI6ImVtYW51ZWwgQWJyZXUiLCJyb2wiOiJ1c2VyIiwicG9zaXRpb24iOiI2MmUxYTA0ZTk0ZDZiZTQ1OTVkYjcwNjciLCJpYXQiOjE2NTkwNTExMDgsImV4cCI6MTY1OTEzNzUwOH0.EjSAhyiF0O2XjUY_HE3NKz2ZDZ3r7t1Fm2y9cBgZ35k
 
 {
     "nickName": "Admin",
@@ -24,7 +24,23 @@ Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiI2MmQ4YjQ4Z
 }
 
 ### entitys
-GET http://localhost:3200/api/entity/save-entity
+POST  http://localhost:3200/api/entity/save-entity
+content-type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiI2MmUzMTZhNDVhZWE1MzU3MzFkOTgzZTciLCJ1c2VyTmFtZSI6ImVtYW51ZWwgQWJyZXUiLCJyb2wiOiJ1c2VyIiwicG9zaXRpb24iOiI2MmUxYTA0ZTk0ZDZiZTQ1OTVkYjcwNjciLCJpYXQiOjE2NTkwNDk2NzMsImV4cCI6MTY1OTEzNjA3M30.OihOHf01ju4CQhXNSIoYBjvbD0sH9Yk1r4At9YX-4zM
+
+{
+    "name": "Nacionales"
+}
+### position 
+POST  http://localhost:3200/api/position/save-position
+content-type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiI2MmUzMTZhNDVhZWE1MzU3MzFkOTgzZTciLCJ1c2VyTmFtZSI6ImVtYW51ZWwgQWJyZXUiLCJyb2wiOiJ1c2VyIiwicG9zaXRpb24iOiI2MmUxYTA0ZTk0ZDZiZTQ1OTVkYjcwNjciLCJpYXQiOjE2NTkwNDk2NzMsImV4cCI6MTY1OTEzNjA3M30.OihOHf01ju4CQhXNSIoYBjvbD0sH9Yk1r4At9YX-4zM
+
+{
+    "name": "Analista",
+    "type": 2,
+    "entity": "62e323844b8b2c8d45687689"
+}
 
 ### tickets
  POST http://localhost:3200/api/ticket/save-ticket

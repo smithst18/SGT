@@ -22,6 +22,6 @@ app.use('/api/ticket',routes.ticketRoutes);
 //entity routs
 app.use('/api/entity',routes.entityRoutes);
 //position routs
-app.use('/api/positions',routes.positionRoutes);
+app.use('/api/position',routes.positionRoutes);
 
 export default app;

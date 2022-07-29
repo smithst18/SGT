@@ -11,7 +11,7 @@ export const sesionAuth = (req,res,next) =>{
     try{
         const headerAuth = req.headers.authorization;
 
-        if(!headerAuth) handleError(res,401,'header is missing');
+        if(!headerAuth) return handleError(res,401,'header is missing');
 
         const authenticated = verifyToken(headerAuth.split(' ').pop().trim()) 
         

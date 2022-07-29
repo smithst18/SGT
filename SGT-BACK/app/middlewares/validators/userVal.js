@@ -92,19 +92,9 @@ export const validCreateUser = [
         .notEmpty()
         .isString(),
     check("position")
-        .exists()
-        .withMessage('debe existir')
-        .trim()
-        .notEmpty()
-        .withMessage('No debe estar vacio')
-        .isString()
-        .withMessage('debe ser un string')
-        .isLength({min:5,max:15})
-        .withMessage('minimo 5 caracteres'),
+        .isMongoId()
+        .withMessage('Debe ser mongoID'),
     check("entity")
-        .trim()
-        .notEmpty()
-        .withMessage('No debe estar vacio')
         .isMongoId()
         .withMessage('Debe ser mongoID'),
     (req, res, next) => validateResult(req, res, next),

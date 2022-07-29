@@ -7,6 +7,6 @@ import { authRol as authRolMiddleware  } from "../middlewares/authRol";
 
 const router = Router();
 
-router.get('/save-ticket',ticketController.save);
+router.post('/save-ticket',ticketController.save);
 
 export default router;

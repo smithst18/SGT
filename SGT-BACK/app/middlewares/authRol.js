@@ -7,9 +7,9 @@ import { handleError } from "../helpers/handleHttpErrors";
 export const authRol = (rols) => (req,res,next) =>{
     try{
         const { user } = req;
-        
+        next();
     }catch(e){
         console.log(e)
-        handleError(res,403,'AuthRol_ERROR');
+        return handleError(res,403,'Access denied not permission allow');
     }
 } 

@@ -14,19 +14,19 @@ export const login = async (req,res) =>{
   
   try{
     const cleanBody = matchedData(req);
-
+    
     const headerAuth = req.headers.authorization;
     
     const user = await userModel.findOne({ userName: cleanBody.userName})
-    .select('sub userName name rol position department password');
-    if(!user) handleError(res,403,'No Existe el Usuario');
+    .select('sub userName name rol position entity password');
+    if(!user) return handleError(res,403,'No Existe el Usuario');
     
     const math = await compare(cleanBody.password, user.password);
-    if(!math) handleError(res,401,'Contrase;a incorrecta');
+    if(!math) return handleError(res,401,'Contrase;a incorrecta');
     
     //send token 
     
-    if(!headerAuth) res.status(200).send({ token: signToken(user) });
+    if(!headerAuth) return res.status(200).send({ token: signToken(user) });
     else {
       //send payload
       const auth = verifyToken(headerAuth.split(' ').pop().trim());
@@ -71,5 +71,7 @@ export const saveUser = async (req,res) =>{
     console.log(e);
     handleError(res,403,'Error_user_register');
   }
-
+//TODOS
+// * Validar la existencia de la position a guarar y de la entity
+//* refactorizar el codigo
 };

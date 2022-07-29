@@ -16,8 +16,8 @@ export const validPosition = [
         .withMessage('No debe estar vacio')
         .isString()
         .withMessage('debe ser un string')
-        .isLength({min:5,max:30})
-        .withMessage('minimo 5 caracteres'),
+        .isLength({min:2,max:20})
+        .withMessage('minimo 2 caracteres max 20'),
     check("type")
         .exists()
         .withMessage('debe existir')

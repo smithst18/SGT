@@ -10,19 +10,18 @@ const positionSchema  = new Schema ({
   type:{
     type:Number,
     enum:[1,2],
-    default:2,
+    default:1,
     required:true,
     trim:true,
-    unique:true,
+  },
+  entity:{
+    type: Types.ObjectId,
+    ref:'Entity'
   },
   users:[{
     type:Types.ObjectId,
     ref:'User',
   }],
-  entity:{
-    type: Types.ObjectId,
-    ref:'Entity'
-  },
 },{
   timestamps:true,
   versionKey:false,
