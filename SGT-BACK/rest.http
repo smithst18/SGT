@@ -2,13 +2,12 @@ POST http://localhost:3200/api/user/register
 content-type: application/json
 
 {
-    "nickName": "Admin",
-    "name": "emanuel Abreu",
-    "password": "   Emanuel15",
-    "rePassword": "Emanuel15  ",
-    "type": "tec",
+    "nickName": "josearimatea",
+    "name": "kun",
+    "password": "   Emanuel12",
+    "rePassword": "Emanuel12  ",
     "position": "62e1a04e94d6be4595db7067",
-    "document": "27571773",
+    "document": "27571778",
     "entity": "62e1a04e94d6be4595db7067"
 }
 
@@ -16,37 +15,42 @@ content-type: application/json
 ### login
 POST http://localhost:3200/api/user/login
 content-type: application/json
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiI2MmUzMTZhNDVhZWE1MzU3MzFkOTgzZTciLCJ1c2VyTmFtZSI6ImVtYW51ZWwgQWJyZXUiLCJyb2wiOiJ1c2VyIiwicG9zaXRpb24iOiI2MmUxYTA0ZTk0ZDZiZTQ1OTVkYjcwNjciLCJpYXQiOjE2NTkwNTExMDgsImV4cCI6MTY1OTEzNzUwOH0.EjSAhyiF0O2XjUY_HE3NKz2ZDZ3r7t1Fm2y9cBgZ35k
+//Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiI2MmUzZGYxZTRkYjIzNTQ4NDdlMzQ2NTgiLCJ1c2VyTmFtZSI6ImVtYW51ZWwgQWJyZXUiLCJyb2wiOiJ1c2VyIiwicG9zaXRpb24iOiI2MmUxYTA0ZTk0ZDZiZTQ1OTVkYjcwNjciLCJpYXQiOjE2NTkxMDA5OTQsImV4cCI6MTY1OTE4NzM5NH0.OIdk4pVSE99BXLOU04Sx2EUsE3m8vFt5LSy0XqC-Q_s
 
 {
-    "nickName": "Admin",
-    "password": "   Emanuel15"
+    "nickName": "josearimatea",
+    "password": "   Emanuel12"
 }
 
 ### entitys
 POST  http://localhost:3200/api/entity/save-entity
 content-type: application/json
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiI2MmUzMTZhNDVhZWE1MzU3MzFkOTgzZTciLCJ1c2VyTmFtZSI6ImVtYW51ZWwgQWJyZXUiLCJyb2wiOiJ1c2VyIiwicG9zaXRpb24iOiI2MmUxYTA0ZTk0ZDZiZTQ1OTVkYjcwNjciLCJpYXQiOjE2NTkwNDk2NzMsImV4cCI6MTY1OTEzNjA3M30.OihOHf01ju4CQhXNSIoYBjvbD0sH9Yk1r4At9YX-4zM
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiI2MmUzZGYxZTRkYjIzNTQ4NDdlMzQ2NTgiLCJ1c2VyTmFtZSI6ImVtYW51ZWwgQWJyZXUiLCJyb2wiOiJ1c2VyIiwicG9zaXRpb24iOiI2MmUxYTA0ZTk0ZDZiZTQ1OTVkYjcwNjciLCJpYXQiOjE2NTkxMDA5OTQsImV4cCI6MTY1OTE4NzM5NH0.OIdk4pVSE99BXLOU04Sx2EUsE3m8vFt5LSy0XqC-Q_s
 
 {
     "name": "Nacionales"
 }
+
+### get all entitys
+GET  http://localhost:3200/api/entity/get-all
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiI2MmUzZGYxZTRkYjIzNTQ4NDdlMzQ2NTgiLCJ1c2VyTmFtZSI6ImVtYW51ZWwgQWJyZXUiLCJyb2wiOiJ1c2VyIiwicG9zaXRpb24iOiI2MmUxYTA0ZTk0ZDZiZTQ1OTVkYjcwNjciLCJpYXQiOjE2NTkxMDA5OTQsImV4cCI6MTY1OTE4NzM5NH0.OIdk4pVSE99BXLOU04Sx2EUsE3m8vFt5LSy0XqC-Q_s
+
+
 ### position 
 POST  http://localhost:3200/api/position/save-position
 content-type: application/json
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiI2MmUzMTZhNDVhZWE1MzU3MzFkOTgzZTciLCJ1c2VyTmFtZSI6ImVtYW51ZWwgQWJyZXUiLCJyb2wiOiJ1c2VyIiwicG9zaXRpb24iOiI2MmUxYTA0ZTk0ZDZiZTQ1OTVkYjcwNjciLCJpYXQiOjE2NTkwNDk2NzMsImV4cCI6MTY1OTEzNjA3M30.OihOHf01ju4CQhXNSIoYBjvbD0sH9Yk1r4At9YX-4zM
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiI2MmUzZGYxZTRkYjIzNTQ4NDdlMzQ2NTgiLCJ1c2VyTmFtZSI6ImVtYW51ZWwgQWJyZXUiLCJyb2wiOiJ1c2VyIiwicG9zaXRpb24iOiI2MmUxYTA0ZTk0ZDZiZTQ1OTVkYjcwNjciLCJpYXQiOjE2NTkxMDA5OTQsImV4cCI6MTY1OTE4NzM5NH0.OIdk4pVSE99BXLOU04Sx2EUsE3m8vFt5LSy0XqC-Q_s
 
 {
     "name": "Analista",
     "type": 2,
-    "entity": "62e323844b8b2c8d45687689"
+    "entity": "62e3df964db2354847e3465c"
 }
 
 ### tickets
  POST http://localhost:3200/api/ticket/save-ticket
 content-type: application/json
-
-# Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiI2MmQ4YjQ4ZDk5MGZkYzM2MmYyNTk2OGMiLCJ1c2VyTmFtZSI6ImVtYW51ZWwgQWJyZXUiLCJkb2N1bWVudCI6IjI3NTcxNzczIiwicm9sIjoidXNlciIsInBvc2l0aW9uIjoiYW5hbGlzdGEiLCJkZXBhcnRtZW50IjoidGVjbm9sZ2lhIiwiaWF0IjoxNjU4NDU0MzMwLCJleHAiOjE2NTg1NDA3MzB9.UcCtX4ZvglrAkYOM9DchW6vGTArqYab_ZYKPOL2t4vM
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiI2MmUzZGYxZTRkYjIzNTQ4NDdlMzQ2NTgiLCJ1c2VyTmFtZSI6ImVtYW51ZWwgQWJyZXUiLCJyb2wiOiJ1c2VyIiwicG9zaXRpb24iOiI2MmUxYTA0ZTk0ZDZiZTQ1OTVkYjcwNjciLCJpYXQiOjE2NTkxMDA5OTQsImV4cCI6MTY1OTE4NzM5NH0.OIdk4pVSE99BXLOU04Sx2EUsE3m8vFt5LSy0XqC-Q_s
 
 {
     "nickName": "Admin",

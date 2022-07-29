@@ -10,5 +10,5 @@ import { validEntity } from '../middlewares/validators/entity';
 const router = Router();
 
 router.post('/save-entity',authMiddleware,validEntity,entityController.saveEntity);
-
+router.get('/get-all',authMiddleware,entityController.getAllEntitys);
 export default router;

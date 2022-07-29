@@ -48,4 +48,4 @@ const userSchema  = new Schema ({
   versionKey:false,
 });
 
-export const User = model('User',userSchema);
+export const User = new model('users',userSchema);

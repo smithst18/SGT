@@ -6,7 +6,8 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "build": "babel app/server.js -d dist",
-    "start": "nodemon --exec babel-node app/server.js"
+    "start": "nodemon --exec babel-node app/server.js",
+    "seed":"babel-node app/db/seeds/seed-data.js"
   },
   "author": "E.A.A",
   "license": "ISC",

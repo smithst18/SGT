@@ -1,5 +1,4 @@
 import { model, Schema, Types } from "mongoose";
-
 const entitySchema  = new Schema ({
   name:{
     type:String,
@@ -8,7 +7,7 @@ const entitySchema  = new Schema ({
     unique:true,
   },
   users:[{
-    type: Types.ObjectId,
+    type: Schema.Types.ObjectId,
     ref:'User'
   }],
 },{
@@ -16,4 +15,4 @@ const entitySchema  = new Schema ({
   versionKey:false,
 });
 
-export const Entity = model('Entity',entitySchema);
+export const Entity = new model('entitys',entitySchema);
