@@ -1,4 +1,4 @@
-import  { userModel }  from "../models";
+import  { userModel, positionModel, entityModel }  from "../models";
 import { matchedData } from "express-validator";
 import { handleError } from "../helpers/handleHttpErrors"
 import { encrypt, compare } from "../helpers/handlePassword";
@@ -61,11 +61,26 @@ export const saveUser = async (req,res) =>{
   }
 
   try{
-    const savedUser = await userModel.create(data);
-    //se aplica para metodos que no permiten filtrado (Create)
-    savedUser.set('password',undefined,{strict:false});
+    const validEntity = await entityModel.findById(cleanBody.entity);
+    const validPosition = await positionModel.findById(cleanBody.position);
 
-    res.status(200).send({message:'Usuario guardado correctamente',user:savedUser});
+    if(!validEntity || !validPosition) return handleError(res,401,'Entidad o Cargo no existe');
+    else{
+
+      const savedUser = await userModel.create(data);
+      //se aplica para metodos que no permiten filtrado (Create)
+      savedUser.set('password',undefined,{ strict:false });
+      if(!savedUser){ console.log(e); return handleError(res,403,'Error saving user') }
+
+      //if user is  saved then =>  save in the db the id of user in entity && position
+      validEntity.users.push(savedUser._id);
+      await validEntity.save();
+
+      validPosition.users.push(savedUser._id);
+      await validPosition.save();
+
+      return res.status(200).send({message:'Usuario guardado correctamente',user:savedUser});
+    }
 
   }catch(e){
     console.log(e);

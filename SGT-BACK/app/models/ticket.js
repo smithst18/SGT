@@ -30,4 +30,4 @@ const ticketSchema  = new Schema ({
   versionKey:false,
 });
 
-export const Ticket = new model('tickets',ticketSchema);
+export const Ticket = new model('Ticket',ticketSchema);

@@ -6,6 +6,10 @@ const entitySchema  = new Schema ({
     trim:true,
     unique:true,
   },
+  positions:[{
+    type: Schema.Types.ObjectId,
+    ref:'Position'
+  }],
   users:[{
     type: Schema.Types.ObjectId,
     ref:'User'
@@ -15,4 +19,4 @@ const entitySchema  = new Schema ({
   versionKey:false,
 });
 
-export const Entity = new model('entitys',entitySchema);
+export const Entity = new model('Entity',entitySchema);

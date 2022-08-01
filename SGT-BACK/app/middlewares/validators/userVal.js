@@ -87,10 +87,6 @@ export const validCreateUser = [
         .isLength({min:5,max:15})
         .withMessage('minimo 5 caracteres')
         .custom( (value, { req }) => confirmPass(value, req)),
-    check("type")
-        .exists()
-        .notEmpty()
-        .isString(),
     check("position")
         .isMongoId()
         .withMessage('Debe ser mongoID'),

@@ -2,13 +2,13 @@ POST http://localhost:3200/api/user/register
 content-type: application/json
 
 {
-    "nickName": "josearimatea",
-    "name": "kun",
+    "nickName": "Nuevo usuario2",
+    "name": "el combi2",
     "password": "   Emanuel12",
     "rePassword": "Emanuel12  ",
-    "position": "62e1a04e94d6be4595db7067",
-    "document": "27571778",
-    "entity": "62e1a04e94d6be4595db7067"
+    "position": "62e3df964db2354847e3462c",
+    "document": "27571788",
+    "entity": "62e3df964db2354847e3461c"
 }
 
 

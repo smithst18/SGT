@@ -20,7 +20,6 @@ export const savePosition = async (req, res) =>{
 
         const savedPosition = await positionModel.create(cleanBody);
         if(!savedPosition) return handleError(res,500,"Server_Error");
-
         else return res.status(200).send({
             message:'Position saved',
             saved:savedPosition

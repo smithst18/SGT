@@ -27,4 +27,4 @@ const positionSchema  = new Schema ({
   versionKey:false,
 });
 
-export const Position = new model('positions',positionSchema);
+export const Position = new model('Position',positionSchema);
