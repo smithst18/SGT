@@ -14,15 +14,14 @@ export const login = async (req,res) =>{
   
   try{
     const cleanBody = matchedData(req);
-    
     const headerAuth = req.headers.authorization;
     
-    const user = await userModel.findOne({ userName: cleanBody.userName})
-    .select('sub userName name rol position entity password');
+    const user = await userModel.findOne({ nickName: cleanBody.nickName})
+    .select('sub nickName name rol position entity password');
     if(!user) return handleError(res,403,'No Existe el Usuario');
     
-    const math = await compare(cleanBody.password, user.password);
-    if(!math) return handleError(res,401,'Contrase;a incorrecta');
+    const match = await compare(cleanBody.password, user.password);
+    if(!match) return handleError(res,401,'Contrase;a incorrecta');
     
     //send token 
     
@@ -35,7 +34,6 @@ export const login = async (req,res) =>{
     }
 
   }catch(e){
-
     console.log(e)
     handleError(res,403,'Error_user_login');
     

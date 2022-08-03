@@ -1,7 +1,7 @@
 import { check } from "express-validator";
 import { validateResult } from '../../helpers/handleValidator';
 //customVals
-import { confirmPass, findUser } from "./custom/userCustomValidations";
+import { confirmPass, findItem } from "./custom/userCustomValidations";
 
 /**
  * Middleware login validator
@@ -15,8 +15,8 @@ export const validLogin = [
         .withMessage('No debe estar vacio')
         .isString()
         .withMessage('debe ser un string')
-        .isLength({min:5,max:15})
-        .withMessage('minimo 5 caracteres'),
+        .isLength({min:1,max:30})
+        .withMessage('minimo 1 caracter'),
     check("password")
         .exists()
         .withMessage('debe existir')
@@ -65,7 +65,7 @@ export const validCreateUser = [
         .withMessage('debe ser un string')
         .isLength({min:5,max:8})
         .withMessage('min 5 caracteres y max 8 ')
-        .custom(value => findUser('document',value)),
+        .custom(value => findItem('document',value)),
     check("password")
         .exists()
         .withMessage('debe existir')

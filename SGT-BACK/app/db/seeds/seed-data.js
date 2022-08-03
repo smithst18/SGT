@@ -43,8 +43,8 @@ mongoose.connect(
                     "62e3df964db2354847e3342c"
                 ],
                 users:[
-                    // "62e3df961db2354847e3263c",
-                    // "62e3df962db2354847e3263c",
+                    "62e3df961db2354847e3263c",
+                    "62e3df962db2354847e3263c",
                 ]
 
             }
@@ -65,8 +65,8 @@ mongoose.connect(
                 type:"1",
                 entity:"62e3df964db2354847e3465c",
                 users:[
-                    // "62e3df961db2354847e3263c",
-                    // "62e3df962db2354847e3263c"
+                    "62e3df961db2354847e3263c",
+                    "62e3df962db2354847e3263c"
                 ]
             },
             {
@@ -83,35 +83,35 @@ mongoose.connect(
             }
         ]),
 
-        // await userModel.insertMany([
-        //     {
-        //         _id:"62e3df964db2354847e3463c",
-        //         nickName: "Admin",
-        //         name: "emanuel Abreu",
-        //         password:await encrypt("Emanuel15"),
-        //         position: "62e3df964db2354847e3462c",
-        //         document: "27571773",
-        //         entity: "62e3df964db2354847e3461c"
-        //     },
-        //     {
-        //         _id:"62e3df961db2354847e3263c",
-        //         nickName: "user",
-        //         name: " Doria",
-        //         password:await encrypt("Emanuel12"),
-        //         position: "62e3df964db2354847e3442c",
-        //         document: "27571714",
-        //         entity: "62e3df964db2354847e3465c"
-        //     },
-        //     {
-        //         _id:"62e3df962db2354847e3263c",
-        //         nickName: "user2",
-        //         name: "gonzales ",
-        //         password:await encrypt("Emanuel12"),
-        //         position: "62e3df964db2354847e3442c",
-        //         document: "27571711",
-        //         entity: "62e3df964db2354847e3465c"
-        //     },
-        // ]),
+        await userModel.insertMany([
+            {
+                _id:"62e3df964db2354847e3463c",
+                nickName: "Admin",
+                name: "emanuel Abreu",
+                password:await encrypt("Emanuel15"),
+                position: "62e3df964db2354847e3462c",
+                document: "27571773",
+                entity: "62e3df964db2354847e3461c"
+            },
+            {
+                _id:"62e3df961db2354847e3263c",
+                nickName: "user",
+                name: " Doria",
+                password:await encrypt("Emanuel12"),
+                position: "62e3df964db2354847e3442c",
+                document: "27571714",
+                entity: "62e3df964db2354847e3465c"
+            },
+            {
+                _id:"62e3df962db2354847e3263c",
+                nickName: "user2",
+                name: "gonzales ",
+                password:await encrypt("Emanuel12"),
+                position: "62e3df964db2354847e3442c",
+                document: "27571711",
+                entity: "62e3df964db2354847e3465c"
+            },
+        ]),
 
     ]).then((values) =>{
 

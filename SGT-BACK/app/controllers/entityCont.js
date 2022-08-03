@@ -19,15 +19,14 @@ export const saveEntity = async (req,res) =>{
     }
 }   
 
-export const getAllEntitys = async (req,res) =>{ //(1) => padre (entitys)
+export const getAllEntitys = async (req,res) =>{
 
     try{
-        const allEntitys = await entityModel.find().populate('users').populate({
-            path:'positions',
-            populate:{ path: 'users' }
-        });
+        const allEntitys = await entityModel.find().select(" _id name");
 
-        return console.log(JSON.stringify(allEntitys));
+        if( !allEntitys.length > 1 ) return handleError(res,403,"ANY_ENTITY_FOUND");
+        else return res.status(200).send({ entitys: allEntitys });
+
     }catch(e){
         console.log(e)
         return handleError(res,403,"Error_Getting_entitys");

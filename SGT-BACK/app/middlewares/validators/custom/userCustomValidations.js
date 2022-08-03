@@ -5,7 +5,7 @@ import { User } from "../../../models/user";
  * @param {*} value 
  * @returns 
  */
-export const findUser = async (search,value) =>{
+export const findItem = async (search,value) =>{
     
     return User.findOne({[search]:value}).then(user => {
         if (user) {

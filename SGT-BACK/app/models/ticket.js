@@ -11,8 +11,12 @@ const ticketSchema  = new Schema ({
     required:true,
     trim:true,
   },
-  status:{
+  type:{
     type:String,
+    enum: {
+      values: ['network', 'hardware', 'Software'],
+      message: '{VALUE} is not supported, must be network, hardware or Software'
+    },
     required:true,
     trim:true,
   },
@@ -20,10 +24,21 @@ const ticketSchema  = new Schema ({
     type:String,
     required:true,
     trim:true,
+    enum: {
+      values: ['pending', 'in process', 'solved'],
+      message: '{VALUE} is not supported, must be pending in process solved'
+    },
+    default:'pending',
+  },
+  sendBy:{
+    type:Types.ObjectId,
+    ref:'User',
+    required:true,
   },
   takeBy:{
     type:Types.ObjectId,
-    ref:'user',
+    ref:'User',
+    default:null
   }
 },{
   timestamps:true,

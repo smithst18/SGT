@@ -15,17 +15,17 @@ content-type: application/json
 ### login
 POST http://localhost:3200/api/user/login
 content-type: application/json
-//Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiI2MmUzZGYxZTRkYjIzNTQ4NDdlMzQ2NTgiLCJ1c2VyTmFtZSI6ImVtYW51ZWwgQWJyZXUiLCJyb2wiOiJ1c2VyIiwicG9zaXRpb24iOiI2MmUxYTA0ZTk0ZDZiZTQ1OTVkYjcwNjciLCJpYXQiOjE2NTkxMDA5OTQsImV4cCI6MTY1OTE4NzM5NH0.OIdk4pVSE99BXLOU04Sx2EUsE3m8vFt5LSy0XqC-Q_s
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiI2MmUzZGY5NjFkYjIzNTQ4NDdlMzI2M2MiLCJ1c2VyTmFtZSI6IkRvcmlhIiwicm9sIjoidXNlciIsInBvc2l0aW9uIjoiNjJlM2RmOTY0ZGIyMzU0ODQ3ZTM0NDJjIiwiaWF0IjoxNjU5NTM2MDM1LCJleHAiOjE2NTk2MjI0MzV9.3RqcVmX0CHSADGgQlS1RZDjfLk8Ng3B5DHbCBoThP6c
 
 {
-    "nickName": "josearimatea",
-    "password": "   Emanuel12"
+    "nickName": "user",
+    "password": "Emanuel12"
 }
 
 ### entitys
 POST  http://localhost:3200/api/entity/save-entity
 content-type: application/json
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiI2MmUzZGYxZTRkYjIzNTQ4NDdlMzQ2NTgiLCJ1c2VyTmFtZSI6ImVtYW51ZWwgQWJyZXUiLCJyb2wiOiJ1c2VyIiwicG9zaXRpb24iOiI2MmUxYTA0ZTk0ZDZiZTQ1OTVkYjcwNjciLCJpYXQiOjE2NTkxMDA5OTQsImV4cCI6MTY1OTE4NzM5NH0.OIdk4pVSE99BXLOU04Sx2EUsE3m8vFt5LSy0XqC-Q_s
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiI2MmUzZGY5NjFkYjIzNTQ4NDdlMzI2M2MiLCJ1c2VyTmFtZSI6IkRvcmlhIiwicm9sIjoidXNlciIsInBvc2l0aW9uIjoiNjJlM2RmOTY0ZGIyMzU0ODQ3ZTM0NDJjIiwiaWF0IjoxNjU5NTM2MDM1LCJleHAiOjE2NTk2MjI0MzV9.3RqcVmX0CHSADGgQlS1RZDjfLk8Ng3B5DHbCBoThP6c
 
 {
     "name": "Nacionales"
@@ -33,13 +33,13 @@ Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiI2MmUzZGYxZ
 
 ### get all entitys
 GET  http://localhost:3200/api/entity/get-all
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiI2MmUzZGYxZTRkYjIzNTQ4NDdlMzQ2NTgiLCJ1c2VyTmFtZSI6ImVtYW51ZWwgQWJyZXUiLCJyb2wiOiJ1c2VyIiwicG9zaXRpb24iOiI2MmUxYTA0ZTk0ZDZiZTQ1OTVkYjcwNjciLCJpYXQiOjE2NTkxMDA5OTQsImV4cCI6MTY1OTE4NzM5NH0.OIdk4pVSE99BXLOU04Sx2EUsE3m8vFt5LSy0XqC-Q_s
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiI2MmUzZGY5NjFkYjIzNTQ4NDdlMzI2M2MiLCJ1c2VyTmFtZSI6IkRvcmlhIiwicm9sIjoidXNlciIsInBvc2l0aW9uIjoiNjJlM2RmOTY0ZGIyMzU0ODQ3ZTM0NDJjIiwiaWF0IjoxNjU5NTM2MDM1LCJleHAiOjE2NTk2MjI0MzV9.3RqcVmX0CHSADGgQlS1RZDjfLk8Ng3B5DHbCBoThP6c
 
 
 ### position 
 POST  http://localhost:3200/api/position/save-position
 content-type: application/json
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiI2MmUzZGYxZTRkYjIzNTQ4NDdlMzQ2NTgiLCJ1c2VyTmFtZSI6ImVtYW51ZWwgQWJyZXUiLCJyb2wiOiJ1c2VyIiwicG9zaXRpb24iOiI2MmUxYTA0ZTk0ZDZiZTQ1OTVkYjcwNjciLCJpYXQiOjE2NTkxMDA5OTQsImV4cCI6MTY1OTE4NzM5NH0.OIdk4pVSE99BXLOU04Sx2EUsE3m8vFt5LSy0XqC-Q_s
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiI2MmUzZGY5NjFkYjIzNTQ4NDdlMzI2M2MiLCJ1c2VyTmFtZSI6IkRvcmlhIiwicm9sIjoidXNlciIsInBvc2l0aW9uIjoiNjJlM2RmOTY0ZGIyMzU0ODQ3ZTM0NDJjIiwiaWF0IjoxNjU5NTM2MDM1LCJleHAiOjE2NTk2MjI0MzV9.3RqcVmX0CHSADGgQlS1RZDjfLk8Ng3B5DHbCBoThP6c
 
 {
     "name": "Analista",
@@ -50,9 +50,15 @@ Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiI2MmUzZGYxZ
 ### tickets
  POST http://localhost:3200/api/ticket/save-ticket
 content-type: application/json
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiI2MmUzZGYxZTRkYjIzNTQ4NDdlMzQ2NTgiLCJ1c2VyTmFtZSI6ImVtYW51ZWwgQWJyZXUiLCJyb2wiOiJ1c2VyIiwicG9zaXRpb24iOiI2MmUxYTA0ZTk0ZDZiZTQ1OTVkYjcwNjciLCJpYXQiOjE2NTkxMDA5OTQsImV4cCI6MTY1OTE4NzM5NH0.OIdk4pVSE99BXLOU04Sx2EUsE3m8vFt5LSy0XqC-Q_s
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiI2MmUzZGY5NjFkYjIzNTQ4NDdlMzI2M2MiLCJ1c2VyTmFtZSI6IkRvcmlhIiwicm9sIjoidXNlciIsInBvc2l0aW9uIjoiNjJlM2RmOTY0ZGIyMzU0ODQ3ZTM0NDJjIiwiaWF0IjoxNjU5NTM2MDM1LCJleHAiOjE2NTk2MjI0MzV9.3RqcVmX0CHSADGgQlS1RZDjfLk8Ng3B5DHbCBoThP6c
 
 {
-    "nickName": "Admin",
-    "password": "   Emanuel15"
+    "item": "internet",
+    "description": "No tengo internet",
+    "type": "network",
+    "sendBy": "62e3df961db2354847e3263c"
 }
+
+### get all entitys
+GET  http://localhost:3200/api/ticket/get-tickets
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiI2MmUzZGY5NjFkYjIzNTQ4NDdlMzI2M2MiLCJ1c2VyTmFtZSI6IkRvcmlhIiwicm9sIjoidXNlciIsInBvc2l0aW9uIjoiNjJlM2RmOTY0ZGIyMzU0ODQ3ZTM0NDJjIiwiaWF0IjoxNjU5NTM2MDM1LCJleHAiOjE2NTk2MjI0MzV9.3RqcVmX0CHSADGgQlS1RZDjfLk8Ng3B5DHbCBoThP6c
