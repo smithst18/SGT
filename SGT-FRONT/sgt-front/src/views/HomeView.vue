@@ -1,9 +1,15 @@
+<template>
+<div class="md:flex md:p-3 md:h-full">
+  <Navbar />
+  <div class="md:ml-5 md:w-full md:flex border border-cyan-400">
+    <RouterView />
+  </div>
+</div>
+</template>
+
 <script setup>
-import TheWelcome from "@/components/TheWelcome.vue";
+  import Navbar from "../components/NavBar.vue";
 </script>
 
-<template>
-  <main>
-    <TheWelcome />
-  </main>
-</template>
+<style scoped>
+</style>
