@@ -1,6 +1,6 @@
 <template>
 <div class="md:flex md:p-3 md:h-full">
-  <Navbar />
+  <SideBar />
   <div class="md:ml-5 md:w-full md:flex border border-cyan-400">
     <RouterView />
   </div>
@@ -8,7 +8,7 @@
 </template>
 
 <script setup>
-  import Navbar from "../components/NavBar.vue";
+  import SideBar from "../components/TheSidebar.vue";
 </script>
 
 <style scoped>

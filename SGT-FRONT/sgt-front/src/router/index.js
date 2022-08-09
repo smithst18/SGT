@@ -1,5 +1,5 @@
 import { createRouter, createWebHistory } from "vue-router";
-
+import ticketsRoutes from '@/modules/ticketModule/router';
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
   routes: [
@@ -15,10 +15,14 @@ const router = createRouter({
       path: "/home",
       component: () => import(/* webpackChunkName: "Home view" */'../views/HomeView.vue'),
       children:[
-        // {
-        //   path:"",
-        //   ...rutas
-        // },
+        {
+          path:"ticketsHome",
+          ...ticketsRoutes,
+        },
+        {
+          path:'',
+          redirect:{name:'ticketsHome'},
+        }
         // {
 
         // }
