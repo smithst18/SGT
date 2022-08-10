@@ -3,7 +3,7 @@
         <h3 class="text-primary text-lg mb-8"> Mis Soportes</h3>
         <div class="border border-cyan-200 p-2 h-[90%]">
             <!-- pasarle la data de los ticket a la tabla  -->
-            <div class="h-[90%] overflow-y-auto">
+            <div class="h-[85%] overflow-y-auto">
                 <TicketTable v-bind="tableOptions"/>
             </div>
             <Pagination />

@@ -1,38 +1,34 @@
 import { createRouter, createWebHistory } from "vue-router";
-import ticketsRoutes from '@/modules/ticketModule/router';
+import ticketsRoutes from '@/modules/ticket/router';
+
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
   routes: [
     {
       path: "/",
-      redirect:'/home' ,
+      redirect:{ name:'login' },
     },
     {
       path: "/login",
-      component: () => import(/* webpackChunkName: "Login view" */'../views/LoginView.vue'),
+      name:"login",
+      component: () => import(/* webpackChunkName: "Login view "*/"@/views/LoginView.vue"),
     },
     {
       path: "/home",
-      component: () => import(/* webpackChunkName: "Home view" */'../views/HomeView.vue'),
+      name:"home",
+      component: () => import(/* webpackChunkName: "Login view "*/"@/views/HomeView.vue"),
       children:[
         {
-          path:"ticketsHome",
+          path: "",
           ...ticketsRoutes,
         },
-        {
-          path:'',
-          redirect:{name:'ticketsHome'},
-        }
-        // {
-
-        // }
       ]
     },
-    {
-      path: '/:pathMatch(.*)*',
-      redirect:{name:'dashboard'}
+    { 
+      path: '/:pathMatch(.*)*', 
+      redirect:{ name:"login" }
     },
-  ],
+  ]
 });
 
 export default router;
