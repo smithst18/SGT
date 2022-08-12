@@ -14,12 +14,13 @@ const router = createRouter({
       component: () => import(/* webpackChunkName: "Login view "*/"@/views/LoginView.vue"),
     },
     {
-      path: "/home",
+      path: "",
       name:"home",
       component: () => import(/* webpackChunkName: "Login view "*/"@/views/HomeView.vue"),
+      redirect: { name:"tickets" },
       children:[
         {
-          path: "",
+          path: "tickets",
           ...ticketsRoutes,
         },
       ]
