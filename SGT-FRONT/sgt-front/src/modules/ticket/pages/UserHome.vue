@@ -1,11 +1,11 @@
 <template>
-  <div class="w-full h-full border border-cyan-900 p-10 justify-center">
+  <div class="w-full h-full border border-cyan-900 p-10 justify-center rounded-lg">
     <!-- title -->
     <h3 class="text-primary text-lg mb-8">Apertura de Ticket</h3>
     <!-- form ticket  -->
     <form class="w-full">
 
-      <div class="flex flex-wrap -mx-3 mb-6">
+      <!-- <div class="flex flex-wrap -mx-3 mb-6">
         <div class="w-full md:w-1/2 px-3 mb-6 md:mb-0">
           <label class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2" for="grid-first-name">
             First Name
@@ -19,20 +19,21 @@
           </label>
           <input class="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500" id="grid-last-name" type="text" placeholder="Doe">
         </div>
-      </div>
+      </div> -->
 
       <div class="flex flex-wrap -mx-3 mb-6">
         <div class="w-full px-3">
           <label class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2" for="grid-description">
             Descripcion
           </label>
-          <input class="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white focus:border-gray-500" id="grid-description" type="textarea" placeholder="Breve Descripcion">
+          <textarea class="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white focus:border-gray-500" id="grid-description" placeholder="Breve Descripcion">
+          </textarea>
           <p class="text-gray-600 text-xs italic">Descripcion que defina apropiadamente el problema</p>
         </div>
       </div>
 
       <div class="flex flex-wrap -mx-3 mb-2">
-        <div class="w-full md:w-1/3 px-3 mb-6 md:mb-0">
+        <div class="w-full md:w-1/2 px-3 mb-6 md:mb-0">
           <label class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2" for="grid-type">
             Tipo
           </label>
@@ -48,7 +49,7 @@
           </div>
         </div>
 
-        <div class="w-full md:w-1/3 px-3 mb-6 md:mb-0">
+        <div class="w-full md:w-1/2 px-3 mb-6 md:mb-0">
           <label class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2" for="grid-type">
             Prioridad
           </label>

@@ -4,14 +4,19 @@ export default {
     redirect: { name:"techHome" },
     children:[
         {
-            path:'techHome',
+            path:'my-tickets',
             name:'techHome',
             component:() => import(/* webpackChunkName: "tech principal view "*/"@/modules/ticket/pages/TechHome.vue"),
         },
         {
-            path:'userHome',
+            path:'ticket-request',
             name:'userHome',
             component:() => import(/* webpackChunkName: "user principal view "*/"@/modules/ticket/pages/UserHome.vue"),
+        },
+        {
+            path:'ticket-statistics',
+            name:'adminHome',
+            component:() => import(/* webpackChunkName: "user principal view "*/"@/modules/ticket/pages/AdminHome.vue"),
         },
         // colocar ruta para el cliente y el admin compartidas
         { 
