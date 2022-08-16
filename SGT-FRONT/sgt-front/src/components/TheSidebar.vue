@@ -10,8 +10,9 @@
       </div>
     </div>
     <!-- links -->
-    <div class="md:mb-auto md:mt-16 md:z-auto md:static md:opacity-100 md:pl-0 pl-7  absolute bg-primary w-full left-0 opacity-0 top-[-400px] transition-all ease-out duration-700 md:transition-none" id="collapse">
-        <!-- <NavbarLink v-for="link in links" :key="link.name" :link="link" class="block"/> -->
+    <div class="md:mb-auto md:mt-16 md:z-auto md:static md:opacity-100 md:pl-0 pl-7  absolute bg-primary w-full left-0 opacity-0 top-[-400px] transition-all ease-out duration-700 md:transition-none" id="collapse"
+      v-if="userLinks">
+      <SidebarLinkVue v-for="link in userLinks" :key="link.name" :link="link" class="block"/>
     </div>
     <!-- logOut button -->
     <a class="md:ml-10 md:mb-5 pointer hidden md:block text-sm opacity-50 hover:opacity-100">
@@ -33,7 +34,23 @@
 </template>
 
 <script setup>
+import SidebarLinkVue from './SidebarLink.vue';
 
+const userLinks = [
+  {to: 'techHome', name:'tech',icon:"fa-solid fa-house"},
+  {to: 'userHome', name:'user',icon:"fa-solid fa-house"},
+  {to: 'adminHome', name:'adm',icon:"fa-solid fa-house"}
+];
+// const techLinks = [
+//   {},
+//   {},
+//   {},
+// ]
+// const adminLinks = [
+//   {},
+//   {},
+//   {},
+// ]
 </script>
 
 <style scoped>
