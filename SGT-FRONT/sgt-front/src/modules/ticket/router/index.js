@@ -9,9 +9,9 @@ export default {
             component:() => import(/* webpackChunkName: "tech principal view "*/"@/modules/ticket/pages/TechHome.vue"),
         },
         {
-            path:'my-tickets',
-            name:'techHome',
-            component:() => import(/* webpackChunkName: "tech principal view "*/"@/modules/ticket/pages/TicketList/vue"),
+            path:'ticket-list',
+            name:'ticket-list',
+            component:() => import(/* webpackChunkName: "tech principal view "*/"@/modules/ticket/pages/TicketList.vue"),
         },
         {
             path:'ticket-request',

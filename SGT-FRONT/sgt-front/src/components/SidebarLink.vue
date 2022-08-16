@@ -17,7 +17,7 @@
 </template>
 
 <script setup>
-import { computed, onMounted } from "@vue/runtime-core";
+import { computed } from "@vue/runtime-core";
 
 const props = defineProps({
   link:{
@@ -25,7 +25,6 @@ const props = defineProps({
     required:true,
   },
 });
-onMounted(() => console.log(props.link));
 
 const rout = computed(() =>  { return { name:props.link.to } }) ;
 
