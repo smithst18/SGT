@@ -35,7 +35,7 @@ export const login = async (req,res) =>{
 
   }catch(e){
     console.log(e)
-    handleError(res,403,'Error_user_login');
+    return handleError(res,403,'Error_user_login');
     
   }
 
@@ -82,7 +82,7 @@ export const saveUser = async (req,res) =>{
 
   }catch(e){
     console.log(e);
-    handleError(res,403,'Error_user_register');
+    return handleError(res,403,'Error_user_register');
   }
 //TODOS
 // * Validar la existencia de la position a guarar y de la entity
