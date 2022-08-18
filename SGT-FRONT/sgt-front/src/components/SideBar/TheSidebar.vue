@@ -38,9 +38,10 @@ import SidebarLinkVue from './SidebarLink.vue';
 
 const userLinks = [
   {to: 'techHome', name:'tech',icon:"fa-solid fa-house"},
-  {to: 'userHome', name:'user',icon:"fa-solid fa-house"},
+  {to: 'userHome', name:'ticket request',icon:"fa-solid fa-house"},
   {to: 'adminHome', name:'adm',icon:"fa-solid fa-house"},
   {to: 'ticket-list', name:'tickets',icon:"fa-solid fa-house"},
+  {to: 'userSignin', name:'save user',icon:"fa-solid fa-house"},
 ];
 // const techLinks = [
 //   {},

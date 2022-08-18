@@ -11,17 +11,17 @@
         Mostrando de 
         <span class="font-medium">1</span>
         a
-        <span class="font-medium">10</span>
+        <span class="font-medium">{{ elementsPerPage }}</span>
         de
-        <span class="font-medium">{{totalPages}}</span>
+        <span class="font-medium">{{ results }}</span>
         Resultados
       </p>
     </div>
     <div>
       <nav class="relative z-0 inline-flex rounded-md shadow-sm -space-x-px" aria-label="Pagination">
         <a href="#" 
-          class="relative inline-flex items-center px-2 py-2 rounded-l-md border border-gray-300 bg-white text-sm font-medium text-gray-500 hover:bg-gray-50"
-          @click="incrementPage(actualPage)">
+          class="pagination-arrow"
+          @click="prevArroy()">
           <span class="sr-only">Anterior</span>
           <!-- Heroicon name: solid/chevron-left -->
           <svg class="h-5 w-5" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
@@ -29,16 +29,17 @@
           </svg>
         </a>
 
-        <a href="#" class="pagination-item" 
-          v-for="page in pages" 
+        <a href="#" 
+          v-for="(page, index) in pages" 
+          :class=" activeIndex === index ? 'pagination-item-active' : 'pagination-item' " 
           :key="page"
-          @click="$emit('miEventoChild',page)">
+          @click="clickedPage(page,index)">
           {{ page }} 
         </a>
 
         <a href="#" 
-          class="relative inline-flex items-center px-2 py-2 rounded-r-md border border-gray-300 bg-white text-sm font-medium text-gray-500 hover:bg-gray-50"
-          @click="decrementPage(actualPage)">
+          class="pagination-arrow"
+          @click="nextArroy()">
           <span class="sr-only">Siguiente</span>
           <!-- Heroicon name: solid/chevron-right -->
           <svg class="h-5 w-5" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
@@ -52,7 +53,7 @@
 </template>
 
 <script setup>
-import { onMounted } from "@vue/runtime-core";
+import { computed, onMounted, ref } from "@vue/runtime-core";
 
 
 const props = defineProps({
@@ -60,31 +61,47 @@ const props = defineProps({
     type:Number,
     required:true
   },
-  totalPages:{
+  elementsPerPage:{
+      type:Number,
+      required:true,
+  },
+  results:{
     type:Number,
-    required:true,
+    required:true
   }
 });
-const getActualPage = () =>{
-  console.log(props.pages)
-}
-const incrementPage = () => {
-  console.log('hola');
-}
-const decrementPage = () => {
-  console.log('hola');
-}
+const activeIndex = ref(0);
 
-onMounted(() =>{ console.log(props)});
+const emit = defineEmits(['dataPagination','nextPage','prevPage']);
+
+const clickedPage = (page,index) =>{
+  activeIndex.value = index;
+  emit('dataPagination',page);
+}
+const prevArroy = () =>{
+  if(activeIndex.value > 0) {
+    activeIndex.value -= 1;
+    emit('prevPage')
+  }
+}
+const nextArroy = () =>{
+  if(activeIndex.value < props.pages - 1) {
+    activeIndex.value += 1;
+    emit('nextPage');
+  }
+}
 
 </script>
 
 
 <style scoped>
 .pagination-item{
-    @apply bg-white border-gray-300 text-gray-500 hover:bg-gray-50 relative inline-flex items-center px-4 py-2 border text-sm font-medium
+    @apply bg-white border-gray-300 text-gray-500 hover:bg-primary hover:text-secondary relative inline-flex items-center px-4 py-2 border text-sm font-medium
 }
 .pagination-item-active{
-    @apply z-10 bg-indigo-50 border-indigo-500 text-indigo-600 relative inline-flex items-center px-4 py-2 border text-sm font-medium
+    @apply z-10 bg-indigo-50 border-primary text-primary relative inline-flex items-center px-4 py-2 border text-sm font-medium
+}
+.pagination-arrow{
+  @apply relative inline-flex items-center px-2 py-2 rounded-l-md border border-gray-300 bg-white text-sm font-medium text-gray-500 hover:bg-primary hover:text-secondary
 }
 </style>

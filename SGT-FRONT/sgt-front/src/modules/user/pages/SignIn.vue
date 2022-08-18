@@ -1,0 +1,136 @@
+<template>
+  <div class="w-full h-full border border-cyan-900 p-10 justify-center rounded-lg">
+    <!-- title -->
+    <h3 class="text-primary text-lg mb-8">Registro de Usuario</h3>
+    <!-- form user registration  -->
+    <form class="w-full">
+      <!-- nombre de usuario y nickname -->
+      <div class="flex flex-wrap -mx-3 mb-6">
+        <div class="w-full md:w-1/2 px-3 mb-6 md:mb-0">
+          <label class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2" for="grid-first-name">
+            nombre de usuario
+          </label>
+          <input class="appearance-none block w-full bg-gray-200 text-gray-700 border border-red-500 rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white" id="grid-first-name" type="text" placeholder="Jane">
+          <p class="text-red-500 text-xs italic">Porfavor rellena el campo</p>
+        </div>
+
+        <div class="w-full md:w-1/2 px-3">
+          <label class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2" for="grid-last-name">
+            nombre
+          </label>
+          <input class="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500" id="grid-last-name" type="text" placeholder="Doe">
+        </div>
+
+      </div> 
+      <!-- password re password -->
+      <div class="flex flex-wrap -mx-3 mb-6">
+        <div class="w-full md:w-1/2 px-3 mb-6 md:mb-0">
+          <label class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2" for="grid-first-name">
+            Constrase;a
+          </label>
+          <input class="appearance-none block w-full bg-gray-200 text-gray-700 border border-red-500 rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white" id="grid-first-name" type="text" placeholder="Jane">
+          <p class="text-red-500 text-xs italic">Porfavor rellena el campo</p>
+        </div>
+
+        <div class="w-full md:w-1/2 px-3">
+          <label class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2" for="grid-last-name">
+            Repetir
+          </label>
+          <input class="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500" id="grid-last-name" type="text" placeholder="Doe">
+        </div>
+
+      </div> 
+      <!-- cedula de indentidad -->
+      <div class="flex flex-wrap -mx-3 mb-6">
+        <div class="w-full md:w-1/2 px-3 mb-6 md:mb-0">
+          <label class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2" for="grid-first-name">
+            Constrase;a
+          </label>
+          <input class="appearance-none block w-full bg-gray-200 text-gray-700 border border-red-500 rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white" id="grid-first-name" type="text" placeholder="Jane">
+          <p class="text-red-500 text-xs italic">Porfavor rellena el campo</p>
+        </div>
+      </div> 
+
+      <div class="flex flex-wrap -mx-3 mb-2">
+        <div class="w-full md:w-1/2 px-3 mb-6 md:mb-0">
+          <label class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2" for="grid-type">
+            Entidad
+          </label>
+          <div class="relative">
+            <select class="block appearance-none w-full bg-gray-200 border border-gray-200 text-gray-700 py-3 px-4 pr-8 rounded leading-tight focus:outline-none focus:bg-white focus:border-gray-500" id="grid-type">
+              <option>Hardware</option>
+              <option>Software</option>
+              <option>Red</option>
+            </select>
+            <div class="pointer-events-none absolute inset-y-0 right-0 flex items-center px-2 text-gray-700">
+              <svg class="fill-current h-4 w-4" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20"><path d="M9.293 12.95l.707.707L15.657 8l-1.414-1.414L10 10.828 5.757 6.586 4.343 8z"/></svg>
+            </div>
+          </div>
+        </div>
+
+        <div class="w-full md:w-1/2 px-3 mb-6 md:mb-0">
+          <label class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2" for="grid-type">
+            Cargo
+          </label>
+          <div class="relative">
+            <select class="block appearance-none w-full bg-gray-200 border border-gray-200 text-gray-700 py-3 px-4 pr-8 rounded leading-tight focus:outline-none focus:bg-white focus:border-gray-500" id="grid-type">
+              <option>Baja</option>
+              <option>Media</option>
+              <option>Alta</option>
+            </select>
+            <div class="pointer-events-none absolute inset-y-0 right-0 flex items-center px-2 text-gray-700">
+              <svg class="fill-current h-4 w-4" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20"><path d="M9.293 12.95l.707.707L15.657 8l-1.414-1.414L10 10.828 5.757 6.586 4.343 8z"/></svg>
+            </div>
+          </div>
+        </div>
+        
+      </div>
+    </form>
+  </div>
+</template>
+
+<script setup>
+import { reactive } from '@vue/reactivity';
+import useVuelidate from '@vuelidate/core';
+import { required, email, } from '@vuelidate/validators';
+
+const state = reactive({
+  user:{
+    nickname:'',
+    name:'',
+    document:'',
+    password:'',
+    repassword:'',
+    position:'',
+    entity:'',
+  }
+});
+
+const rules = {
+  user: {
+    nickname: { required }
+  }
+};
+
+const escribir = () => {
+  console.log('escribir');
+}
+
+// https://vuelidate-next.netlify.app/#alternative-syntax-composition-api
+
+const v$ = useVuelidate(rules,state)
+</script>
+
+<style>
+
+</style>
+<!-- <div class="flex flex-wrap -mx-3 mb-6">
+  <div class="w-full px-3">
+    <label class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2" for="grid-description">
+      Descripcion
+    </label>
+    <textarea class="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white focus:border-gray-500" id="grid-description" placeholder="Breve Descripcion">
+    </textarea>
+    <p class="text-gray-600 text-xs italic">Descripcion que defina apropiadamente el problema</p>
+  </div>
+</div> -->
