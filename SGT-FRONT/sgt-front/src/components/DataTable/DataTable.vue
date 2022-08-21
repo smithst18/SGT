@@ -5,12 +5,15 @@
         <table class="w-full border border-gray-200">
             <thead>
                 <tr>
-                    <th v-for="thead in props.theadTitles" :key="thead"> {{ thead }} </th>
+                    <th v-for="thead in props.titles" :key="thead"> {{ thead }} </th>
                 </tr>
             </thead>
             <tbody class="text-center w-full">
                 <tr v-for="tbData in paginatedData" :key="tbData">
-                    <td v-for="elem in tbData" :key="elem"> {{ elem }} </td>
+                  <td v-for="elem in tbData" :key="elem"> {{ elem }} </td>
+                  <td 
+                    v-if="showAction"
+                    ></td>
                 </tr>
             </tbody>
         </table>
@@ -28,15 +31,15 @@
 </template>
 
 <script setup>
-  import { defineAsyncComponent, onMounted, computed, ref } from "vue";
+  import { defineAsyncComponent, onMounted, computed, ref, inject } from "vue";
   const Pagination = defineAsyncComponent(() => import('@/components/DataTable/PaginationBar.vue'));
 
   const props = defineProps({
-    theadTitles:{
+    titles:{
       require:true,
       type:Array
     },
-    dataBody:{
+    data:{
       require:true,
       type:Array
     },
@@ -47,12 +50,15 @@
     elementsPerPage:{
       type:Number,
       required:true,
-    }
+    },
   });
+  //propiedad injectada a DataTable component que permite a;adir un botton de accion 
+  const showAction = inject('showActions');
+
   //data que se va a mostrar en la tabla 
   const paginatedData = ref([]);
   //numero de paginas que se envian al componente pagination
-  const pages = computed(() => Math.ceil(props.dataBody.length / props.elementsPerPage));
+  const pages = computed(() => Math.ceil(props.data.length / props.elementsPerPage));
   //pagina actual a mostrar por defecto es la 1 
   const actualPage = ref(1);
 
@@ -64,7 +70,7 @@
       //valor final va a ser la pagina dada *  la cantidad de  elementos a mostrar
       let fin = (page * props.elementsPerPage);
       //los valores a mostrar seran desde ini hasta fin
-      paginatedData.value = props.dataBody.slice(ini,fin);
+      paginatedData.value = props.data.slice(ini,fin);
   };
 
   const getPreviusPage = () => {
@@ -83,9 +89,10 @@
 
   const paginationProps = {
     pages:pages.value,
-    results:props.dataBody.length,
+    results:props.data.length,
     elementsPerPage:props.elementsPerPage,
   };
+  
   onMounted(() => getDataPagination(actualPage.value) );
 </script>
 
