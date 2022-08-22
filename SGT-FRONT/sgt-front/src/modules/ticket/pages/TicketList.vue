@@ -74,9 +74,12 @@ const data = [
         {estado:"31",item:"pantalla",tipo:"hardware",solicitante:"maria benites",detalles:"asdkjaljsdkasdlaslkjdlaksdlkasjdkl"},
         {estado:"32",item:"S.O",tipo:"Software",solicitante:"maria benites",detalles:"asdkjaljsdkasdlaslkjdlaksdlkasjdkl"},
 ];
-provide(/* key */ 'showActions', /* value */ true);
+const templat = `
+  <p> texto de prueba <p>
+`;
+provide(/* key */ 'tableActions', /* value */ {show:true});
 const ticketComponentProps = {
-    title:'Mis Tickets',
+    title:'Tickets en Espera',
     titles:[
         "Estado",
         "Item",
@@ -84,7 +87,7 @@ const ticketComponentProps = {
         "Solicitante",
         "Detalles",
     ],
-    data:data,
+    data,
 }
 
 </script>

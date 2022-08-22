@@ -12,8 +12,13 @@
                 <tr v-for="tbData in paginatedData" :key="tbData">
                   <td v-for="elem in tbData" :key="elem"> {{ elem }} </td>
                   <td 
-                    v-if="showAction"
-                    ></td>
+                    v-if="tableActions && tableActions.show"
+                    >
+                    <button>
+                      <!-- <font-awesome-icon :icon="['fab', 'twitter']" /> -->
+                      <font-awesome-icon :icon="['fa','file-circle-plus']"></font-awesome-icon>
+                    </button>
+                  </td>
                 </tr>
             </tbody>
         </table>
@@ -31,7 +36,9 @@
 </template>
 
 <script setup>
-  import { defineAsyncComponent, onMounted, computed, ref, inject } from "vue";
+  import { defineAsyncComponent, onMounted } from "vue";
+  import { useDataTable } from "@/composables/userDataTable.js"
+
   const Pagination = defineAsyncComponent(() => import('@/components/DataTable/PaginationBar.vue'));
 
   const props = defineProps({
@@ -52,40 +59,17 @@
       required:true,
     },
   });
-  //propiedad injectada a DataTable component que permite a;adir un botton de accion 
-  const showAction = inject('showActions');
 
-  //data que se va a mostrar en la tabla 
-  const paginatedData = ref([]);
-  //numero de paginas que se envian al componente pagination
-  const pages = computed(() => Math.ceil(props.data.length / props.elementsPerPage));
-  //pagina actual a mostrar por defecto es la 1 
-  const actualPage = ref(1);
+  const {
+    tableActions,//es un provide
+    paginatedData,
+    pages,
+    actualPage,
+    getDataPagination,
+    getPreviusPage,
+    getNextPage,
 
-  const getDataPagination = (page) => {
-      //asignamos el valor de la pagina recibida al valor actual manejado
-      actualPage.value = page;
-      //valor inicial va ser la pagina data * la cantidad de  elementos a mostrar - la cantidad de  elementos a mostrar
-      let ini = (page * props.elementsPerPage) - props.elementsPerPage;
-      //valor final va a ser la pagina dada *  la cantidad de  elementos a mostrar
-      let fin = (page * props.elementsPerPage);
-      //los valores a mostrar seran desde ini hasta fin
-      paginatedData.value = props.data.slice(ini,fin);
-  };
-
-  const getPreviusPage = () => {
-    if(actualPage.value > 1){
-      actualPage.value -= 1;
-    }
-    getDataPagination(actualPage.value);
-  };
-  
-  const getNextPage = () => {
-    if(actualPage.value < pages.value){
-      actualPage.value += 1;
-    }
-    getDataPagination(actualPage.value);
-  };
+  } = useDataTable(props.data, props.elementsPerPage);
 
   const paginationProps = {
     pages:pages.value,
