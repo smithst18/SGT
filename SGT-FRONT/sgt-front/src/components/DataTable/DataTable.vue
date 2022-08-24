@@ -11,14 +11,6 @@
             <tbody class="text-center w-full">
                 <tr v-for="tbData in paginatedData" :key="tbData">
                   <td v-for="elem in tbData" :key="elem"> {{ elem }} </td>
-                  <td 
-                    v-if="tableActions && tableActions.show"
-                    >
-                    <button>
-                      <!-- <font-awesome-icon :icon="['fab', 'twitter']" /> -->
-                      <font-awesome-icon :icon="['fa','file-circle-plus']"></font-awesome-icon>
-                    </button>
-                  </td>
                 </tr>
             </tbody>
         </table>
@@ -61,7 +53,6 @@
   });
 
   const {
-    tableActions,//es un provide
     paginatedData,
     pages,
     actualPage,

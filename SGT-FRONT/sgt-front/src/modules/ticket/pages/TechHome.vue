@@ -12,7 +12,7 @@
 <script setup>
 import { defineAsyncComponent, provide } from 'vue';
 const CurrentTicket = defineAsyncComponent(() => import('../components/DetailedTicker.vue'));
-const MyTicketsList = defineAsyncComponent(() => import('../components/TechTicketLists.vue'));
+const MyTicketsList = defineAsyncComponent(() => import('../components/TicketTableLists.vue'));
 //esta data tiene que cambiar 
 const data = [
         {estado:"1",item:"computador",tipo:"hardware",solicitante:"maria benites",detalles:"asdkjaljsdkasdlaslkjdlaksdlkasjdkl"},
@@ -80,7 +80,6 @@ const data = [
         {estado:"31",item:"pantalla",tipo:"hardware",solicitante:"maria benites",detalles:"asdkjaljsdkasdlaslkjdlaksdlkasjdkl"},
         {estado:"32",item:"S.O",tipo:"Software",solicitante:"maria benites",detalles:"asdkjaljsdkasdlaslkjdlaksdlkasjdkl"},
 ];
-provide(/* key */ 'showActions', /* value */ false);
 const ticketComponentProps = {
     title:'Mis Tickets',
     titles:[

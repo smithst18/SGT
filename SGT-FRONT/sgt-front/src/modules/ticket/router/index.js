@@ -9,17 +9,17 @@ export default {
             component:() => import(/* webpackChunkName: "tech principal view "*/"@/modules/ticket/pages/TechHome.vue"),
         },
         {
-            path:'ticket-list',
+            path:'pending',
             name:'ticket-list',
-            component:() => import(/* webpackChunkName: "tech principal view "*/"@/modules/ticket/pages/TicketList.vue"),
+            component:() => import(/* webpackChunkName: "tech principal view "*/"@/modules/ticket/pages/PendingTickets.vue"),
         },
         {
-            path:'ticket-request',
+            path:'request',
             name:'userHome',
             component:() => import(/* webpackChunkName: "user principal view "*/"@/modules/ticket/pages/UserHome.vue"),
         },
         {
-            path:'ticket-statistics',
+            path:'statistics',
             name:'adminHome',
             component:() => import(/* webpackChunkName: "user principal view "*/"@/modules/ticket/pages/AdminHome.vue"),
         },

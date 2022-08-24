@@ -2,9 +2,6 @@ import { defineAsyncComponent, onMounted, computed, ref, inject } from "vue";
 
 export const useDataTable = (data,elementsPerPage) => {
 
-  //propiedad injectada a DataTable component que permite a;adir un botton de accion 
-  const tableActions = inject('tableActions');
-
   //data que se va a mostrar en la tabla 
   const paginatedData = ref([]);
   //numero de paginas que se envian al componente pagination
@@ -38,7 +35,6 @@ export const useDataTable = (data,elementsPerPage) => {
   };
 
   return { 
-    tableActions,
     paginatedData,
     pages,
     actualPage,
