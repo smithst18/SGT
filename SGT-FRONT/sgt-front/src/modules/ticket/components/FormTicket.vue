@@ -14,7 +14,7 @@
 
       <div class="input-box">
           <label class="label-item" for="grid-type">
-            Entidad
+            Prioridad
           </label>
           <div class="relative">
             <select :class="[ !v$.type.$error ?'input-item' : 'input-item-error']" id="grid-type" v-model="form.type">

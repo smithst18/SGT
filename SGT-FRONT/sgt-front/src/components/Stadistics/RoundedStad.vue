@@ -6,10 +6,10 @@
       <pie-chart :data="stadisticData" height="90%" :donut="true"></pie-chart>
     </div>
 
-    <div class="h-full w-1/2 grid grid-cols-3 overflow-y-auto shadow-md">
-      <div v-for="item in stadisticData" :key="item[0]" class="text-center shadow-md mt-auto mb-3">
+    <div class="h-full w-1/2 grid grid-cols-3 overflow-y-auto">
+      <div v-for="item in stadisticData" :key="item[0]" class="text-center shadow-sm mt-auto mb-3">
         <p class="text-primary text-xs">{{item[0]}}</p>
-        <p>{{item[1]}}%</p>
+        <p class="text-sm">{{item[1]}}%</p>
       </div>
     </div>
 

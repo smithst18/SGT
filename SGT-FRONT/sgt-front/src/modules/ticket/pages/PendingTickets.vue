@@ -1,8 +1,13 @@
 <template>
   <div class="w-full h-full border border-cyan-900 p-5">
-    <h3 class="text-primary uppercase tracking-wide text-md font-bold mb-4">Tickets pendientes</h3>
-    <div class="grid md:grid-cols-3 gap-5 overflow-y-auto h-[90%] shadow-lg">
-      <PendingItems v-for="soport in soportes" :key="soport.id" :data="soport"/>
+    <h3 class="text-primary uppercase tracking-wide text-md font-bold mb-5">Tickets pendientes</h3>
+    <div class="grid lg:grid-cols-3 md:grid-cols-2 gap-2 h-[95%] overflow-y-auto">
+      <PendingItems 
+        v-for="soporte in soportes" 
+        :key="soporte.id" 
+        :data="soporte"
+        @getId="takeTicket"
+        class="transition ease-in-out delay-150 hover:-translate-y-1 hover:scale-101 duration-300 bg-white hover:cursor-pointer"/>
     </div>
   </div>
 </template>
@@ -12,7 +17,7 @@ import { defineAsyncComponent } from '@vue/runtime-core';
 const PendingItems = defineAsyncComponent(() => import("../components/PendingItems.vue"));
 
 const soportes = [
-        {id:"1",item:"computador",tipo:"hardware",solicitante:"maria benites",detalles:"asdkjaljASHKSAASDSDKASDKSDKASDASASAJDKHKKASDKDKHASDASDKSDSDASDADKASDKSDKASDASASAJDKHKKASDKDKHASDASDKSDSDASDASDASDDASDASDASDASDSDADKSDKDADKASDKSDKASDASASAJDKHKKASDKDKHASDASDKSDSDASDASDASDDASDASDASDASDSDADKSDKDADKASDKSDKASDASASAJDKHKKASDKDKHASDASDKSDSDASDASDASDDASDASDASDASDSDADKSDKDADKASDKSDKASDASASAJDKHKKASDKDKHASDASDKSDSDASDASDASDDASDASDASDASDSDADKSDKDADKASDKSDKASDASASAJDKHKKASDKDKHASDASDKSDSDASDASDASDDASDASDASDASDSDADKSDKDASDASDDASDASDASDASDSDADKSDKDASDJKsdkasdlaslkjdlaksdlkasjdkl"},
+        {id:"1",item:"computador",tipo:"hardware",solicitante:"maria benites",detalles:"asdkjaljsdkasdlaslkjdlaasdkjaljsdkasdlaslkjdlaksdlkasjdklasdkjaljsdkasdlaslkjdlaksdlkasjdklasdkjaljsdkasdlaslkjdlaksdlkasjdklasdkjaljsdkasdlaslkjdlaksdlkasjdklasdkjaljsdkasdlaslkjdlaksdlkasjdklasdkjaljsdkasdlaslkjdlaksdlkasjdklasdkjaljsdkasdlaslkjdlaksdlkasjdklasdkjaljsdkasdlaslkjdlaksdlkasjdklasdkjaljsdkasdlaslkjdlaksdlkasjdklasdkjaljsdkasdlaslkjdlaksdlkasjdklasdkjaljsdkasdlaslkjdlaksdlkasjdklasdkjaljsdkasdlaslkjdlaksdlkasjdklasdkjaljsdkasdlaslkjdlaksdlkasjdklasdkjaljsdkasdlaslkjdlaksdlkasjdklasdkjaljsdkasdlaslkjdlaksdlkasjdklksdlkasjdkl"},
         {id:"2",item:"teclado",tipo:"hardware",solicitante:"maria benites",detalles:"asdkjaljsdkasdlaslkjdlaksdlkasjdkl"},
         {id:"3",item:"pantalla",tipo:"hardware",solicitante:"maria benites",detalles:"asdkjaljsdkasdlaslkjdlaksdlkasjdkl"},
         {id:"4",item:"S.O",tipo:"Software",solicitante:"maria benites",detalles:"asdkjaljsdkasdlaslkjdlaksdlkasjdkl"},
@@ -78,8 +83,10 @@ const soportes = [
         {id:"32",item:"S.O",tipo:"Software",solicitante:"maria benites",detalles:"asdkjaljsdkasdlaslkjdlaksdlkasjdkl"},
 ];
 
+const takeTicket = (value) =>{
+  console.log(value)
+}
 </script>
 
 <style>
-
 </style>

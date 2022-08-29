@@ -29,7 +29,7 @@
 
 <script setup>
   import { defineAsyncComponent, onMounted } from "vue";
-  import { useDataTable } from "@/composables/userDataTable.js"
+  import { useDataTable } from "@/composables/useDataTable.js"
 
   const Pagination = defineAsyncComponent(() => import('@/components/DataTable/PaginationBar.vue'));
 

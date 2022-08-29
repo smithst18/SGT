@@ -43,8 +43,9 @@ export const validCreateUser = [
         .withMessage('No debe estar vacio')
         .isString()
         .withMessage('debe ser un string')
-        .isLength({min:5,max:15})
-        .withMessage('minimo 5 caracteres'),
+        .isLength({min:2,max:15})
+        .withMessage('minimo 5 caracteres')
+        .custom(value => findItem('nickName',value)),
     check("name")
         .exists()
         .withMessage('debe existir')
@@ -53,7 +54,7 @@ export const validCreateUser = [
         .withMessage('No debe estar vacio')
         .isString()
         .withMessage('debe ser un string')
-        .isLength({min:5,max:15})
+        .isLength({min:2,max:15})
         .withMessage('minimo 5 caracteres'),
     check("document")
         .exists()
@@ -74,7 +75,7 @@ export const validCreateUser = [
         .withMessage('No debe estar vacio')
         .isString()
         .withMessage('debe ser un string')
-        .isLength({min:5,max:15})
+        .isLength({min:5,max:12})
         .withMessage('minimo 5 caracteres'),
     check("rePassword")
         .exists()
@@ -84,7 +85,7 @@ export const validCreateUser = [
         .withMessage('No debe estar vacio')
         .isString()
         .withMessage('debe ser un string')
-        .isLength({min:5,max:15})
+        .isLength({min:5,max:12})
         .withMessage('minimo 5 caracteres')
         .custom( (value, { req }) => confirmPass(value, req)),
     check("position")

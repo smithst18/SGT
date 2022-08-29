@@ -7,9 +7,9 @@
         <label class="label-item" for="grid-nick-name">
           nombre de usuario
         </label>
-        <input :class="[ !v$.nickname.$error ?'input-item' : 'input-item-error']" id="grid-nick-name" type="text" placeholder="user"
-          v-model="form.nickname">
-        <p class="error-msg" v-if="v$.nickname.$error">Porfavor rellena el campo</p>
+        <input :class="[ !v$.nickName.$error ?'input-item' : 'input-item-error']" id="grid-nick-name" type="text" placeholder="user"
+          v-model="form.nickName">
+        <p class="error-msg" v-if="v$.nickName.$error">Porfavor rellena el campo</p>
       </div>
 
       <div class="input-box">
@@ -51,9 +51,9 @@
         <label class="label-item" for="grid-re-password">
           repetir contraseña
         </label>
-        <input :class="[ !v$.repassword.$error ?'input-item' : 'input-item-error']" id="grid-re-password" type="password" placeholder="*********"
-          v-model="form.repassword">
-        <p class="error-msg" v-if="v$.repassword.$error">Las Contraseñas deben coincidir</p>
+        <input :class="[ !v$.rePassword.$error ?'input-item' : 'input-item-error']" id="grid-re-password" type="password" placeholder="*********"
+          v-model="form.rePassword">
+        <p class="error-msg" v-if="v$.rePassword.$error">Las Contraseñas deben coincidir</p>
       </div>
 
     </div> 
@@ -65,9 +65,9 @@
           </label>
           <div class="relative">
             <select :class="[ !v$.entity.$error ?'input-item' : 'input-item-error']" id="grid-entity" v-model="form.entity">
-              <option v-bind:value="'Hardware'">Hardware</option>
-              <option>Software</option>
-              <option>Red</option>
+              <option v-bind:value="'62e3df964db2354847e3461c'">Hardware</option>
+              <option v-bind:value="'Hardware'">Software</option>
+              <option v-bind:value="'Hardware'">Red</option>
             </select>
             <div class="icon-item">
               <svg class="fill-current h-4 w-4" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20"><path d="M9.293 12.95l.707.707L15.657 8l-1.414-1.414L10 10.828 5.757 6.586 4.343 8z"/></svg>
@@ -81,9 +81,9 @@
           </label>
           <div class="relative">
             <select :class="[ !v$.position.$error ?'input-item' : 'input-item-error']" id="grid-position" v-model="form.position">
-              <option selected>Baja</option>
-              <option>Media</option>
-              <option>Alta</option>
+              <option v-bind:value="'62e3df964db2354847e3462c'">Analista</option>
+              <option v-bind:value="''">Media</option>
+              <option v-bind:value="''">Alta</option>
             </select>
             <div class="icon-item">
               <svg class="fill-current h-4 w-4" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20"><path d="M9.293 12.95l.707.707L15.657 8l-1.414-1.414L10 10.828 5.757 6.586 4.343 8z"/></svg>
@@ -101,36 +101,69 @@
 </template>
 
 <script setup>
-import { required, numeric, alphaNum, minLength } from '@vuelidate/validators';
+import { inject } from 'vue';
+import { required, numeric, alphaNum, minLength, maxLength } from '@vuelidate/validators';
 import { useFormValidator } from "@/composables/useFormValidator.js";
-import { inject } from '@vue/runtime-core';
+import { signIn } from "@/services/userService.js"
 const swal = inject('$swal');
-
 const userToSave = {
-  nickName:'',
-  name:'',
-  document:'',
-  password:'',
-  repassword:'',
-  entity:'',
-  position:'',
+  nickName:'eman12',
+  name:'emanuel abreu',
+  document:'27571718',
+  password:'0212858',
+  rePassword:'0212858',
+  entity:'62e3df964db2354847e3461c',
+  position:'62e3df964db2354847e3462c',
 }
 const validations = {
-  nickname: { required },
-  name: { required, alphaNum },
-  document: { required, numeric },
-  password: { required, minLength: minLength(6) },
-  repassword: { required },
-  entity: { required },
-  position: { required },
+  nickName:{ 
+    required,
+    minLength: minLength(2),
+    maxLength: maxLength(15)
+  },
+  name:{ 
+    required, 
+    minLength: minLength(2),
+    maxLength: maxLength(15) 
+  },
+  document:{ 
+    required, 
+    numeric,
+    minLength: minLength(5),
+    maxLength: maxLength(8)
+  },
+  password:{ 
+    required, 
+    minLength: minLength(5),
+    maxLength: maxLength(12) 
+  },
+  rePassword:{
+    required,
+    maxLength: maxLength(12) 
+  },
+  entity:{ 
+    required 
+  },
+  position:{ 
+    required 
+  },
 }
 
-const { form, v$, validateForm } = useFormValidator(userToSave,validations,'Usuario Guardado Correctamente'); 
+const { form, v$, validateForm, resetForm } = useFormValidator(userToSave,validations,'Usuario Guardado Correctamente'); 
 
 const submitForm = async () => {
+
   const valid  = await validateForm();
-  console.log(valid)
-  if(valid) console.log('este form sirve para ser enviado xd')
+  console.log(form);
+  if(valid){
+    const response  = await signIn(form);
+    if(response.status){
+      swal({title:"Usuario Guardado",icon:"success"});
+      resetForm();
+    }else{
+      swal({title:"Error al Guardar",text:`${response.errors[0].msg} campo ${response.errors[0].param}`, icon:"error"});
+    }
+  }
 }
 </script>
 
