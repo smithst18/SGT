@@ -12,11 +12,9 @@ import 'sweetalert2/dist/sweetalert2.min.css';
 //font awesome 
 import { library } from '@fortawesome/fontawesome-svg-core'
 import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome'
-import { faFileCirclePlus,faUser  } from '@fortawesome/free-solid-svg-icons'
-//import { faTwitter } from '@fortawesome/free-brands-svg-icons'
+import { faFileCirclePlus,faFileCircleExclamation  } from '@fortawesome/free-solid-svg-icons'
 
-
-library.add(faFileCirclePlus,faUser);
+library.add(faFileCirclePlus,faFileCircleExclamation);
 
 
 

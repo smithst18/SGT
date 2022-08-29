@@ -1,9 +1,9 @@
 import { reactive } from '@vue/reactivity';
 import useVuelidate from '@vuelidate/core';
-import { computed, inject } from 'vue';
+import { computed } from 'vue';
 import { sameAs } from '@vuelidate/validators';
 
-export const useFormValidator = (initialValue,validations,message) => {
+export const useFormValidator = (initialValue,validations) => {
 
   const form = reactive({...initialValue});
 
@@ -19,24 +19,26 @@ export const useFormValidator = (initialValue,validations,message) => {
 
   const v$ = useVuelidate(rules,form);
 
+  const resetForm = () =>{
+    //object initial state
+    Object.assign(form,initialValue);
+    //validations reset form 
+    v$.value.$reset();
+  };
+
   const validateForm = async () => {
 
     const isvalidForm = await v$.value.$validate();
   
-    if(!isvalidForm) return;
-    else{
-      //object initial state
-      Object.assign(form,initialValue);
-      //validations reset form 
-      v$.value.$reset();
-      return true;
-    }
+    if(!isvalidForm) return false;
+    else return true;
   } 
 
   return { 
     form,
     v$,
     validateForm,
+    resetForm
   }
 }
 /** */
