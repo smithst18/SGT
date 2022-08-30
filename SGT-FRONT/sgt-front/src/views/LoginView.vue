@@ -26,23 +26,47 @@
 </template>
 
 <script setup>
-
-  import { ref } from "@vue/reactivity";
+  import { watch, inject, reactive, ref } from "vue";
   import { useMainStore } from "../stores/mainStore.js";
-
-  const errorlogin = ref(false);
-
+  import { useRouter } from 'vue-router';
+  const router = useRouter();
   const mainStore = useMainStore();
-
-  const user = ref({
+  const swal = inject('$swal');
+  
+  const user = reactive({
     nickName:'admin',
     password:'asdasd'
   });
+  //toast de sweet alert
+  const Toast = swal.mixin({
+    toast: true,
+    position: 'top-end',
+    showConfirmButton: false,
+    timer: 3000,
+    timerProgressBar: true,
+    // didOpen: (toast) => {
+      //   toast.addEventListener('mouseenter', swal.stopTimer)
+      //   toast.addEventListener('mouseleave', swal.resumeTimer)
+    // }
+  })
+  
+  const errorlogin = ref(false);
+  //watcher to hide the error
+  watch(user, () => { if(errorlogin) errorlogin.value = false });
 
   const sendForm = async () =>{
     
-    const session = await mainStore.logIn(user.value);
-    console.log(session);
+    const { data, status } = await mainStore.logIn(user);
+    console.log(data);
+
+    
+    if(status){
+      Toast.fire({ icon: 'success', title: 'Signed in successfully'});
+      router.push({name:'techHome'});
+    }else{
+      Toast.fire({ icon: 'error', title: 'Signed in successfully'});
+      errorlogin.value = true;
+    }
   }
 </script>
 
