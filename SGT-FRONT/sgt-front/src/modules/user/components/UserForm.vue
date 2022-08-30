@@ -5,7 +5,7 @@
 
       <div class="input-box">
         <label class="label-item" for="grid-nick-name">
-          nombre de usuario
+          nick name
         </label>
         <input :class="[ !v$.nickName.$error ?'input-item' : 'input-item-error']" id="grid-nick-name" type="text" placeholder="user"
           v-model="form.nickName">
@@ -154,7 +154,7 @@ const { form, v$, validateForm, resetForm } = useFormValidator(userToSave,valida
 const submitForm = async () => {
 
   const valid  = await validateForm();
-  console.log(form);
+  
   if(valid){
     const response  = await signIn(form);
     if(response.status){

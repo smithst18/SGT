@@ -49,19 +49,19 @@
 </template>
 
 <script setup>
-import { required, numeric, alphaNum, minLength } from '@vuelidate/validators';
+import { required, alphaNum, minLength } from '@vuelidate/validators';
 import { useFormValidator } from "@/composables/useFormValidator.js";
 import { inject } from '@vue/runtime-core';
 const swal = inject('$swal');
 
 const ticketToSave = {
-  item:'',
-  description:'',
-  type:'',
+  item:'mouse',
+  description:'se me da;o mi mouse que problema',
+  type:'Baja',
 }
 const validations = {
-  item: { required,alphaNum , minLength: minLength(2) },
-  description: { required, alphaNum, minLength: minLength(10) },
+  item: { required, minLength: minLength(2) },
+  description: { required, minLength: minLength(10) },
   type: { required, alphaNum },
 
 }
@@ -69,9 +69,18 @@ const validations = {
 const { form, v$, validateForm } = useFormValidator(ticketToSave,validations,'Ticket Guardado Correctamente'); 
 
 const submitForm = async () => {
-  const valid  = await validateForm();
-  console.log(valid)
-  if(valid) console.log('este form sirve para ser enviado xd')
+
+const valid  = await validateForm();
+console.log(form);
+if(valid){
+  //const response  = await signIn(form);
+  if(response.status){
+    swal({title:"Usuario Guardado",icon:"success"});
+    resetForm();
+  }else{
+    swal({title:"Error al Guardar",text:`${response.errors[0].msg} campo ${response.errors[0].param}`, icon:"error"});
+  }
+}
 }
 </script>
 

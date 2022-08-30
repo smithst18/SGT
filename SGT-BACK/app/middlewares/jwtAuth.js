@@ -21,8 +21,6 @@ export const sesionAuth = (req,res,next) =>{
         }
         else handleError(res,403,'Invalidad_Token');
 
-        // authenticated ? next() : handleError(res,403,'Invalidad_Token')
-
     }catch(e){
         console.error(e);
         handleError(res,403,'Sesion_Auth_Error');

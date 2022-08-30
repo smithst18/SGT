@@ -29,20 +29,20 @@
 
   import { ref } from "@vue/reactivity";
   import { useMainStore } from "../stores/mainStore.js";
+
   const errorlogin = ref(false);
 
   const mainStore = useMainStore();
+
   const user = ref({
-    nickName:'',
-    password:''
+    nickName:'admin',
+    password:'asdasd'
   });
 
   const sendForm = async () =>{
     
-    const loged = await mainStore.logIn(user.value);
-    if(!loged && !errorlogin.value) errorlogin.value = true;
-    else errorlogin.value = false;
-
+    const session = await mainStore.logIn(user.value);
+    console.log(session);
   }
 </script>
 

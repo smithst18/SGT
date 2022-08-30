@@ -29,6 +29,7 @@ export const login = async (req,res) =>{
     else {
       //send payload
       const auth = verifyToken(headerAuth.split(' ').pop().trim());
+      
       auth ? res.status(200).send({ user: auth }) : handleError(res,403,'Invalid_Token');
       
     }
