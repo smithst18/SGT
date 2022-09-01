@@ -9,7 +9,7 @@
         </label>
         <input :class="[ !v$.nickName.$error ?'input-item' : 'input-item-error']" id="grid-nick-name" type="text" placeholder="user"
           v-model="form.nickName">
-        <p class="error-msg" v-if="v$.nickName.$error">Porfavor rellena el campo</p>
+        <p class="error-msg" v-if="v$.nickName.$error">Campo requerido min(2) max(15)</p>
       </div>
 
       <div class="input-box">
@@ -18,7 +18,7 @@
         </label>
         <input :class="[ !v$.name.$error ?'input-item' : 'input-item-error']" id="grid-name" type="text" placeholder="name lastname"
           v-model="form.name">
-        <p class="error-msg" v-if="v$.name.$error">Porfavor rellena el campo</p>
+        <p class="error-msg" v-if="v$.name.$error">Campo requerido min(2) max(15)</p>
       </div>
     </div>
 
@@ -44,7 +44,7 @@
         </label>
         <input :class="[ !v$.password.$error ?'input-item' : 'input-item-error']" id="grid-password" type="password" placeholder="*********"
           v-model="form.password">
-        <p class="error-msg" v-if="v$.password.$error">Porfavor rellena el campo</p>
+        <p class="error-msg" v-if="v$.password.$error">Campo requerido min(5) max(15)</p>
       </div>
 
       <div class="input-box">
@@ -65,9 +65,16 @@
           </label>
           <div class="relative">
             <select :class="[ !v$.entity.$error ?'input-item' : 'input-item-error']" id="grid-entity" v-model="form.entity">
-              <option v-bind:value="'62e3df964db2354847e3461c'">Hardware</option>
-              <option v-bind:value="'Hardware'">Software</option>
-              <option v-bind:value="'Hardware'">Red</option>
+              <option disabled value="">Selecionar Dep/Entidad</option>
+              <option 
+                v-for="entity in entityStore.getAll" 
+                :key="entity._id" 
+                :value="entity._id">
+
+                {{ entity.name }}
+
+              </option>
+
             </select>
             <div class="icon-item">
               <svg class="fill-current h-4 w-4" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20"><path d="M9.293 12.95l.707.707L15.657 8l-1.414-1.414L10 10.828 5.757 6.586 4.343 8z"/></svg>
@@ -81,9 +88,16 @@
           </label>
           <div class="relative">
             <select :class="[ !v$.position.$error ?'input-item' : 'input-item-error']" id="grid-position" v-model="form.position">
-              <option v-bind:value="'62e3df964db2354847e3462c'">Analista</option>
-              <option v-bind:value="''">Media</option>
-              <option v-bind:value="''">Alta</option>
+              <option disabled value="">Seleccionar Cargo/Posicion</option>
+              <option 
+                v-for="position in positionStore.getpositionsByEntity" 
+                :key="position._id" 
+                :value="position._id">
+
+                {{ position.name }}
+
+              </option>
+
             </select>
             <div class="icon-item">
               <svg class="fill-current h-4 w-4" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20"><path d="M9.293 12.95l.707.707L15.657 8l-1.414-1.414L10 10.828 5.757 6.586 4.343 8z"/></svg>
@@ -101,20 +115,28 @@
 </template>
 
 <script setup>
-import { inject } from 'vue';
-import { required, numeric, alphaNum, minLength, maxLength } from '@vuelidate/validators';
+import { inject, onMounted, watch } from 'vue';
+import { required, numeric, minLength, maxLength } from '@vuelidate/validators';
 import { useFormValidator } from "@/composables/useFormValidator.js";
-import { signIn } from "@/services/userService.js"
+import { signIn } from "@/services/userService.js";
+import { usePositionStore } from "@/modules/positions/store/positionStore.js";
+import { useEntityStore } from "@/modules/entitys/store/entityStore.js";
+
+const positionStore = usePositionStore();
+const entityStore = useEntityStore();
+
 const swal = inject('$swal');
+
 const userToSave = {
-  nickName:'eman12',
-  name:'emanuel abreu',
-  document:'27571718',
-  password:'0212858',
-  rePassword:'0212858',
-  entity:'62e3df964db2354847e3461c',
-  position:'62e3df964db2354847e3462c',
+  nickName:'',
+  name:'',
+  document:'',
+  password:'',
+  rePassword:'',
+  entity:'',
+  position:'',
 }
+
 const validations = {
   nickName:{ 
     required,
@@ -151,6 +173,13 @@ const validations = {
 
 const { form, v$, validateForm, resetForm } = useFormValidator(userToSave,validations,'Usuario Guardado Correctamente'); 
 
+watch(
+  () => form.entity,
+  () => {
+    positionStore.setPositions(form.entity);
+  }
+);
+
 const submitForm = async () => {
 
   const valid  = await validateForm();
@@ -161,10 +190,14 @@ const submitForm = async () => {
       swal({title:"Usuario Guardado",icon:"success"});
       resetForm();
     }else{
-      swal({title:"Error al Guardar",text:`${response.errors[0].msg} campo ${response.errors[0].param}`, icon:"error"});
+      swal({title:"Error al Guardar",text:`${response.errors[0].msg} campo ${response.errors[0].param} ${response.errors[0].value}`, icon:"error"});
     }
   }
 }
+
+onMounted(() =>{
+  entityStore.setAllEntitys();
+})
 </script>
 
 <style>

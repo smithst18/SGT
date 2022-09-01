@@ -1,8 +1,8 @@
 <template>
     <div class="h-full">
       <!-- volver la tabla reactiva los th y los td -->
-      <div class="overflow-y-auto h-[82%]">
-        <table class="w-full border border-gray-200">
+      <div class="overflow-y-auto h-[82%] border border-gray-100 rounded-lg py-5">
+        <table class="w-full table-auto">
             <thead>
                 <tr>
                     <th v-for="thead in props.titles" :key="thead"> {{ thead }} </th>
@@ -17,7 +17,7 @@
       </div>
       <!-- pagination component -->
       <Pagination 
-        class=" border border-gray-200 mt-auto"
+        class="shadow-md mt-auto"
         v-bind="paginationProps"
         @dataPagination="getDataPagination"
         @prevPage="getPreviusPage"

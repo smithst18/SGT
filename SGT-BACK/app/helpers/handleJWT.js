@@ -13,9 +13,9 @@ const privateKey = process.env.PRIVATE_KEY || 'SgH78/?+_01As';
 export const signToken = (data) =>{
     // console.log(data);
     const payLoad = {
-        sub: data._id,
-        userName: data.name,
-        name: data.lastName,
+        id: data._id,
+        nickName: data.nickName,
+        name: data.name,
         rol: data.rol,
         position: data.position,
         department: data.department,

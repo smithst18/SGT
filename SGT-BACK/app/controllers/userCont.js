@@ -18,9 +18,11 @@ export const login = async (req,res) =>{
     
     const user = await userModel.findOne({ nickName: cleanBody.nickName})
     .select('sub nickName name rol position entity password');
+
     if(!user) return handleError(res,403,'No Existe el Usuario');
     
     const match = await compare(cleanBody.password, user.password);
+    
     if(!match) return handleError(res,401,'Contrase;a incorrecta');
     
     //send token 

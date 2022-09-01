@@ -4,16 +4,24 @@
     <font-awesome-icon :icon="['fa','file-circle-exclamation']" class="h-6 text-primary">
     </font-awesome-icon>
 
-    <div class="overflow-hidden">
-      <h3 class="text-primary uppercase tracking-wide text-xs font-bold mb-2">
+    <div>
+      <h3 class="text-primary uppercase tracking-wide text-xs font-bold mb-4">
           aqui va el titulo
       </h3>
       <div class="grid gap-1">
-        <div class="w-full" v-for="(elem, key) in data" :key="elem">
-          <p class="capitalize text-sm">{{key}}: <span class="text-slate-700">{{elem}}</span></p>
+        <div  class="overflow-hidden" v-for="(elem, key) in data" :key="elem">
+          <p 
+            v-show="key != 'id'"
+            class="capitalize text-sm text-ellipsis overflow-hidden" >
+            {{ key }}: 
+            <span class="text-slate-700">
+              {{ elem }}
+            </span>
+          </p>
         </div>
       </div>
     </div>
+    
   </div>
 </template>
 

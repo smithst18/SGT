@@ -31,7 +31,9 @@ mongoose.connect(
                 positions:[
                     "62e3df964db2354847e3462c",
                 ],
-                users:["62e3df964db2354847e3463c"]
+                users:[
+                    "62e3df964db2354847e3463c",
+                ]
 
             },
             {
@@ -42,14 +44,22 @@ mongoose.connect(
                     "62e3df964db2354847e3242c",
                     "62e3df964db2354847e3342c"
                 ],
+                users:[]
+            },
+            {
+                _id:'62e3df964db2352847e3460c',
+                name:"Tecnologia",
+                positions:[
+                    "62e3df964db2354847e3142c",
+                    "62e3df964db2354847e3242c",
+                    "62e3df964db2354847e3342c"
+                ],
                 users:[
-                    "62e3df961db2354847e3263c",
-                    "62e3df962db2354847e3263c",
+                    "62e3df964db2354822e3463c",
                 ]
-
             }
         ]),
-
+        
         await positionModel.insertMany([
             //position for Adm
             {
@@ -57,16 +67,17 @@ mongoose.connect(
                 name:"Administrador",
                 type:"2",
                 entity:"62e3df964db2354847e3461c",
+                users:[
+                    "62e3df964db2354847e3463c"
+                ]
             },
-            //positions for rh
             {
                 _id:'62e3df964db2354847e3142c',
                 name:"Analista",
                 type:"1",
                 entity:"62e3df964db2354847e3465c",
                 users:[
-                    "62e3df961db2354847e3263c",
-                    "62e3df962db2354847e3263c"
+                    "62e3df964db2354822e3463c",
                 ]
             },
             {
@@ -88,28 +99,20 @@ mongoose.connect(
                 _id:"62e3df964db2354847e3463c",
                 nickName: "Admin",
                 name: "emanuel Abreu",
+                rol:"admin",
                 password:await encrypt("Emanuel15"),
                 position: "62e3df964db2354847e3462c",
-                document: "27571773",
+                document: "27571718",
                 entity: "62e3df964db2354847e3461c"
             },
             {
-                _id:"62e3df961db2354847e3263c",
-                nickName: "user",
-                name: " Doria",
-                password:await encrypt("Emanuel12"),
-                position: "62e3df964db2354847e3442c",
-                document: "27571714",
-                entity: "62e3df964db2354847e3465c"
-            },
-            {
-                _id:"62e3df962db2354847e3263c",
-                nickName: "user2",
-                name: "gonzales ",
-                password:await encrypt("Emanuel12"),
-                position: "62e3df964db2354847e3442c",
-                document: "27571711",
-                entity: "62e3df964db2354847e3465c"
+                _id:"62e3df964db2354822e3463c",
+                nickName: "normal",
+                name: "manuel perez",
+                password:await encrypt("normal"),
+                position: "62e3df964db2354847e3142c",
+                document: "27571771",
+                entity: "62e3df964db2352847e3460c"
             },
         ]),
 

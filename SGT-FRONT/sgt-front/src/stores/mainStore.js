@@ -9,10 +9,13 @@ import { userLogin } from "../services/userService";
 const { cookies } = useCookies();
 
 export const useMainStore = defineStore('main', () => {
-  //store
-  const logedUser = ref({});
+
+  /**********************************  STORE  **********************************/
+  const logedUser = ref(cookies.get('user_loged'));
   
-  //actions
+
+  /**********************************  ACTIONS  **********************************/
+  
   const logIn = async (user) => {
 
     const { status, data } = await userLogin(user);
@@ -22,9 +25,11 @@ export const useMainStore = defineStore('main', () => {
       cookies.set('token',data.token);
       //recibir el payload
       const payload = await userLogin(user);
+      //set user in cookies
+      cookies.set('user_loged',payload.data.user);
       //setear el usuario en el store
       logedUser.value = payload.data.user;
-      return payload;
+      return { status: true, data: payload.data.user };
     }
     //si viene un error retornar status false y devolver la data del error
     else if(!status) return { status: false, data };
@@ -32,7 +37,7 @@ export const useMainStore = defineStore('main', () => {
     else return { status: false, data:'Ya estas logeado' };
   };
 
-  //getters
+  /**********************************  GETTERS  **********************************/
 
   return { logedUser, logIn}
 });

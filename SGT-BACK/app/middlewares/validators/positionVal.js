@@ -39,3 +39,16 @@ export const validPosition = [
     (req, res, next) => validateResult(req, res, next),
     
 ];
+
+export const validId = [
+    check("id")
+        .exists()
+        .withMessage('debe existir')
+        .trim()
+        .notEmpty()
+        .withMessage('No debe estar vacio')
+        .isMongoId()
+        .withMessage('debe ser un mongoid'),
+    (req, res, next) => validateResult(req, res, next),
+    
+];

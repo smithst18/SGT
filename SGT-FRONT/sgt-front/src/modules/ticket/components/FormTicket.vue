@@ -14,13 +14,14 @@
 
       <div class="input-box">
           <label class="label-item" for="grid-type">
-            Prioridad
+            Tipo
           </label>
           <div class="relative">
             <select :class="[ !v$.type.$error ?'input-item' : 'input-item-error']" id="grid-type" v-model="form.type">
-              <option selected>Baja</option>
-              <option>Media</option>
-              <option>Alta</option>
+              <option disabled value="">Please select one</option>
+              <option value="Software">Software</option>
+              <option value="Hardware">Hardware</option>
+              <option value="Network">Internet</option>
             </select>
             <div class="icon-item">
               <svg class="fill-current h-4 w-4" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20"><path d="M9.293 12.95l.707.707L15.657 8l-1.414-1.414L10 10.828 5.757 6.586 4.343 8z"/></svg>
@@ -52,35 +53,48 @@
 import { required, alphaNum, minLength } from '@vuelidate/validators';
 import { useFormValidator } from "@/composables/useFormValidator.js";
 import { inject } from '@vue/runtime-core';
+import { useMainStore } from '../../../stores/mainStore';
+import { saveTicket } from '../../../services/ticketService';
+
 const swal = inject('$swal');
+const mainStore = useMainStore();
 
 const ticketToSave = {
   item:'mouse',
   description:'se me da;o mi mouse que problema',
-  type:'Baja',
+  type:'Software',
+  sendBy:''
 }
 const validations = {
   item: { required, minLength: minLength(2) },
   description: { required, minLength: minLength(10) },
   type: { required, alphaNum },
-
 }
 
-const { form, v$, validateForm } = useFormValidator(ticketToSave,validations,'Ticket Guardado Correctamente'); 
+const { form, v$, validateForm, resetForm } = useFormValidator(ticketToSave,validations,'Ticket Guardado Correctamente'); 
 
 const submitForm = async () => {
 
-const valid  = await validateForm();
-console.log(form);
-if(valid){
-  //const response  = await signIn(form);
-  if(response.status){
-    swal({title:"Usuario Guardado",icon:"success"});
-    resetForm();
-  }else{
-    swal({title:"Error al Guardar",text:`${response.errors[0].msg} campo ${response.errors[0].param}`, icon:"error"});
+  const valid  = await validateForm();
+
+  if(valid){
+    //setear el id del usuario que envia el tiket
+    form.sendBy = mainStore.logedUser.id;
+    //enviar formulario
+    const response  = await saveTicket(form);
+
+    if(response.status){
+      //salida positiva
+      swal({title:"Ticket enviado",icon:"success"});
+      resetForm();
+    }else if(response.errors){
+      //salida a errores de  datos
+      swal({title:"Error al Guardar",text:`${response.errors[0].msg} campo ${response.errors[0].param}`, icon:"error"});
+    }else {
+      //salida a errores por maximo de tickes alcansados
+      swal({title:"Error al Guardar",text:response.data.message, icon:"error"});
+    }
   }
-}
 }
 </script>
 

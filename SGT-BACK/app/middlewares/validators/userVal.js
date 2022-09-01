@@ -97,3 +97,14 @@ export const validCreateUser = [
     (req, res, next) => validateResult(req, res, next),
     
 ];
+
+export const validUserId = [
+    check("userId")
+        .exists()
+        .withMessage('debe existir')
+        .notEmpty()
+        .withMessage('No debe estar vacio')
+        .isMongoId()
+        .withMessage('Debe ser mongoID'),
+    (req, res, next) => validateResult(req, res, next),
+];

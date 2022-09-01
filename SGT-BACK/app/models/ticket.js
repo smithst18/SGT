@@ -14,8 +14,8 @@ const ticketSchema  = new Schema ({
   type:{
     type:String,
     enum: {
-      values: ['network', 'hardware', 'Software'],
-      message: '{VALUE} is not supported, must be network, hardware or Software'
+      values: ['Network', 'Hardware', 'Software'],
+      message: '{VALUE} valor no permitido,debe ser  network, hardware o Software'
     },
     required:true,
     trim:true,
@@ -25,8 +25,8 @@ const ticketSchema  = new Schema ({
     required:true,
     trim:true,
     enum: {
-      values: ['pending', 'in process', 'solved'],
-      message: '{VALUE} is not supported, must be pending in process solved'
+      values: ['pending', 'in-process', 'closed'],
+      message: '{VALUE} valor no permitido, debe ser pending in-process o solved'
     },
     default:'pending',
   },

@@ -59,12 +59,11 @@
     const { data, status } = await mainStore.logIn(user);
     console.log(data);
 
-    
     if(status){
-      Toast.fire({ icon: 'success', title: 'Signed in successfully'});
+      Toast.fire({ icon: 'success', title: 'Sesion Iniciada'});
       router.push({name:'techHome'});
     }else{
-      Toast.fire({ icon: 'error', title: 'Signed in successfully'});
+      Toast.fire({ icon: 'error', title: 'No se ha podido iniciar Sesion'});
       errorlogin.value = true;
     }
   }

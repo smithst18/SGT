@@ -1,7 +1,9 @@
 <template>
   <div class="w-full h-full border border-cyan-900 px-10 justify-center rounded-lg">
     <!-- title -->
-    <h3 class="text-primary text-lg m-6 text-center uppercase tracking-wide font-bold mb-5">Registro de Usuario</h3>
+    <h3 class="text-primary text-md m-6 text-center uppercase tracking-wide font-bold mb-5">
+      Registro de Usuario
+    </h3>
     <!-- form user registration  -->
     <div class="">
       <UserForm />

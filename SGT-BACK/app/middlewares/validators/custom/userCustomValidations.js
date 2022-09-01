@@ -1,8 +1,8 @@
 import { User } from "../../../models/user";
 /**
- * permite encontrar un item y validarlo
- * @param {*} search 
- * @param {*} value 
+ * permite det si un user ya esta registrado
+ * @param {*} search campo a buscar en el modelo
+ * @param {*} value   valor del campo de busqueda
  * @returns 
  */
 export const findItem = async (search,value) =>{

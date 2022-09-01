@@ -1,16 +1,21 @@
 <template>
-    <div class="w-full h-full border border-cyan-900 grid grid-cols-1 grid-rows-4 gap-y-5">
-        <div class="border border-rose-900 rounded-lg">
+    <div class="w-full h-full grid grid-cols-1 grid-rows-4 gap-y-5">
+        <div class="rounded-lg shadow-md">
             <CurrentTicket />
         </div>
-        <div class="border border-rose-900 row-span-3 rounded-lg">
-            <MyTicketsList  v-bind="ticketComponentProps"/>
+        <div class="row-span-3 rounded-lg shadow-md">
+            <MyTicketsList  
+                title="Mis Tickets"
+                :titles="titles"
+                :data="ticketStore.getMyTickets"/>
         </div>
     </div>
 </template>
 
 <script setup>
-import { defineAsyncComponent, provide } from 'vue';
+import { defineAsyncComponent, onMounted, provide } from 'vue';
+import { useTicketStore } from '../store/ticketStore';
+const ticketStore = useTicketStore();
 const CurrentTicket = defineAsyncComponent(() => import('../components/DetailedTicker.vue'));
 const MyTicketsList = defineAsyncComponent(() => import('../components/TicketTableLists.vue'));
 //esta data tiene que cambiar 
@@ -80,18 +85,22 @@ const data = [
         {estado:"31",item:"pantalla",tipo:"hardware",solicitante:"maria benites",detalles:"asdkjaljsdkasdlaslkjdlaksdlkasjdkl"},
         {estado:"32",item:"S.O",tipo:"Software",solicitante:"maria benites",detalles:"asdkjaljsdkasdlaslkjdlaksdlkasjdkl"},
 ];
-const ticketComponentProps = {
-    title:'Mis Tickets',
-    titles:[
-        "Estado",
-        "Item",
-        "Tipo",
-        "Solicitante",
-        "Detalles",
-    ],
-    data:data,
-}
+
+
+const titles = [
+    "item",
+    "tipo",
+    "estado",
+    "solicitante",
+    "fecha",
+    // "descripcion",
+]
+
+onMounted(() => {
+    ticketStore.setClosedTicket();
+})
 </script>
+
 
 <style scoped>
 

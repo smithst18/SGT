@@ -45,3 +45,35 @@ export const validTicket = [
         .withMessage('debe ser un String'),
     (req, res, next) => validateResult(req, res, next),
 ];
+
+export const validTakeTicket = [
+    check("userId")
+        .exists()
+        .withMessage('debe existir')
+        .trim()
+        .notEmpty()
+        .withMessage('No debe estar vacio')
+        .isMongoId()
+        .withMessage('debe ser un MongoID'),
+    check("ticketId")
+        .exists()
+        .withMessage('debe existir')
+        .trim()
+        .notEmpty()
+        .withMessage('No debe estar vacio')
+        .isMongoId()
+        .withMessage('debe ser un MongoID'),
+    (req, res, next) => validateResult(req, res, next),
+];
+
+export const validTicketId = [
+    check("ticketId")
+        .exists()
+        .withMessage('debe existir')
+        .trim()
+        .notEmpty()
+        .withMessage('No debe estar vacio')
+        .isMongoId()
+        .withMessage('debe ser un MongoID'),
+    (req, res, next) => validateResult(req, res, next),
+];
