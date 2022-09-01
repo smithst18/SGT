@@ -17,7 +17,15 @@ export const login = async (req,res) =>{
     const headerAuth = req.headers.authorization;
     
     const user = await userModel.findOne({ nickName: cleanBody.nickName})
-    .select('sub nickName name rol position entity password');
+    .select('sub nickName name rol position entity password')
+    .populate({
+      path:'position',   //< = son // parent 2
+      select:'name',
+    })
+    .populate({
+      path:'entity',   //< = son // parent 2
+      select:'name',
+    });
 
     if(!user) return handleError(res,403,'No Existe el Usuario');
     

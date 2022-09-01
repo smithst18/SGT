@@ -11,14 +11,13 @@ const privateKey = process.env.PRIVATE_KEY || 'SgH78/?+_01As';
  * @returns 
  */
 export const signToken = (data) =>{
-    // console.log(data);
     const payLoad = {
         id: data._id,
         nickName: data.nickName,
         name: data.name,
         rol: data.rol,
-        position: data.position,
-        department: data.department,
+        position: data.position.name,
+        entity: data.entity.name,
     }
     const token = jwt.sign(
         payLoad,
