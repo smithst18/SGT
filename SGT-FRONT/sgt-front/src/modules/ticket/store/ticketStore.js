@@ -19,7 +19,10 @@ export const useTicketStore = defineStore('ticketStore', () => {
     const { status, data } = await PendingTickets();
     
     if(status) pendingTickets.value = data.data;
-    else return { status:false, data };
+    else{ 
+      console.log(data);
+      return { status:false, data };
+    }
   };
   
 
