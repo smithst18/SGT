@@ -22,16 +22,42 @@
       </div>
     </div>
 
-    <!-- document -->
+    <!-- document  and roll-->
     <div class="main-box">
 
-      <div class="input-box-full">
+      <!-- document -->
+      <div class="input-box">
         <label class="label-item" for="grid-document">
           Documento
         </label>
         <input :class="[ !v$.document.$error ?'input-item' : 'input-item-error']" id="grid-document" type="text" placeholder="00000000"
           v-model="form.document">
         <p class="error-msg" v-if="v$.document.$error">Campo vacio / datos invalidos</p>
+      </div>
+
+      <!-- rol -->
+      <div class="input-box">
+        <label class="label-item" for="grid-rol">
+          tipo / rol
+        </label>
+        <div class="relative">
+          <select :class="[ !v$.rol.$error ?'input-item' : 'input-item-error']" id="grid-rol" v-model="form.rol">
+            <option disabled value="">Selecionar permisos</option>
+            <option  value="admin">
+              Admin
+            </option>
+            <option  value="user" v-if="form.entity != '62e3df964db2352847e3460c'">
+              Usuario
+            </option>
+            <!-- solo se podra seleccionar el tecnico desde tecnologia -->
+            <option  value="tech" v-if="form.entity == '62e3df964db2352847e3460c'">
+              Tecnico
+            </option>
+          </select>
+          <div class="icon-item">
+            <svg class="fill-current h-4 w-4" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20"><path d="M9.293 12.95l.707.707L15.657 8l-1.414-1.414L10 10.828 5.757 6.586 4.343 8z"/></svg>
+          </div>
+        </div>
       </div>
 
     </div>
@@ -57,7 +83,7 @@
       </div>
 
     </div> 
-
+    <!-- entitys and positions -->
     <div class="main-box">
         <div class="input-box">
           <label class="label-item" for="grid-entity">
@@ -133,6 +159,7 @@ const userToSave = {
   document:'',
   password:'',
   rePassword:'',
+  rol:'',
   entity:'',
   position:'',
 }
@@ -163,6 +190,9 @@ const validations = {
     required,
     maxLength: maxLength(12) 
   },
+  rol:{ 
+    required 
+  },
   entity:{ 
     required 
   },
@@ -176,7 +206,7 @@ const { form, v$, validateForm, resetForm } = useFormValidator(userToSave,valida
 watch(
   () => form.entity,
   () => {
-    positionStore.setPositions(form.entity);
+    if(form.entity != "") positionStore.setPositions(form.entity);
   }
 );
 

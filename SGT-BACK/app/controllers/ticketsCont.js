@@ -1,7 +1,7 @@
 import  { ticketModel, userModel }  from "../models";
 import { matchedData } from "express-validator";
 import { handleError } from "../helpers/handleHttpErrors"; 
-
+import moment from 'moment';
 /**
  *  
  * @param {*} req 
@@ -15,8 +15,12 @@ export const save = async (req, res) =>{
         //validar la data
         const cleanBody = matchedData(req);
         //validar que no haya mas de 3 a nombre del usuario
-        const tickets = await ticketModel.find({sendBy:cleanBody.sendBy,status:'pending'});
-        if(tickets.length >= 3) return handleError(res,403,"numero maximo de soportes  permitidos alcansado (3)");
+        const tickets = await ticketModel.find({
+            sendBy:cleanBody.sendBy,
+            status : { $in: ['in-process','pending'] } 
+        });
+
+        if(tickets.length >= 3) return handleError(res,403,"numero maximo de solicitudes  permitidas alcansadas (3)");
         //crear ticket
         const ticketSaved = await ticketModel.create(cleanBody);
         if(!ticketSaved) return handleError(res,403,"ERROR_SAVIND_TICKET");
@@ -29,6 +33,8 @@ export const save = async (req, res) =>{
         return handleError(res,401,`ERROR_INVALID_DATA : ${e}`);
     }
 }
+
+
 /**
  *  
  * @param {*} req 
@@ -53,6 +59,30 @@ export const getPendingTickets = async (req, res) =>{
     }
 }
 
+
+/**
+ *  
+ * @param {*} req 
+ * @param {*} res 
+ * @returns lista de tikcets pendientes por id de user 
+ */
+export const getPendingTicketsById = async (req, res) =>{
+
+    try{
+        const cleanBody = matchedData(req);
+        const { userId, ticketId } = cleanBody;
+
+        const tickets = await ticketModel.find({status:{ $ne:'closed'} })
+        .select('-takeBy -sendBy');
+
+        return res.status(200).send({data: tickets}); 
+    }catch(e){
+        console.log(e)
+        return handleError(res,403,`ERROR_GETTING_TICKETS, ${e}`);
+    }
+}
+
+
 /**
  *  
  * @param {*} req (recibe un id de usuario y un id de ticket para tomar el ticket)
@@ -69,10 +99,10 @@ export const takeTicket = async (req, res) =>{
         const [user, ticket, available] = await Promise.all([
             await userModel.findById(userId),
             await ticketModel.findById(ticketId),
-            await ticketModel.findOne({takeBy:userId, status:'in-process'})
+            /*await ticketModel.findOne({takeBy:userId, status:'in-process'})*/
         ]);
 
-        if(user && ticket && !available){
+        if(user && ticket /*&& !available*/){
             //cambiamos el status de la instancia de ticket que previmente se obtuvo
             ticket.status = 'in-process';
             ticket.takeBy = userId;
@@ -83,14 +113,48 @@ export const takeTicket = async (req, res) =>{
                 return handleError(res,403,`ERROR_SAVING_TICKET_STATUS, ${e}`);
             }
 
-        }else if(available) return handleError(res,403,`Ticket en cola  maximo (1)`);
-
-        else return handleError(res,403,`ERROR_INVALID_DATA`);
+        }//else if(available) return handleError(res,403,`Ticket en cola  maximo (1)`);
+        else return handleError(res,404,`ITEMS_NOT_FOUND`);
     }catch(e){
         console.log(e)
         return handleError(res,403,`ERROR_TAKING_TICKET, ${e}`);
     }
 }
+
+/**
+ *  
+ * @param {*} req (recibe un id dede ticket para devolver el ticket apendientes)
+ * @param {*} res 
+ * @returns lista de tikcets pendientes
+ */
+
+export const returnTicket = async (req, res) =>{
+
+    try{
+        const cleanBody = matchedData(req);
+        const { ticketId } = cleanBody;
+        console.log(ticketId);
+        const ticketToRtrn = await ticketModel.findById(ticketId);
+            
+
+        if(ticketToRtrn){
+            //cambiamos el status de la instancia de ticket que previmente se obtuvo
+            ticketToRtrn.status = 'pending';
+
+            try{
+                const ticketSaved = await ticketToRtrn.save();
+                return res.status(200).send({ msg:'Ticket Retornado', data: ticketSaved }); 
+            }catch(e){
+                return handleError(res,403,`ERROR_SAVING_TICKET_STATUS, ${e}`);
+            }
+
+        } return handleError(res,404,`TICKET_NOT_FOUND`);
+    }catch(e){
+        console.log(e)
+        return handleError(res,403,`ERROR_RETURNING_TICKET, ${e}`);
+    }
+}
+
 
 /**
  *  
@@ -110,10 +174,19 @@ export const getCurrentTicket = async (req, res) =>{
             path:'sendBy',   //< = son // parent 2
             select:'nickName',
         });
-        
-        if(current) return res.status(200).send({ message:"Current Ticket", data:current });
 
-        else return handleError(res,403,`ERROR_GETTING_CURRENT_TICKET`);
+        if(current) return res.status(200).send({ message:"Current Ticket", data :
+            {
+            _id:current._id,
+            item:current.item,
+            type:current.type,
+            status:current.status,
+            sendBy:current.sendBy.nickName,
+            createdAt: moment(current.createdAt).format("Y-MM-D")
+            }
+        });
+
+        else return handleError(res,404,`ERROR_CURRENT_TICKET_NOTFOUND`);
     }catch(e){
         console.log(e)
         return handleError(res,403,`ERROR_GETTING_CURRENT_TICKET, ${e}`);
@@ -134,7 +207,14 @@ export const closeTicket = async (req, res) =>{
         const cleanBody = matchedData(req);
         const { ticketId } = cleanBody;
 
-        res.sendStatus(200);
+        const filter = { _id : ticketId, status:'in-process' };
+        const update = { status:'closed'} ;        
+        const options = { returnDocument : 'after' };
+        const updated = await ticketModel.findOneAndUpdate(filter,update,options);
+
+        if(updated) return res.status(200).send({ msg:'ticket Cerrado',data:updated});
+
+        else return handleError(res,403,`ticket debe estar en curso`);
     }catch(e){
         console.log(e)
         return handleError(res,403,`ERROR_TAKING_TICKET, ${e}`);
@@ -160,7 +240,7 @@ export const closedTicketsByTech = async (req, res) =>{
             path:'sendBy',   //< = son // parent 2
             select:'nickName',
         });
-
+        
         if(closeTicket.length >= 1) return res.status(200).send({ message:"Ticket Cerrados", data:closedTickets });
         else return handleError(res,404,`ERROR_NO_ENCONTRADO `);
 
@@ -169,3 +249,28 @@ export const closedTicketsByTech = async (req, res) =>{
         return handleError(res,403,`ERROR_TAKING_TICKET, ${e}`);
     }
 }
+
+/**
+ * 
+ * @param {*} req (recibe un id de usuario )
+ * @param {*} res 
+ * @returns elimina un ticket en base a un id
+ */
+
+export const deleteTicket = async (req, res) =>{
+
+    try{
+        const cleanBody = matchedData(req);
+        const { ticketId } = cleanBody;
+        
+        const deleted = await ticketModel.findByIdAndDelete(ticketId);
+        
+        if(deleted) return res.status(200).send({msg:'deleted',data:deleted});
+        else return handleError(res,404,`ERROR_DELETING_TICKET, NOT FOUND`);
+    }catch(e){
+        console.log(e)
+        return handleError(res,403,`ERROR_DELETING_TICKET, ${e}`);
+    }
+}
+
+

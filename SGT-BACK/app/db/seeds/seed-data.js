@@ -44,7 +44,9 @@ mongoose.connect(
                     "62e3df964db2354847e3242c",
                     "62e3df964db2354847e3342c"
                 ],
-                users:[]
+                users:[
+                    "62e3df964db2354812e3463c",
+                ]
             },
             {
                 _id:'62e3df964db2352847e3460c',
@@ -71,13 +73,14 @@ mongoose.connect(
                     "62e3df964db2354847e3463c"
                 ]
             },
+            // para rr hh 
             {
                 _id:'62e3df964db2354847e3142c',
                 name:"Analista",
                 type:"1",
                 entity:"62e3df964db2354847e3465c",
                 users:[
-                    "62e3df964db2354822e3463c",
+                    "62e3df964db2354812e3463c",
                 ]
             },
             {
@@ -91,6 +94,29 @@ mongoose.connect(
                 name:"Director General",
                 type:"2",
                 entity:"62e3df964db2354847e3465c",
+            },
+
+            // para tecnologia 
+            {
+                _id:'62e3df963db2354847e3142c',
+                name:"Analista",
+                type:"1",
+                entity:"62e3df964db2352847e3460c",
+                users:[
+                    "62e3df964db2354822e3463c",
+                ]
+            },
+            {
+                _id:'62e3df961db2354847e3242c',
+                name:"Director de linea",
+                type:"2",
+                entity:"62e3df964db2352847e3460c",
+            },
+            {
+                _id:'62e3df904db2354847e3342c',
+                name:"Director General",
+                type:"2",
+                entity:"62e3df964db2352847e3460c",
             }
         ]),
 
@@ -107,12 +133,23 @@ mongoose.connect(
             },
             {
                 _id:"62e3df964db2354822e3463c",
-                nickName: "normal",
-                name: "manuel perez",
-                password:await encrypt("normal"),
+                nickName: "tech",
+                name: "pedro perez",
+                password:await encrypt("tech"),
+                rol:"tech",
                 position: "62e3df964db2354847e3142c",
                 document: "27571771",
                 entity: "62e3df964db2352847e3460c"
+            },
+            {
+                _id:"62e3df964db2354812e3463c",
+                nickName: "normal",
+                name: "manuel perez",
+                password:await encrypt("normal"),
+                rol:"user",
+                position: "62e3df964db2354847e3142c",
+                document: "27571772",
+                entity: "62e3df964db2354847e3465c"
             },
         ]),
 

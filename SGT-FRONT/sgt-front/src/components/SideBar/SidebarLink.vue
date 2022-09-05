@@ -2,14 +2,15 @@
   <router-link 
     :to="rout"
     v-slot="{ /*href,*/isActive }"
-    class="relative py-3 mb-3">
+    class="relative mb-5 p-1">
     <div :class="isActive ? 'is-active' : 'in-active' ">
-        <div class="lg:ml-8 md:ml-6 ml-8 flex">
+        <div class="md:ml-5 ml-8 flex">
             <div class="mr-3">
-                <i :class="props.link.icon"></i> 
+              <font-awesome-icon :icon="link.icon" class="ml-2">
+              </font-awesome-icon>
             </div>
-            <div class="text-sm">
-                {{ props.link.name }}
+            <div class="text-xm">
+                {{ link.name }}
             </div>
         </div>
     </div>
@@ -34,18 +35,15 @@ const rout = computed(() =>  { return { name:props.link.to } }) ;
 <style lang="css" scoped>
 @media (min-width: 768px) {
     .is-active::after{
-        
             content: "";
             width: 12px;
             height: 100%;
-            max-height: 32px;
-            min-height: 32px;
             top: 0;
             bottom: 0;
             background-color: #ffff;
             position: absolute;
             left: 0px;
-            border-radius: 0px 30px 30px 0px;
+            border-radius: 0px 7px 7px 0px;
             transition: ease-in;
         
     }

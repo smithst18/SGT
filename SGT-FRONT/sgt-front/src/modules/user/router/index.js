@@ -1,3 +1,4 @@
+import { rolGuard } from "@/router/guards.js";
 export default {
     name:"users",
     component: () => import(/* webpackChunkName: "user view "*/"@/modules/user/layout/UserLayout.vue"),
@@ -6,6 +7,8 @@ export default {
         {
             path:'sign-in',
             name:'userSignin',
+            meta:{ rolsAllow: ['admin'] },
+            beforeEnter: [ rolGuard ],
             component:() => import(/* webpackChunkName: "user sign in view "*/"@/modules/user/pages/SignIn.vue"),
         },
         { 

@@ -41,6 +41,30 @@ export const PendingTickets = async () => {
   }
 }
 
+export const PendingTicketsByUser = async (userId) => {
+  
+  try{
+    const { data }  = await api.get('ticket/pending-tickets-byId',{
+      params:{
+        userId
+      }
+    });
+    return { status:true, data };
+
+  }catch(err){
+
+    if(err.response){
+
+      const { response:{ data:{ errors } } } = err;
+
+      if(errors) return { status:false, errors };
+      else if(err.response.data) return { status:false, data:err.response.data };
+      throw new Error(err);
+
+    }else return { status:false, data:err };
+  }
+}
+
 export const takeTicket = async (userId,ticketId) => {
   
   try{
@@ -66,6 +90,29 @@ export const takeTicket = async (userId,ticketId) => {
   }
 }
 
+export const returnTicket = async (ticketId) => {
+  
+  try{
+    const { data }  = await api.get('ticket/return-pending',{
+      params:{
+        ticketId,
+      }
+    });
+    return { status:true, data };
+
+  }catch(err){
+    if(err.response){
+
+      const { response:{ data:{ errors } } } = err;
+
+      if(errors) return { status:false, errors };
+      else if(err.response.data) return { status:false, data:err.response.data };
+      throw new Error(err);
+
+    }else return { status:false, data:err };
+  }
+}
+
 export const closedTickets = async (userId) => {
   
   try{
@@ -78,6 +125,53 @@ export const closedTickets = async (userId) => {
 
   }catch(err){
 
+    if(err.response){
+
+      const { response:{ data:{ errors } } } = err;
+
+      if(errors) return { status:false, errors };
+      else if(err.response.data) return { status:false, data:err.response.data };
+      throw new Error(err);
+
+    }else return { status:false, data:err };
+  }
+}
+
+export const currenTicket = async (userId) => {
+  
+  try{
+    const { data }  = await api.get('ticket/get-current',{
+      params:{
+        userId,
+      }
+    });
+    return { status:true, data };
+
+  }catch(err){
+
+    if(err.response){
+
+      const { response:{ data:{ errors } } } = err;
+
+      if(errors) return { status:false, errors };
+      else if(err.response.data) return { status:false, data:err.response.data };
+      throw new Error(err);
+
+    }else return { status:false, data:err };
+  }
+}
+
+export const closeTicket = async (ticketId) => {
+  
+  try{
+    const { data }  = await api.get(`ticket/close-ticket`,{
+      params:{
+        ticketId
+      }
+    });
+    return { status:true, data };
+
+  }catch(err){
     if(err.response){
 
       const { response:{ data:{ errors } } } = err;

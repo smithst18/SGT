@@ -18,7 +18,7 @@
           </label>
           <div class="relative">
             <select :class="[ !v$.type.$error ?'input-item' : 'input-item-error']" id="grid-type" v-model="form.type">
-              <option disabled value="">Please select one</option>
+              <option disabled value="">Seleccionar</option>
               <option value="Software">Software</option>
               <option value="Hardware">Hardware</option>
               <option value="Network">Internet</option>
@@ -55,14 +55,16 @@ import { useFormValidator } from "@/composables/useFormValidator.js";
 import { inject } from '@vue/runtime-core';
 import { useMainStore } from '../../../stores/mainStore';
 import { saveTicket } from '../../../services/ticketService';
+import { useTicketStore } from '../store/ticketStore';
 
+const ticketStore = useTicketStore();
 const swal = inject('$swal');
 const mainStore = useMainStore();
 
 const ticketToSave = {
-  item:'mouse',
-  description:'se me da;o mi mouse que problema',
-  type:'Software',
+  item:'',
+  description:'',
+  type:'',
   sendBy:''
 }
 const validations = {
@@ -86,6 +88,7 @@ const submitForm = async () => {
     if(response.status){
       //salida positiva
       swal({title:"Ticket enviado",icon:"success"});
+      await ticketStore.setPendingTicketsByUser();
       resetForm();
     }else if(response.errors){
       //salida a errores de  datos

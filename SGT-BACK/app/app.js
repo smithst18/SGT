@@ -23,5 +23,7 @@ app.use('/api/ticket',routes.ticketRoutes);
 app.use('/api/entity',routes.entityRoutes);
 //position routs
 app.use('/api/position',routes.positionRoutes);
+//stadistics routs
+app.use('/api/stadistics',routes.stadisticsRoutes);
 
 export default app;

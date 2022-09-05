@@ -46,7 +46,6 @@ export const savePosition = async (req, res) =>{
         const { id } = cleanBody;
 
         const positions = await positionModel.find({ entity:id }).select(["id", "name", "type", "createdAt", "updatedAt"]);
-        
         if(positions.length >= 1) return res.status(200).send({message:"Cargos Encontrados", data:positions});
         
         else return handleError(res,404,`No se Encontraron posiciones para esta entidad`);

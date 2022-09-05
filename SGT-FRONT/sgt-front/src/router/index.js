@@ -1,6 +1,8 @@
 import { createRouter, createWebHistory } from "vue-router";
 import ticketsRoutes from '@/modules/ticket/router';
 import usersRoutes from '@/modules/user/router';
+//guards
+import { isAuthGuard } from "./guards";
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
@@ -12,12 +14,14 @@ const router = createRouter({
     {
       path: "/login",
       name:"login",
+      beforeEnter: [ isAuthGuard ],
       component: () => import(/* webpackChunkName: "Login view "*/"@/views/LoginView.vue"),
     },
     {
-      path: "",
+      path: "/home",
       name:"home",
-      component: () => import(/* webpackChunkName: "Login view "*/"@/views/HomeView.vue"),
+      beforeEnter: [ isAuthGuard ],
+      component: () => import(/* webpackChunkName: "home view "*/"@/views/HomeView.vue"),
       redirect: { name:"users" },
       children:[
         { path: "tickets", ...ticketsRoutes },

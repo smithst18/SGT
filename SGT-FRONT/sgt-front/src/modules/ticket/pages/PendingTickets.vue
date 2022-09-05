@@ -1,5 +1,5 @@
 <template>
-  <div class="w-full h-full p-5 shadow-md">
+  <div class="w-full h-full p-5 shadow-lg rounded-lg">
     <h3 class="text-primary uppercase tracking-wide text-md font-bold mb-5" @click="prueba">Tickets pendientes</h3>
 
     <div class="grid lg:grid-cols-3 md:grid-cols-2 gap-2 h-[95%] overflow-y-auto"
@@ -50,7 +50,7 @@ const takeTicket = async (value) =>{
 }
 
 onMounted( async () => {
-  ticketStore.setPendingTickets();
+  await ticketStore.setPendingTickets();
 });
 </script>
 

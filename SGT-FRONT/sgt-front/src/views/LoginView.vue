@@ -1,7 +1,8 @@
 <template>
-  <div class="flex items-center justify-center min-h-full bg-gray-100 border">
-    <div class="px-8 py-6 mt-4 text-left bg-white shadow-lg border lg:w-2/6">
-        <h3 class="text-2xl font-bold text-center">Iniciar sesión</h3>
+  <div class="flex flex-col items-center justify-center min-h-full bg-primary">
+    <img src="@/assets/icons/logo.svg" alt="central +" class="pointer">
+    <div class="px-8 py-6 mt-4 text-left bg-white shadow-lg rounded-lg lg:w-2/6">
+        <h3 class="text-2xl font-bold text-center text-primary">Iniciar sesión</h3>
         <form @submit.prevent="sendForm">
             <div class="mt-4">
                 <div>
@@ -34,8 +35,8 @@
   const swal = inject('$swal');
   
   const user = reactive({
-    nickName:'admin',
-    password:'asdasd'
+    nickName:'',
+    password:''
   });
   //toast de sweet alert
   const Toast = swal.mixin({

@@ -25,8 +25,8 @@ export const validLogin = [
         .withMessage('No debe estar vacio')
         .isString()
         .withMessage('debe ser un string')
-        .isLength({min:5,max:15})
-        .withMessage('minimo 5 caracteres'),
+        .isLength({min:1,max:15})
+        .withMessage('minimo 1 caracteres'),
     (req, res, next) => validateResult(req, res, next),
     
 ];
@@ -44,7 +44,7 @@ export const validCreateUser = [
         .isString()
         .withMessage('debe ser un string')
         .isLength({min:2,max:15})
-        .withMessage('minimo 5 caracteres')
+        .withMessage('minimo 2 caracteres')
         .custom(value => findItem('nickName',value)),
     check("name")
         .exists()
@@ -55,7 +55,7 @@ export const validCreateUser = [
         .isString()
         .withMessage('debe ser un string')
         .isLength({min:2,max:15})
-        .withMessage('minimo 5 caracteres'),
+        .withMessage('minimo 2 caracteres'),
     check("document")
         .exists()
         .withMessage('debe existir')
@@ -88,6 +88,14 @@ export const validCreateUser = [
         .isLength({min:5,max:12})
         .withMessage('minimo 5 caracteres')
         .custom( (value, { req }) => confirmPass(value, req)),
+    check("rol")
+        .exists()
+        .withMessage('debe existir')
+        .trim()
+        .notEmpty()
+        .withMessage('No debe estar vacio')
+        .isString()
+        .withMessage('debe ser un string'),
     check("position")
         .isMongoId()
         .withMessage('Debe ser mongoID'),

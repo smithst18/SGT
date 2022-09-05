@@ -11,8 +11,8 @@ const { cookies } = useCookies();
 export const useMainStore = defineStore('main', () => {
 
   /**********************************  STORE  **********************************/
-  const logedUser = ref(cookies.get('user_loged'));
-  
+  const logedUser = ref({});
+  const isLoged = ref(false);
 
   /**********************************  ACTIONS  **********************************/
   
@@ -29,15 +29,42 @@ export const useMainStore = defineStore('main', () => {
       cookies.set('user_loged',payload.data.user);
       //setear el usuario en el store
       logedUser.value = payload.data.user;
+      isLoged.value = true;
       return { status: true, data: payload.data.user };
     }
     //si viene un error retornar status false y devolver la data del error
     else if(!status) return { status: false, data };
     //en caso de estar ya logeado token guardado etc
-    else return { status: false, data:'Ya estas logeado' };
+    else return { status: true, data:'Ya estas logeado' };
+  };
+
+  const setUser = () => {
+    logedUser.value = cookies.get('user_loged');
+    if(logedUser.value !=  null) isLoged.value = true;
+  }
+
+  const logOut = async (user) => {
+    // reiniciar el stado del store
+    logedUser.value = {};
+    isLoged.value = false;
+    // borrar la cookie 
+    cookies.remove('token');
+    cookies.remove('user_loged');
   };
 
   /**********************************  GETTERS  **********************************/
-
-  return { logedUser, logIn}
+  const getRol = computed(() =>{
+    return logedUser.value.rol;
+  })
+  //actions to call
+  setUser();
+  return { 
+    logedUser, 
+    isLoged,
+    //actions
+    logIn, 
+    logOut,
+    //getters
+    getRol,
+  }
 });
