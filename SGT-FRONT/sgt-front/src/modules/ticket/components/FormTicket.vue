@@ -5,7 +5,7 @@
 
       <div class="input-box">
         <label class="label-item" for="grid-item-name">
-          Nombre del Bien/ item
+          Nombre del Bien / item
         </label>
         <input id="grid-item-name" type="text" placeholder="item" :class="[ !v$.item.$error ?'input-item' : 'input-item-error']"
           v-model="form.item">
@@ -21,7 +21,7 @@
               <option disabled value="">Seleccionar</option>
               <option value="Software">Software</option>
               <option value="Hardware">Hardware</option>
-              <option value="Network">Internet</option>
+              <option value="Network">Internet/Red</option>
             </select>
             <div class="icon-item">
               <svg class="fill-current h-4 w-4" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20"><path d="M9.293 12.95l.707.707L15.657 8l-1.414-1.414L10 10.828 5.757 6.586 4.343 8z"/></svg>
