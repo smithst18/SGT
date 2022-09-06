@@ -18,7 +18,7 @@
                 <span v-if="errorlogin" class="text-xs tracking-wide text-red-600 block text-center mt-5">Usuario o Contraseña incorrectos </span>
                 <div class="flex items-baseline justify-between">
                     <button 
-                      class="px-6 py-2 mt-4 text-white bg-blue-600 rounded-lg hover:bg-blue-900 w-full">Entrar</button>
+                      class="px-6 py-2 mt-4 text-white bg-primary rounded-lg hover:bg-slate-500 w-full">Entrar</button>
                 </div>
             </div>
         </form>
