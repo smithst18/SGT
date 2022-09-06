@@ -2,7 +2,7 @@
 </script>
 
 <template>
-  <div class="border border-violet-800 w-screen h-screen">
+  <div class="w-screen h-screen">
     <RouterView />
   </div>
 </template>
