@@ -52,7 +52,8 @@ export const getPendingTickets = async (req, res) =>{
             path:'sendBy',   //< = son // parent 2
             select:'nickName',
         });
-        return res.status(200).send({data: tickets}); 
+        if(tickets.length >= 1)return res.status(200).send({data: tickets}); 
+        else handleError(res,404,`ERROR_TICKETS_NOT_FOUND`);
     }catch(e){
         console.log(e)
         return handleError(res,403,`ERROR_GETTING_TICKETS, ${e}`);
@@ -70,12 +71,14 @@ export const getPendingTicketsById = async (req, res) =>{
 
     try{
         const cleanBody = matchedData(req);
-        const { userId, ticketId } = cleanBody;
+        const { userId } = cleanBody;
 
-        const tickets = await ticketModel.find({status:{ $ne:'closed'} })
+        const tickets = await ticketModel.find({ sendBy: userId, status:{ $ne:'closed'} })
         .select('-takeBy -sendBy');
 
-        return res.status(200).send({data: tickets}); 
+        if(tickets.length >= 1)return res.status(200).send({data: tickets});
+        else return handleError(res,404,"ANY TICKET FOUND");
+
     }catch(e){
         console.log(e)
         return handleError(res,403,`ERROR_GETTING_TICKETS, ${e}`);
