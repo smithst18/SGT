@@ -1,8 +1,8 @@
-import  { userSchema }  from "../models";
+import  { userModel, positionModel, entityModel }  from "../models";
 import { matchedData } from "express-validator";
 import { handleError } from "../helpers/handleHttpErrors"
 import { encrypt, compare } from "../helpers/handlePassword";
-import { signToken } from "../services/jwt";
+import { signToken, verifyToken } from "../helpers/handleJWT";
 
 
 /**
@@ -14,38 +14,40 @@ export const login = async (req,res) =>{
   
   try{
     const cleanBody = matchedData(req);
-
-    const user = await userSchema.findOne({ userName: cleanBody.userName})
-      .select('password');
-    if(!user) handleError(res,403,'Contrase;a o usuario incorrecto');
-
-    const math = await compare(cleanBody.password, user.password);
-    if(!math) handleError(res,401,'Contrase;a incorrecta');
-
-    res.status(200).send({
-      token: signToken(user),
-      user:user
+    const headerAuth = req.headers.authorization;
+    
+    const user = await userModel.findOne({ nickName: cleanBody.nickName})
+    .select('sub nickName name rol position entity password')
+    .populate({
+      path:'position',   //< = son // parent 2
+      select:'name',
+    })
+    .populate({
+      path:'entity',   //< = son // parent 2
+      select:'name',
     });
+
+    if(!user) return handleError(res,403,'No Existe el Usuario');
+    
+    const match = await compare(cleanBody.password, user.password);
+    
+    if(!match) return handleError(res,401,'Contrase;a incorrecta');
+    
+    //send token 
+    
+    if(!headerAuth) return res.status(200).send({ token: signToken(user) });
+    else {
+      //send payload
+      const auth = verifyToken(headerAuth.split(' ').pop().trim());
+      
+      auth ? res.status(200).send({ user: auth }) : handleError(res,403,'Invalid_Token');
+      
+    }
 
   }catch(e){
     console.log(e)
-    handleError(res,403,'Error_user_login');
-  }
-
-};
-
-
-/**
- * controlador encargado de cerrar sesions GET
- * @param {*} req 
- * @param {*} res 
- */
-export const logout = async (req,res) =>{
-
-  try{
-    res.status(200).send('Sesion cerrada');
-  }catch(e){
-    handleError(res,403,'Error_user_logout');
+    return handleError(res,403,'Error_user_login');
+    
   }
 
 };
@@ -64,20 +66,36 @@ export const saveUser = async (req,res) =>{
   
   const data  = {
     ...cleanBody,
-    rol: 'user',
     password: hashPass,
   }
 
   try{
-    const savedUser = await userSchema.create(data);
-    //se aplica para metodos que no permiten filtrado (Create)
-    savedUser.set('password',undefined,{strict:false});
+    const validEntity = await entityModel.findById(cleanBody.entity);
+    const validPosition = await positionModel.findById(cleanBody.position);
 
-    res.status(200).send({message:'Usuario guardado correctamente',user:savedUser});
+    if(!validEntity || !validPosition) return handleError(res,401,'Entidad o Cargo no existe');
+    else{
+
+      const savedUser = await userModel.create(data);
+      //se aplica para metodos que no permiten filtrado (Create)
+      savedUser.set('password',undefined,{ strict:false });
+      if(!savedUser){ console.log(e); return handleError(res,403,'Error saving user') }
+
+      //if user is  saved then =>  save in the db the id of user in entity && position
+      validEntity.users.push(savedUser._id);
+      await validEntity.save();
+
+      validPosition.users.push(savedUser._id);
+      await validPosition.save();
+
+      return res.status(200).send({message:'Usuario guardado correctamente',user:savedUser});
+    }
 
   }catch(e){
     console.log(e);
-    handleError(res,403,'Error_user_register');
+    return handleError(res,403,'Error_user_register');
   }
-
+//TODOS
+// * Validar la existencia de la position a guarar y de la entity
+//* refactorizar el codigo
 };

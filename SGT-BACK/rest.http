@@ -2,23 +2,63 @@ POST http://localhost:3200/api/user/register
 content-type: application/json
 
 {
-    "userName": "Admin",
-    "name": "emanuel Abreu",
-    "password": "   Emanuel15",
-    "rePassword": "Emanuel15  ",
-    "type": "tec",
-    "position": "analista",
-    "document": "27571773",
-    "department": "tecnolgia"
+    "nickName": "Nuevo usuario2",
+    "name": "el combi2",
+    "password": "   Emanuel12",
+    "rePassword": "Emanuel12  ",
+    "position": "62e3df964db2354847e3462c",
+    "document": "27571788",
+    "entity": "62e3df964db2354847e3461c"
 }
-###
+
+
+### login
 POST http://localhost:3200/api/user/login
 content-type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiI2MmUzZGY5NjFkYjIzNTQ4NDdlMzI2M2MiLCJ1c2VyTmFtZSI6IkRvcmlhIiwicm9sIjoidXNlciIsInBvc2l0aW9uIjoiNjJlM2RmOTY0ZGIyMzU0ODQ3ZTM0NDJjIiwiaWF0IjoxNjU5NTM2MDM1LCJleHAiOjE2NTk2MjI0MzV9.3RqcVmX0CHSADGgQlS1RZDjfLk8Ng3B5DHbCBoThP6c
 
 {
-    "userName": "Admin",
-    "password": "   Emanuel15"
+    "nickName": "user",
+    "password": "Emanuel12"
 }
-###
-GET http://localhost:3200/api/user/logout
 
+### entitys
+POST  http://localhost:3200/api/entity/save-entity
+content-type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiI2MmUzZGY5NjFkYjIzNTQ4NDdlMzI2M2MiLCJ1c2VyTmFtZSI6IkRvcmlhIiwicm9sIjoidXNlciIsInBvc2l0aW9uIjoiNjJlM2RmOTY0ZGIyMzU0ODQ3ZTM0NDJjIiwiaWF0IjoxNjU5NTM2MDM1LCJleHAiOjE2NTk2MjI0MzV9.3RqcVmX0CHSADGgQlS1RZDjfLk8Ng3B5DHbCBoThP6c
+
+{
+    "name": "Nacionales"
+}
+
+### get all entitys
+GET  http://localhost:3200/api/entity/get-all
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiI2MmUzZGY5NjFkYjIzNTQ4NDdlMzI2M2MiLCJ1c2VyTmFtZSI6IkRvcmlhIiwicm9sIjoidXNlciIsInBvc2l0aW9uIjoiNjJlM2RmOTY0ZGIyMzU0ODQ3ZTM0NDJjIiwiaWF0IjoxNjU5NTM2MDM1LCJleHAiOjE2NTk2MjI0MzV9.3RqcVmX0CHSADGgQlS1RZDjfLk8Ng3B5DHbCBoThP6c
+
+
+### position 
+POST  http://localhost:3200/api/position/save-position
+content-type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiI2MmUzZGY5NjFkYjIzNTQ4NDdlMzI2M2MiLCJ1c2VyTmFtZSI6IkRvcmlhIiwicm9sIjoidXNlciIsInBvc2l0aW9uIjoiNjJlM2RmOTY0ZGIyMzU0ODQ3ZTM0NDJjIiwiaWF0IjoxNjU5NTM2MDM1LCJleHAiOjE2NTk2MjI0MzV9.3RqcVmX0CHSADGgQlS1RZDjfLk8Ng3B5DHbCBoThP6c
+
+{
+    "name": "Analista",
+    "type": 2,
+    "entity": "62e3df964db2354847e3465c"
+}
+
+### tickets
+ POST http://localhost:3200/api/ticket/save-ticket
+content-type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiI2MmUzZGY5NjFkYjIzNTQ4NDdlMzI2M2MiLCJ1c2VyTmFtZSI6IkRvcmlhIiwicm9sIjoidXNlciIsInBvc2l0aW9uIjoiNjJlM2RmOTY0ZGIyMzU0ODQ3ZTM0NDJjIiwiaWF0IjoxNjU5NTM2MDM1LCJleHAiOjE2NTk2MjI0MzV9.3RqcVmX0CHSADGgQlS1RZDjfLk8Ng3B5DHbCBoThP6c
+
+{
+    "item": "internet",
+    "description": "No tengo internet",
+    "type": "network",
+    "sendBy": "62e3df961db2354847e3263c"
+}
+
+### get all entitys
+GET  http://localhost:3200/api/ticket/get-tickets
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiI2MmUzZGY5NjFkYjIzNTQ4NDdlMzI2M2MiLCJ1c2VyTmFtZSI6IkRvcmlhIiwicm9sIjoidXNlciIsInBvc2l0aW9uIjoiNjJlM2RmOTY0ZGIyMzU0ODQ3ZTM0NDJjIiwiaWF0IjoxNjU5NTM2MDM1LCJleHAiOjE2NTk2MjI0MzV9.3RqcVmX0CHSADGgQlS1RZDjfLk8Ng3B5DHbCBoThP6c

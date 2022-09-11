@@ -1,10 +1,11 @@
-import { model, Schema } from "mongoose";
+import { model, Schema, Types } from "mongoose";
 
 const userSchema  = new Schema ({
-  userName:{
+  nickName:{
     type:String,
     required:true,
     trim:true,
+    unique:true,
   },
   name:{
     type:String,
@@ -13,14 +14,16 @@ const userSchema  = new Schema ({
   },
   rol:{
     type:String,
+    enum: ['user', 'admin','tech'],
+    default:"user",
     required:true,
     trim:true,
-    default:'normal'
   },
   document:{
     type:String,
     required:true,
     trim:true,
+    unique:true
   },
   password:{
     type:String,
@@ -28,20 +31,13 @@ const userSchema  = new Schema ({
     trim:true,
     select:false,//permite quitar la pass de las response de la db
   },
-  type:{
-    type:String,
-    required:true,
-    trim:true,
-  },
   position:{
-    type:String,
-    required:true,
-    trim:true,
+    type: Types.ObjectId,
+    ref:'Position'
   },
-  department:{ //esto debe ser por asociation 
-    type:String,
-    required:true,
-    trim:true,
+  entity:{ //esto debe ser por asociation 
+    type: Types.ObjectId,
+    ref:'Entity'
   },
 //   bankAcounts:[{
 //     type:Schema.Types.ObjectId,
@@ -52,4 +48,4 @@ const userSchema  = new Schema ({
   versionKey:false,
 });
 
-export const User = model('User',userSchema);
+export const User = new model('User',userSchema);

@@ -11,21 +11,19 @@ const privateKey = process.env.PRIVATE_KEY || 'SgH78/?+_01As';
  * @returns 
  */
 export const signToken = (data) =>{
-
     const payLoad = {
-        sub: data._id,
-        userName: data.name,
-        name: data.lastName,
-        document: data.document,
-        type: data.type,
-        position: data.position,
-        department: data.department,
+        id: data._id,
+        nickName: data.nickName,
+        name: data.name,
+        rol: data.rol,
+        position: data.position.name,
+        entity: data.entity.name,
     }
     const token = jwt.sign(
         payLoad,
         privateKey,
         { 
-            expiresIn: '50s',
+            expiresIn: '1d',
         }
     );
 
@@ -38,7 +36,7 @@ export const signToken = (data) =>{
  */
 export const verifyToken = (token) =>{
     try{
-        return jwt.verify(token,privateKey)
+        return jwt.verify(token,privateKey);
     }catch(e){
         return null;
     }
