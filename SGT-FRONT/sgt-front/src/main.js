@@ -22,7 +22,8 @@ import {
     faList,
     faChartColumn,
     faUserPlus,
-  } from '@fortawesome/free-solid-svg-icons'
+    faFileArrowDown
+} from '@fortawesome/free-solid-svg-icons'
 //cookies
 
 library.add(
@@ -35,6 +36,7 @@ library.add(
     faList,
     faChartColumn,
     faUserPlus,
+    faFileArrowDown
 );
 
 

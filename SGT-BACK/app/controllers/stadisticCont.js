@@ -1,6 +1,8 @@
 import  { ticketModel }  from "../models";
 // import { matchedData } from "express-validator";
 import { handleError } from "../helpers/handleHttpErrors"; 
+import { countItems } from "../helpers/CountItems";
+
 import moment from 'moment';
 /**
  *  
@@ -27,17 +29,18 @@ export const general = async (req, res) =>{
       }
     });
     
-    if(tickets.length > 1){
+    if(tickets.length >= 1){
       // sacar los elemento de interes
-      const ticketsPerTech = tickets.map( ( elm ) => elm.takeBy.name)
+      const ticketsPerTech = countItems( tickets.map( elm => elm.takeBy.name ) );
       //reducir el arreglo a un objeto + su cuenta por elemento
-      .reduce ( ( acc, el) => (acc [el] ? acc[el] += 1 : acc[el] = 1 , acc) , {});
-      //saca el porcentaje 
-      const techPersent = Object.entries(ticketsPerTech).map((elm) => [elm[0],elm[1] = elm[1] * 100 /tickets.length]);
+      
+      //sacar el porcentaje 
+      const techPersent = Object.entries(ticketsPerTech).map( 
+        elm => [elm[0], elm[1] = elm[1] * 100 /tickets.length ]
+      );
 
-      const ticketsPerEntity = tickets.map(elem => elem.sendBy.entity.name)
-      .reduce ( ( acc, el) => (acc [el] ? acc[el] += 1 : acc[el] = 1 , acc) , {});;
-
+      const ticketsPerEntity = countItems( tickets.map( elem => elem.sendBy.entity.name ) );
+      
       return res.status(200).send({msg:'stadisticas generales', data : {
         techPersent,
         ticketsPerEntity

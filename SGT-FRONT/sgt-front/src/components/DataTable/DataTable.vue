@@ -15,7 +15,7 @@
           </tbody>
 
         </table>
-        <div class="text-md text-primary text-center mt-10" v-if="data.length < 1">
+        <div class="text-md text-primary text-center mt-10" v-if="!data">
           No tienes ningun soporte aun ..
         </div>
       </div>
@@ -64,7 +64,7 @@
     getPreviusPage,
     getNextPage,
 
-  } = useDataTable(props.data, props.elementsPerPage);
+  } = useDataTable( props.data, props.elementsPerPage);
 
   const paginationProps = {
     pages:pages.value,

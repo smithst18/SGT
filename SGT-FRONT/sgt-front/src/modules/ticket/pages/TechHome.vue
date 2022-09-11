@@ -52,7 +52,7 @@ const rtnTicket = (value) => {
         }
     });
 }
-onMounted(async () => {
+onMounted( async () => {
     await ticketStore.setClosedTickets();
     await ticketStore.setCurrentTicket();
 })
