@@ -85,7 +85,7 @@
   const sendForm = async () =>{
     
     const { data, status } = await mainStore.logIn(user);
-
+    
     if(status){
       Toast.fire({ icon: 'success', title: 'Sesion Iniciada'});
       router.push({ name:'techHome' });
@@ -98,7 +98,7 @@
 
 <style scoped>
 .img-background{
-  background-image: url("src/assets/imgs/img-logIn.jpg");
+  background-image: url("@/assets/imgs/login.jpg");
 }
 .-z-1 {
     z-index: -1;

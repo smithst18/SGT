@@ -32,7 +32,7 @@
 </template>
 
 <script setup>
-  import { defineAsyncComponent, onMounted } from "vue";
+  import { defineAsyncComponent, onMounted, reactive } from "vue";
   import { useDataTable } from "@/composables/useDataTable.js"
 
   const Pagination = defineAsyncComponent(() => import('@/components/DataTable/PaginationBar.vue'));
@@ -66,13 +66,13 @@
 
   } = useDataTable( props.data, props.elementsPerPage);
 
-  const paginationProps = {
+  const paginationProps = reactive({
     pages:pages.value,
     results:props.data.length,
     elementsPerPage:props.elementsPerPage,
-  };
+  });
   
-  onMounted(() => getDataPagination(actualPage.value) );
+  onMounted(async () => await getDataPagination(actualPage.value) );
 </script>
 
 <style scoped>

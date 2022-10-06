@@ -1,19 +1,31 @@
 <template>
+
   <div class="w-full h-full grid grid-col-1 grid-rows-2" 
-  v-if="pieData.length >= 1 && barsData">
+    v-if="pieData.length >= 1 && barsData">
+    
     <div id="element-to-print">
+
       <div class="h-full">
         <TechStads title="Soportes Por Tecnico" :data="pieData"/>
       </div>
+
       <div class="h-full">
         <EntityStads title="Soportes Anuales por Departamento" :data="barsData"/>
       </div>
+
     </div>
+
     <button class="absolute bottom-10 right-10 border px-6 py-4 rounded-full bg-primary text-white shadow-md hover:bg-white hover:text-primary border-primary focus:ring-2"
       @click="downloadPdf"> 
       <font-awesome-icon :icon="['fa','file-arrow-down']" class="text-md">
       </font-awesome-icon>
     </button>
+  </div>
+
+  <div v-else class="flex items-center justify-center w-full h-full">
+    <h3 class="text-primary">
+      No hay data disponible para las estadisticas ...
+    </h3>
   </div>
 </template>
 

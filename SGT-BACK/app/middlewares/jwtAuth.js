@@ -19,7 +19,7 @@ export const sesionAuth = (req,res,next) =>{
             req.user = authenticated;
             next()
         }
-        else handleError(res,403,'Invalidad_Token');
+        else handleError(res,419,'Invalidad_Token');
 
     }catch(e){
         console.error(e);

@@ -13,6 +13,7 @@ export const useMainStore = defineStore('main', () => {
   /**********************************  STORE  **********************************/
   const logedUser = ref({});
   const isLoged = ref(false);
+  const requestLoading = ref(false);
 
   /**********************************  ACTIONS  **********************************/
   
@@ -20,9 +21,9 @@ export const useMainStore = defineStore('main', () => {
 
     const { status, data } = await userLogin(user);
     //si me llega el token 
-    if(status && data.token){
+    if(status && data){
       //guardar el token en una cookie para su posterior uso
-      cookies.set('token',data.token);
+      if(data.token) cookies.set('token',data.token);
       //recibir el payload
       const payload = await userLogin(user);
       //set user in cookies
@@ -52,19 +53,34 @@ export const useMainStore = defineStore('main', () => {
     cookies.remove('user_loged');
   };
 
+  const requestToTrue = () => requestLoading.value = true;
+  const requestToFalse = () => requestLoading.value = false;
+
   /**********************************  GETTERS  **********************************/
+  
   const getRol = computed(() =>{
-    return logedUser.value.rol;
+    if(logedUser.value) return logedUser.value.rol;
   })
+
+  const getRequestStatus = computed(() =>{
+    return requestLoading.value;
+  })
+
+
+
   //actions to call
   setUser();
   return { 
     logedUser, 
     isLoged,
+    requestLoading,
     //actions
     logIn, 
     logOut,
+    requestToTrue,
+    requestToFalse,
     //getters
     getRol,
+    getRequestStatus,
   }
 });

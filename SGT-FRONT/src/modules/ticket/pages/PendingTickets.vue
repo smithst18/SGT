@@ -9,7 +9,7 @@
         :key="ticket.id" 
         :data="ticket"
         @getId="takeTicket"
-        class="transition ease-in-out delay-150 hover:-translate-y-1 hover:scale-101 duration-300 bg-white hover:cursor-pointer"/>
+        class="max-h-56 transition ease-in-out delay-150 hover:-translate-y-1 hover:scale-101 duration-300 bg-white hover:cursor-pointer"/>
     </div>
 
     <div class="text-sm font-semibold text-primary h-[95%] flex"
