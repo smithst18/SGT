@@ -6,7 +6,7 @@
       <img src="@/assets/imgs/logo.png" alt="central +" class="pointer mx-auto mb-10">
 
       <div class="px-8 py-6 mt-4 text-left lg:w-full">
-          <h3 class="text-2xl text-center text-primary mb-5">Login</h3>
+          <h3 class="text-2xl text-center text-primary mb-5">Iniciar sesion</h3>
           <form @submit.prevent="sendForm" id="form">
             <div class="relative z-0 w-full mb-10">
               <input
