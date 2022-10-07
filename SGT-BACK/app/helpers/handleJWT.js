@@ -23,7 +23,7 @@ export const signToken = (data) =>{
         payLoad,
         privateKey,
         { 
-            expiresIn: '5s',
+            expiresIn: '1d',
         }
     );
 
