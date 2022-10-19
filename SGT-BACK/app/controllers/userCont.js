@@ -3,6 +3,7 @@ import { matchedData } from "express-validator";
 import { handleError } from "../helpers/handleHttpErrors"
 import { encrypt, compare } from "../helpers/handlePassword";
 import { signToken, verifyToken } from "../helpers/handleJWT";
+import { read } from "xlsx";
 
 
 /**
@@ -98,4 +99,31 @@ export const saveUser = async (req,res) =>{
 //TODOS
 // * Validar la existencia de la position a guarar y de la entity
 //* refactorizar el codigo
+};
+
+
+/**
+ * controlador encargado de guardar usuarios en db POST mediante un archivo excel con determinada estructura
+ * @param {*} req 
+ * @param {*} res 
+ */
+ export const saveWithFile = async (req,res) =>{
+  //clean the body peticion
+  // const cleanBody = matchedData(req);
+  try{
+    //the funccion read recive a buffer tring  then we past the req.file object property buffer
+    const file = req.file;
+    const extension = file.originalname.split('.').pop();
+
+    if(!extension === 'xlsx') return handleError(res,403,'Error_file_extension');
+    if(!file.buffer) return handleError(res,403,'Error_loading_file');
+
+    const workbook = read(file.buffer);
+    console.log(workbook);
+
+
+  }catch(e){
+    console.log(e);
+    return handleError(res,403,'Error_user_register');
+  }
 };

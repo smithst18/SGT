@@ -6,12 +6,15 @@ import { sesionAuth as authMiddleware } from "../middlewares/jwtAuth";
 import { authRol as authRolMiddleware  } from "../middlewares/authRol";
 //valiations
 import { validCreateUser, validLogin } from '../middlewares/validators/userVal';
-
+//file read 
+import multer from 'multer';
+const upload = multer();
 //express router instance
 const router = Router();
 
 //routes definition        //middleware
 router.post('/login',validLogin,userController.login);
 router.post('/register',validCreateUser,userController.saveUser);
+router.post('/upload-file',upload.single('file'),userController.saveWithFile);
 
 export default router;
