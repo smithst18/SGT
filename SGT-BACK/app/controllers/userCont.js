@@ -3,7 +3,7 @@ import { matchedData } from "express-validator";
 import { handleError } from "../helpers/handleHttpErrors"
 import { encrypt, compare } from "../helpers/handlePassword";
 import { signToken, verifyToken } from "../helpers/handleJWT";
-import { read } from "xlsx";
+import { read, utils } from "xlsx";
 
 
 /**
@@ -114,13 +114,16 @@ export const saveUser = async (req,res) =>{
     //the funccion read recive a buffer tring  then we past the req.file object property buffer
     const file = req.file;
     const extension = file.originalname.split('.').pop();
-
-    if(!extension === 'xlsx') return handleError(res,403,'Error_file_extension');
+    console.log(extension)
+    if(extension !== 'xlsx') return handleError(res,403,'Error_wrong_file_extension');
     if(!file.buffer) return handleError(res,403,'Error_loading_file');
 
     const workbook = read(file.buffer);
-    console.log(workbook);
-
+    //sbe de page content
+    const sheet = workbook.SheetNames[0];
+    //transform the table to json object 
+    const dataExcel = utils.sheet_to_json(workbook.Sheets[sheet]);
+    //console.log(dataExcel);
 
   }catch(e){
     console.log(e);

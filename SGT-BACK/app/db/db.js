@@ -15,9 +15,11 @@ export const dbConexion = async () =>{
         useUnifiedTopology:true
       }
     );
-  
+      
     console.log('Db connected to ',db.connection.name);
+    return true
   }catch(err){
     console.log('Db Connection failure:',err);
+    return false
   }
 }
