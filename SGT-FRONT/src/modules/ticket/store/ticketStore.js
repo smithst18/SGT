@@ -95,6 +95,7 @@ export const useTicketStore = defineStore('ticketStore', () => {
   /**********************************  GETTERS  **********************************/
   const getPendingTickets = computed(() => 
     pendingTickets.value.map((ele) => {
+      console.log(ele)
       let newElem = {
         id          :ele._id,
         item        :ele.item,
@@ -103,6 +104,7 @@ export const useTicketStore = defineStore('ticketStore', () => {
         solicitante :ele.sendBy.nickName,
         solicitado  :moment(ele.createdAt).format("Y-MM-D"),
         descripcion :ele.description,
+        entidad:ele.sendBy.entity.name
       }
       return newElem;
     }
@@ -142,7 +144,8 @@ export const useTicketStore = defineStore('ticketStore', () => {
         tipo        :activeTicket.value.type,
         estado      :activeTicket.value.status,
         solicitante :activeTicket.value.sendBy,
-        fecha       :activeTicket.value.createdAt
+        fecha       :activeTicket.value.createdAt,
+        Departamento:activeTicket.value.entity
       }
       return formatedCurrent
     }else return {}

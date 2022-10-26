@@ -126,7 +126,7 @@ mongoose.connect(
                 nickName: "Admin",
                 name: "emanuel Abreu",
                 rol:"admin",
-                password:await encrypt("Emanuel15"),
+                password:await encrypt("Emanuel12"),
                 position: "62e3df964db2354847e3462c",
                 document: "27571718",
                 entity: "62e3df964db2354847e3461c"

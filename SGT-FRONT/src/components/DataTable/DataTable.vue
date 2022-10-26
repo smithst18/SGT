@@ -15,8 +15,8 @@
           </tbody>
 
         </table>
-        <div class="text-md text-primary text-center mt-10" v-if="!data">
-          No tienes ningun soporte aun ..
+        <div class="text-md text-primary text-center mt-10" v-if="data.length < 1">
+          No hay Data
         </div>
       </div>
       <!-- pagination component -->

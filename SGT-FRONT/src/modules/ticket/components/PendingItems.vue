@@ -6,7 +6,7 @@
 
     <div>
       <h3 class="text-primary uppercase tracking-wide text-xs font-bold mb-4">
-          aqui va el titulo
+          Soporte en : {{data.entidad}}
       </h3>
       <div class="grid gap-1">
         <div  class="overflow-hidden" v-for="(elem, key) in data" :key="elem">

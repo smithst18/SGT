@@ -50,7 +50,11 @@ export const getPendingTickets = async (req, res) =>{
         .select('-takeBy') // <= parent
         .populate({
             path:'sendBy',   //< = son // parent 2
-            select:'nickName',
+            select:'name',
+            populate: { 
+                path: 'entity',
+                select:'name' 
+            }
         });
         if(tickets.length >= 1)return res.status(200).send({data: tickets}); 
         else handleError(res,404,`ERROR_TICKETS_NOT_FOUND`);
@@ -176,6 +180,10 @@ export const getCurrentTicket = async (req, res) =>{
         .populate({
             path:'sendBy',   //< = son // parent 2
             select:'nickName',
+            populate: { 
+                path: 'entity',
+                select:'name' 
+            }
         });
 
         if(current) return res.status(200).send({ message:"Current Ticket", data :
@@ -185,6 +193,7 @@ export const getCurrentTicket = async (req, res) =>{
             type:current.type,
             status:current.status,
             sendBy:current.sendBy.nickName,
+            entity:current.sendBy.entity.name,
             createdAt: moment(current.createdAt).format("Y-MM-D")
             }
         });
