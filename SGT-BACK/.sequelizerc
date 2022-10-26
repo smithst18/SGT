@@ -1,0 +1,9 @@
+import "babel-register";
+import "path";
+
+export default {
+  'config': path.resolve('app/db/config', 'config.json'),
+  'models-path': path.resolve('app/db/models'),
+  'seeders-path': path.resolve('app/db/seeders'),
+  'migrations-path': path.resolve('app/db/migrations')
+}

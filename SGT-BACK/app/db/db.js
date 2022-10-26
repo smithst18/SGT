@@ -1,22 +1,13 @@
 import 'dotenv/config'
-import { connect } from "mongoose";
+// import { connect } from "mongoose";
+import db from './models';
 
 
 export const dbConexion = async () =>{
 
-  const MONGO_URI = process.env.DB_URI || "mongodb://localhost:27017/sgt";
-
   try{
-    const db = await connect(
-      MONGO_URI,
-      {
-        keepAlive:true,
-        useNewUrlParser:true,
-        useUnifiedTopology:true
-      }
-    );
-      
-    console.log('Db connected to ',db.connection.name);
+    await db.sequelize.sync({force:true});
+    console.log("All models were synchronized successfully.");
     return true
   }catch(err){
     console.log('Db Connection failure:',err);

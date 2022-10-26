@@ -1,0 +1,26 @@
+{
+  "development": {
+    "username": "postgres",
+    "password": "Eaa12309/?",
+    "database": "sgt",
+    "host": "localhost",
+    "dialect": "postgres",
+    "dialectOptions":{
+      "keepAlive":"true"
+    }
+  },
+  "test": {
+    "username": "root",
+    "password": null,
+    "database": "sgt",
+    "host": "127.0.0.1",
+    "dialect": "postgres"
+  },
+  "production": {
+    "username": "root",
+    "password": null,
+    "database": "sgt",
+    "host": "127.0.0.1",
+    "dialect": "postgres"
+  }
+}
