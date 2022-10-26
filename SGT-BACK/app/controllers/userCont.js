@@ -80,7 +80,7 @@ export const saveUser = async (req,res) =>{
       const savedUser = await userModel.create(data);
       //se aplica para metodos que no permiten filtrado (Create)
       savedUser.set('password',undefined,{ strict:false });
-      if(!savedUser){ console.log(e); return handleError(res,403,'Error saving user') }
+      if(!savedUser){ return handleError(res,403,'Error saving user') }
 
       //if user is  saved then =>  save in the db the id of user in entity && position
       validEntity.users.push(savedUser._id);
@@ -114,7 +114,7 @@ export const saveUser = async (req,res) =>{
     //the funccion read recive a buffer tring  then we past the req.file object property buffer
     const file = req.file;
     const extension = file.originalname.split('.').pop();
-    console.log(extension)
+   
     if(extension !== 'xlsx') return handleError(res,403,'Error_wrong_file_extension');
     if(!file.buffer) return handleError(res,403,'Error_loading_file');
 
@@ -123,7 +123,7 @@ export const saveUser = async (req,res) =>{
     const sheet = workbook.SheetNames[0];
     //transform the table to json object 
     const dataExcel = utils.sheet_to_json(workbook.Sheets[sheet]);
-    console.log(dataExcel)
+
 
     const data = Promise.all(
       dataExcel.map( async (item) => {

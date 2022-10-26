@@ -140,7 +140,7 @@ export const returnTicket = async (req, res) =>{
     try{
         const cleanBody = matchedData(req);
         const { ticketId } = cleanBody;
-        console.log(ticketId);
+
         const ticketToRtrn = await ticketModel.findById(ticketId);
             
 
