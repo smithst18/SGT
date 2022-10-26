@@ -125,17 +125,19 @@ export const saveUser = async (req,res) =>{
     const dataExcel = utils.sheet_to_json(workbook.Sheets[sheet]);
     console.log(dataExcel)
 
-    const data = dataExcel.map((item) => {
-      return {
-        nickName:item.usuario,
-        name:item.nombre,
-        rol:item.cargo,
-        document:item.ci,
-        password:item.contrasena,
-        position:item.posicion,
-        entity:item.entidad,
-      }
-    });
+    const data = Promise.all(
+      dataExcel.map( async (item) => {
+        return {
+          nickName:item.usuario,
+          name:item.nombre,
+          rol:item.cargo,
+          document:item.ci,
+          password: await encrypt(item.contrasena),
+          position:item.posicion,
+          entity:item.entidad,
+        }
+      })
+    ) ;
 
     const saveUsers = await userModel.create(data);
     return res.status(200).send({msg:'users saveds', users:saveUsers});
