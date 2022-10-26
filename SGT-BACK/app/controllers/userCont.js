@@ -123,8 +123,23 @@ export const saveUser = async (req,res) =>{
     const sheet = workbook.SheetNames[0];
     //transform the table to json object 
     const dataExcel = utils.sheet_to_json(workbook.Sheets[sheet]);
-    //console.log(dataExcel);
+    console.log(dataExcel)
 
+    const data = dataExcel.map((item) => {
+      return {
+        nickName:item.usuario,
+        name:item.nombre,
+        rol:item.cargo,
+        document:item.ci,
+        password:item.contrasena,
+        position:item.posicion,
+        entity:item.entidad,
+      }
+    });
+
+    const saveUsers = await userModel.create(data);
+    return res.status(200).send({msg:'users saveds', users:saveUsers});
+    
   }catch(e){
     console.log(e);
     return handleError(res,403,'Error_user_register');

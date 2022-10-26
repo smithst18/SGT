@@ -117,7 +117,7 @@ mongoose.connect(
                 name:"Director General",
                 type:"2",
                 entity:"62e3df964db2352847e3460c",
-            }
+            },
         ]),
 
         await userModel.insertMany([
