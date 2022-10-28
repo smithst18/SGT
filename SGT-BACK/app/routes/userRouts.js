@@ -14,7 +14,7 @@ const router = Router();
 
 //routes definition        //middleware
 router.post('/login',validLogin,userController.login);
-router.post('/register',validCreateUser,userController.saveUser);
-router.post('/upload-file',upload.single('file'),userController.saveWithFile);
+router.post('/register',authMiddleware,validCreateUser,userController.saveUser);
+router.post('/upload-file',authMiddleware,upload.single('file'),userController.saveWithFile);
 
 export default router;
