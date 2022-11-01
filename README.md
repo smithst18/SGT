@@ -9,7 +9,9 @@ el sistema cuenta con un dashboard principal correspondiente a cada rol de usuar
 ```
 npm install
 
-npm run build 
+npm run dev para desarrollo
+
+npm run build  para despliegue
 
 colocar la carpeta dist en servidor ya se apache o algun servicio web.
 
@@ -23,4 +25,8 @@ colocar la carpeta dist en servidor ya se apache o algun servicio web.
 * [Tailwindcss](https://github.com/tailwindlabs/tailwindcss) - framework de css para contruir de manera rapida la interface de usuario
 
 ### Backend
-* [Headless Ui](https://github.com/tailwindlabs/headlessui) - unstyled components para integrar con tailwindcss
+* [Nodejs](https://github.com/nodejs) - Entorno en tiempo de ejecucion de javascript para el are de servidores.
+* [expressJs](https://github.com/expressjs/express) - framework de js para crear servidores y api de manera mas sencilla
+* [JWT](https://github.com/tailwindlabs/headlessui) - jwt para manejar las sesiones y permisos de manera rapida
+
+
