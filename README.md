@@ -27,6 +27,6 @@ colocar la carpeta dist en servidor ya se apache o algun servicio web.
 ### Backend
 * [Nodejs](https://github.com/nodejs) - Entorno en tiempo de ejecucion de javascript para el are de servidores.
 * [expressJs](https://github.com/expressjs/express) - framework de js para crear servidores y api de manera mas sencilla
-* [JWT](https://github.com/tailwindlabs/headlessui) - jwt para manejar las sesiones y permisos de manera rapida
+* [JWT](https://github.com/auth0/node-jsonwebtoken) - jwt para manejar las sesiones y permisos de manera rapida
 
 
