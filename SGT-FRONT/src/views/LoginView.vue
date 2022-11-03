@@ -2,9 +2,8 @@
   <div class="flex min-h-full">
     <div class="w-1/2 img-background bg-no-repeat bg-cover"></div>
     <div class="w-1/2 p-10">
-
-      <img src="@/assets/imgs/logo.png" alt="central +" class="pointer mx-auto mb-10">
-
+      <img src="@/assets/imgs/logo.png" alt="central +" class="pointer mx-auto">
+        
       <div class="px-8 py-6 mt-4 text-left lg:w-full">
           <h3 class="text-2xl text-center text-primary mb-5">Iniciar sesion</h3>
           <form @submit.prevent="sendForm" id="form">
@@ -48,7 +47,7 @@
             </button>
           </form>
       </div>
-
+      <p class="text-center text-sm mt-7 text-slate-500">v1.0.0</p>
     </div>
     
   </div>

@@ -24,6 +24,8 @@
 <script setup>
 import { defineAsyncComponent, onMounted, inject } from 'vue';
 import { useTicketStore } from '../store/ticketStore';
+import { useRouter } from 'vue-router';
+const router = useRouter();
 const swal = inject('$swal');
 const PendingItems = defineAsyncComponent(() => import("../components/PendingItems.vue"));
 const ticketStore = useTicketStore();
@@ -48,10 +50,19 @@ const takeTicket = async (value) =>{
     }
   });
 }
+const resetView = async () => {
+  if(router.currentRoute._value.path == '/home/tickets/pending'){
+    setInterval(async function() {
+      await ticketStore.setPendingTickets();
 
+    }, 300000);
+  }
+}
 onMounted( async () => {
   await ticketStore.setPendingTickets();
 });
+
+resetView();
 </script>
 
 <style>
