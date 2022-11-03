@@ -25,7 +25,7 @@ export const validLogin = [
         .withMessage('No debe estar vacio')
         .isString()
         .withMessage('debe ser un string')
-        .isLength({min:1,max:15})
+        .isLength({min:1,max:20})
         .withMessage('minimo 1 caracteres'),
     (req, res, next) => validateResult(req, res, next),
     
@@ -43,8 +43,8 @@ export const validCreateUser = [
         .withMessage('No debe estar vacio')
         .isString()
         .withMessage('debe ser un string')
-        .isLength({min:2,max:15})
-        .withMessage('minimo 2 caracteres')
+        .isLength({min:2,max:20})
+        .withMessage('minimo 2 caracteres max 20')
         .custom(value => findItem('nickName',value)),
     check("name")
         .exists()
@@ -54,7 +54,7 @@ export const validCreateUser = [
         .withMessage('No debe estar vacio')
         .isString()
         .withMessage('debe ser un string')
-        .isLength({min:2,max:15})
+        .isLength({min:2,max:50})
         .withMessage('minimo 2 caracteres'),
     check("document")
         .exists()
@@ -64,8 +64,8 @@ export const validCreateUser = [
         .withMessage('No debe estar vacio')
         .isString()
         .withMessage('debe ser un string')
-        .isLength({min:5,max:8})
-        .withMessage('min 5 caracteres y max 8 ')
+        .isLength({min:5,max:10})
+        .withMessage('min 5 caracteres y max 10 ')
         .custom(value => findItem('document',value)),
     check("password")
         .exists()
@@ -75,8 +75,8 @@ export const validCreateUser = [
         .withMessage('No debe estar vacio')
         .isString()
         .withMessage('debe ser un string')
-        .isLength({min:5,max:12})
-        .withMessage('minimo 5 caracteres'),
+        .isLength({min:5,max:20})
+        .withMessage('minimo 5 caracteres max 20'),
     check("rePassword")
         .exists()
         .withMessage('debe existir')
@@ -85,8 +85,8 @@ export const validCreateUser = [
         .withMessage('No debe estar vacio')
         .isString()
         .withMessage('debe ser un string')
-        .isLength({min:5,max:12})
-        .withMessage('minimo 5 caracteres')
+        .isLength({min:5,max:20})
+        .withMessage('minimo 5 caracteres max 20')
         .custom( (value, { req }) => confirmPass(value, req)),
     check("rol")
         .exists()

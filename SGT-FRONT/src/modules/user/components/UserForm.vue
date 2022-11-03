@@ -168,27 +168,27 @@ const validations = {
   nickName:{ 
     required,
     minLength: minLength(2),
-    maxLength: maxLength(15)
+    maxLength: maxLength(20)
   },
   name:{ 
     required, 
     minLength: minLength(2),
-    maxLength: maxLength(15) 
+    maxLength: maxLength(50) 
   },
   document:{ 
     required, 
     numeric,
     minLength: minLength(5),
-    maxLength: maxLength(8)
+    maxLength: maxLength(10)
   },
   password:{ 
     required, 
     minLength: minLength(5),
-    maxLength: maxLength(12) 
+    maxLength: maxLength(20) 
   },
   rePassword:{
     required,
-    maxLength: maxLength(12) 
+    maxLength: maxLength(20) 
   },
   rol:{ 
     required 
