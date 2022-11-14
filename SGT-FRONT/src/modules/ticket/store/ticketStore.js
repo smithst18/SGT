@@ -101,7 +101,7 @@ export const useTicketStore = defineStore('ticketStore', () => {
         item        :ele.item,
         tipo        :ele.type,
         estado      :'Pendiente',
-        solicitante :ele.sendBy.nickName,
+        solicitante :ele.sendBy.name,
         solicitado  :moment(ele.createdAt).format("Y-MM-D"),
         descripcion :ele.description,
         entidad:ele.sendBy.entity.name
