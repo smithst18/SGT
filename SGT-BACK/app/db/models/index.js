@@ -4,6 +4,7 @@ import { readdirSync } from 'fs';
 import { basename as _basename, join } from 'path';
 import Sequelize, { DataTypes } from 'sequelize';
 import { env as _env } from 'process';
+const path = require('path');
 const basename = _basename(__filename);
 const env = _env.NODE_ENV || 'development';
 const config = require(__dirname + '/../config/config.json')[env];
@@ -21,7 +22,7 @@ readdirSync(__dirname)
     return (file.indexOf('.') !== 0) && (file !== basename) && (file.slice(-3) === '.js');
   })
   .forEach(file => {
-    const model = require(join(__dirname, file))(sequelize, DataTypes);
+    const model = require(path.join(__dirname, file)).default(sequelize,DataTypes);
     db[model.name] = model;
   });
 

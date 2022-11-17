@@ -1,7 +1,8 @@
-import "babel-register";
-import "path";
+require("babel-register");
 
-export default {
+const path = require('path');
+
+module.exports = {
   'config': path.resolve('app/db/config', 'config.json'),
   'models-path': path.resolve('app/db/models'),
   'seeders-path': path.resolve('app/db/seeders'),
