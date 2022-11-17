@@ -25,17 +25,6 @@ mongoose.connect(
 
         await entityModel.insertMany([
             {
-                _id:'62e3df964db2354847e3461c',
-                name:"Administrador",
-                positions:[
-                    "62e3df964db2354847e3462c",
-                ],
-                users:[
-                    "62e3df964db2354847e3463c",
-                ]
-
-            },
-            {
                 _id:'62e3df964db2354847e3465c',
                 name:"R.R.H.H",
                 positions:[
@@ -53,7 +42,9 @@ mongoose.connect(
                     "62e3df964db2354847e3142c",
                     "62e3df964db2354847e3242c",
                 ],
-                users:[]
+                users:[
+                    "62e3df964db2354847e3463c"
+                ]
             },
             {
                 _id:'62e3df964db2352847e3462c',
@@ -69,15 +60,6 @@ mongoose.connect(
         
         await positionModel.insertMany([
             //positions
-            {
-                _id:'62e3df964db2354847e3462c',
-                name:"Administrador",
-                type:"2",
-                entity:"62e3df964db2354847e3461c",
-                users:[
-                    "62e3df964db2354847e3463c"
-                ]
-            },
             {
                 _id:'62e3df964db2354847e3142c',
                 name:"Analista",
@@ -106,9 +88,9 @@ mongoose.connect(
                 name: "emanuel Abreu",
                 rol:"admin",
                 password:await encrypt("Emanuel12"),
-                position: "62e3df964db2354847e3462c",
+                position: "62e3df964db2354847e3142c",
                 document: "27571718",
-                entity: "62e3df964db2354847e3461c"
+                entity: "62e3df964db2352847e3460c"
             },
             {
                 _id:"62e3df964db2354847e3462c",
@@ -121,7 +103,7 @@ mongoose.connect(
                 entity: "62e3df964db2352847e3460c"
             },
             {
-                _id:"62e3df964db2354847e3461c",
+                _id:"62e3df964db2354837e3461c",
                 nickName: "rosa",
                 name: "rosa Abreu",
                 rol:"user",
