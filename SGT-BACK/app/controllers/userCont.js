@@ -17,7 +17,7 @@ export const login = async (req,res) =>{
     const cleanBody = matchedData(req);
     const headerAuth = req.headers.authorization;
     
-    const user = await userModel.findOne({ nickName: cleanBody.nickName})
+    const user = await userModel.findOne({ nickName: cleanBody.nickName.toLowerCase()})
     .select('sub nickName name rol position entity password')
     .populate({
       path:'position',   //< = son // parent 2
@@ -67,6 +67,7 @@ export const saveUser = async (req,res) =>{
   
   const data  = {
     ...cleanBody,
+    nickName: cleanBody.nickName.toLowerCase(),
     password: hashPass,
   }
 
