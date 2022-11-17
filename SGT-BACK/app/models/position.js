@@ -13,10 +13,6 @@ const positionSchema  = new Schema ({
     required:true,
     trim:true,
   },
-  entity:{
-    type: Types.ObjectId,
-    ref:'Entity'
-  },
   users:[{
     type:Types.ObjectId,
     ref:'User',
