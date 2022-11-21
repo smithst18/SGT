@@ -1,6 +1,6 @@
 <template>
 
-  <div class="w-full h-full grid grid-col-1 grid-rows-2" 
+  <div class="w-full h-full grid grid-col-1 grid-rows-2 shadow-lg" 
     v-if="pieData.length >= 1 && barsData">
     
     <div id="element-to-print">
@@ -22,7 +22,7 @@
     </button>
   </div>
 
-  <div v-else class="flex items-center justify-center w-full h-full">
+  <div v-else class="flex items-center justify-center w-full h-full shadow-lg">
     <h3 class="text-primary">
       No hay data disponible para las estadisticas ...
     </h3>

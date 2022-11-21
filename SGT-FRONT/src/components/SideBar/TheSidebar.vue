@@ -47,12 +47,14 @@ const mainStore = useMainStore();
 const router = useRouter();
 
 const userLinks = [
-  { to: 'userHome'   , name:'Inicio',       icon:['fa','house']        },
+  { to: 'userHome'   , name:'Inicio',       icon:['fa','house']             },
+  { to: 'chatHome'   , name:'Chat',         icon:['fa','comment']           },
 ];
 
 const techLinks = [
-  { to: 'techHome'   , name:'Inicio',       icon:['fa','house']        },
-  { to: 'ticket-list', name:'Tickets',      icon:['fa','list']         },
+  { to: 'techHome'   , name:'Inicio',       icon:['fa','house']             },
+  { to: 'ticket-list', name:'Tickets',      icon:['fa','list']              },
+  { to: 'chatHome'   , name:'Chat',         icon:['fa','comment']           },
 ];
 
 const adminLinks = [
@@ -61,6 +63,7 @@ const adminLinks = [
   { to: 'userHome'   , name:'Solicitudes',  icon:['fa','file-circle-check'] },
   { to: 'adminHome'  , name:'Estadisticas', icon:['fa','chart-column']      },
   { to: 'userSignin' , name:'Registrar',    icon:['fa','user-plus']         },
+  { to: 'chatHome'   , name:'Chat',         icon:['fa','comment']           },
 ];
 
 const links = ref([]);
