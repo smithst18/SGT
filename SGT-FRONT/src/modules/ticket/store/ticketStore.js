@@ -102,7 +102,8 @@ export const useTicketStore = defineStore('ticketStore', () => {
         tipo        :ele.type,
         estado      :'Pendiente',
         solicitante :ele.sendBy.name,
-        solicitado  :moment(ele.createdAt).format("Y-MM-D"),
+        fecha  :moment(ele.createdAt).format("Y-MM-D"),
+        hora: moment(ele.createdAt).add(24, 'hours').format('HH:mm'),
         descripcion :ele.description,
         entidad:ele.sendBy.entity.name
       }

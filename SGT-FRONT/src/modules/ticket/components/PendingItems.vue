@@ -12,7 +12,7 @@
         <div  class="overflow-hidden" v-for="(elem, key) in data" :key="elem">
           <p 
             v-show="key != 'id'"
-            class="capitalize text-sm text-ellipsis overflow-hidden" >
+            class="capitalize text-sm text-ellipsis overflow-hidden max-h-10 whitespace-pre-line" >
             {{ key }}: 
             <span class="text-slate-700">
               {{ elem }}

@@ -43,13 +43,13 @@ const router = useRouter();
 
 const userLinks = [
   { to: 'userHome'   , name:'Inicio',       icon:['fa','house']             },
-  { to: 'chatHome'   , name:'Chat',         icon:['fa','comment']           },
+  //{ to: 'chatHome'   , name:'Chat',         icon:['fa','comment']           },
 ];
 
 const techLinks = [
   { to: 'techHome'   , name:'Inicio',       icon:['fa','house']             },
   { to: 'ticket-list', name:'Tickets',      icon:['fa','list']              },
-  { to: 'chatHome'   , name:'Chat',         icon:['fa','comment']           },
+  //{ to: 'chatHome'   , name:'Chat',         icon:['fa','comment']           },
 ];
 
 const adminLinks = [
