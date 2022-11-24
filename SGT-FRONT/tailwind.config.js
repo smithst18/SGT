@@ -12,6 +12,9 @@ module.exports = {
         alterPri: '#9CD3D8',
         alterSec: '#0396A6'
       },
+      backgroundImage: {
+        'chat-texture': "url('/src/assets/imgs/fondoChat2.png')"
+      }
     },
   },
   plugins: [],

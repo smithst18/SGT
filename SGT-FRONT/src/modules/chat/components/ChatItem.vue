@@ -1,12 +1,14 @@
 <template>
-  <div class="flex items-center pointer hover:bg-slate-100 h-full w-full">
-    <div class="w-[20%] flex">
-      <font-awesome-icon :icon="['fa','user']" class="text-primary h-6 w-6 m-auto"/>
+  <div class="grid grid-cols-4 pointer hover:bg-slate-100 w-full h-full border-b-2">
+    <div class="col-span-1 flex">
+      <font-awesome-icon :icon="['fa','user']" class="text-primary m-auto"/>
     </div>
-    <div class="w-[80%] h-[80%]">
-      <h5 class="capitalize text-md text-ellipsis overflow-hidden h-1/2">Maria eugenia de la pe;a</h5>
-      <p class="text-sm text-slate-500 text-ellipsis overflow-hidden h-1/2">
-        aqui va el mensaje que puede ser largo y deberia cortarse
+    <div class="col-span-3 flex">
+      <p class="text-sm text-slate-500 whitespace-nowrap overflow-hidden text-ellipsis my-auto mr-4">
+        <span class="text-slate-900 block">
+          Nombre del usuario
+        </span>
+        Lorem ipsum dolor, sit amet consectetur adipisicing elit. Qui similique est impedit autem. Illum asperiores natus quae tenetur possimus, cumque debitis praesentium accusamus ut eos quibusdam perferendis nostrum consectetur fugit?
       </p>
     </div> 
   </div>

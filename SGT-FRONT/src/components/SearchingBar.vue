@@ -1,5 +1,6 @@
 <template>
-  <div class="text-gray-600 w-full mx-3 rounded  focus:outline-none border-2 border-gray-300 flex">
+  <div 
+    class="text-gray-600 w-full mx-3 rounded  focus:outline-none border-2 border-gray-300 flex">
     <input class="bg-white focus:outline-none w-4/5 ml-2"
             type="search" name="search" placeholder="Search">
     <button type="submit" class="my-auto mx-auto">
