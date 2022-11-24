@@ -47,7 +47,7 @@
             </button>
           </form>
       </div>
-      <p class="text-center text-sm mt-7 text-slate-500">v1.0.0</p>
+      <p class="text-center text-sm mt-7 text-slate-500">v1.0.2</p>
     </div>
     
   </div>
