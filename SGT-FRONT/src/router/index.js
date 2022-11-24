@@ -1,6 +1,7 @@
 import { createRouter, createWebHistory } from "vue-router";
 import ticketsRoutes from '@/modules/ticket/router';
 import usersRoutes from '@/modules/user/router';
+import chatRoutes from '@/modules/chat/router';
 //guards
 import { isAuthGuard } from "./guards";
 
@@ -26,6 +27,7 @@ const router = createRouter({
       children:[
         { path: "tickets", ...ticketsRoutes },
         { path: "users", ...usersRoutes },
+        { path: "chats", ...chatRoutes },
       ]
     },
     { 

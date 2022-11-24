@@ -44,13 +44,12 @@
           <select :class="[ !v$.rol.$error ?'input-item' : 'input-item-error']" id="grid-rol" v-model="form.rol">
             <option disabled value="">Selecionar permisos</option>
             <option  value="admin">
-              Admin
+              Administrador
             </option>
-            <option  value="user" v-if="form.entity != '62e3df964db2352847e3460c'">
+            <option  value="user">
               Usuario
             </option>
-            <!-- solo se podra seleccionar el tecnico desde tecnologia -->
-            <option  value="tech" v-if="form.entity == '62e3df964db2352847e3460c'">
+            <option  value="tech">
               Tecnico
             </option>
           </select>

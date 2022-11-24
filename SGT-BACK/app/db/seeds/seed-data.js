@@ -3,7 +3,6 @@ import mongoose from "mongoose";
 import { encrypt } from "../../helpers/handlePassword";
 import {
     userModel,
-    ticketModel,
     entityModel,
     positionModel } from "../../models";
 
@@ -26,130 +25,112 @@ mongoose.connect(
 
         await entityModel.insertMany([
             {
-                _id:'62e3df964db2354847e3461c',
-                name:"Administrador",
-                positions:[
-                    "62e3df964db2354847e3462c",
-                ],
-                users:[
-                    "62e3df964db2354847e3463c",
-                ]
-
-            },
-            {
                 _id:'62e3df964db2354847e3465c',
                 name:"R.R.H.H",
                 positions:[
+                    "62e3df964db2354847e3462c",
                     "62e3df964db2354847e3142c",
                     "62e3df964db2354847e3242c",
-                    "62e3df964db2354847e3342c"
                 ],
-                users:[
-                    "62e3df964db2354812e3463c",
-                ]
+                users:[]
             },
             {
                 _id:'62e3df964db2352847e3460c',
                 name:"Tecnologia",
                 positions:[
+                    "62e3df964db2354847e3462c",
                     "62e3df964db2354847e3142c",
                     "62e3df964db2354847e3242c",
-                    "62e3df964db2354847e3342c"
                 ],
-                users:[
-                    "62e3df964db2354822e3463c",
-                ]
-            }
-        ]),
-        
-        await positionModel.insertMany([
-            //position for Adm
-            {
-                _id:'62e3df964db2354847e3462c',
-                name:"Administrador",
-                type:"2",
-                entity:"62e3df964db2354847e3461c",
                 users:[
                     "62e3df964db2354847e3463c"
                 ]
             },
-            // para rr hh 
+            {
+                _id:'62e3df964db2352847e3462c',
+                name:"despacho",
+                positions:[
+                    "62e3df964db2354847e3462c",
+                    "62e3df964db2354847e3142c",
+                    "62e3df964db2354847e3242c",
+                ],
+                users:[]
+            }
+        ]),
+        
+        await positionModel.insertMany([
+            //positions
             {
                 _id:'62e3df964db2354847e3142c',
                 name:"Analista",
                 type:"1",
-                entity:"62e3df964db2354847e3465c",
-                users:[
-                    "62e3df964db2354812e3463c",
-                ]
+                users:[]
             },
             {
                 _id:'62e3df964db2354847e3242c',
                 name:"Director de linea",
                 type:"2",
-                entity:"62e3df964db2354847e3465c",
+                users:[]
             },
             {
                 _id:'62e3df964db2354847e3342c',
                 name:"Director General",
                 type:"2",
-                entity:"62e3df964db2354847e3465c",
+                users:[]
             },
 
-            // para tecnologia 
-            {
-                _id:'62e3df963db2354847e3142c',
-                name:"Analista",
-                type:"1",
-                entity:"62e3df964db2352847e3460c",
-                users:[
-                    "62e3df964db2354822e3463c",
-                ]
-            },
-            {
-                _id:'62e3df961db2354847e3242c',
-                name:"Director de linea",
-                type:"2",
-                entity:"62e3df964db2352847e3460c",
-            },
-            {
-                _id:'62e3df904db2354847e3342c',
-                name:"Director General",
-                type:"2",
-                entity:"62e3df964db2352847e3460c",
-            },
         ]),
 
         await userModel.insertMany([
             {
                 _id:"62e3df964db2354847e3463c",
-                nickName: "Admin",
+                nickName: "admin",
                 name: "emanuel Abreu",
                 rol:"admin",
                 password:await encrypt("Emanuel12"),
-                position: "62e3df964db2354847e3462c",
-                document: "27571718",
-                entity: "62e3df964db2354847e3461c"
-            },
-            {
-                _id:"62e3df964db2354822e3463c",
-                nickName: "tech",
-                name: "pedro perez",
-                password:await encrypt("tech"),
-                rol:"tech",
                 position: "62e3df964db2354847e3142c",
-                document: "27571771",
+                document: "27571718",
                 entity: "62e3df964db2352847e3460c"
             },
             {
-                _id:"62e3df964db2354812e3463c",
-                nickName: "normal",
-                name: "manuel perez",
-                password:await encrypt("normal"),
-                rol:"user",
+                _id:"62e3df964db2354847e3462c",
+                nickName: "jose",
+                name: "jose Abreu",
+                rol:"tech",
+                password:await encrypt("Emanuel12"),
                 position: "62e3df964db2354847e3142c",
-                document: "27571772",
+                document: "27571717",
+                entity: "62e3df964db2352847e3460c"
+            },
+            {
+                _id:"62e3df964db2354837e3461c",
+                nickName: "rosa",
+                name: "rosa Abreu",
+                rol:"user",
+                password:await encrypt("Emanuel12"),
+                position: "62e3df964db2354847e3142c",
+                document: "27571716",
                 entity: "62e3df964db2354847e3465c"
+            },
+            {
+                _id:"62e3df964db2354847e3460c",
+                nickName: "maria",
+                name: "maria Abreu",
+                rol:"user",
+                password:await encrypt("Emanuel12"),
+                position: "62e3df964db2354847e3142c",
+                document: "27571715",
+                entity: "62e3df964db2352847e3462c"
+            },
+            {
+                _id:"62e3df964db2354847e3459c",
+                nickName: "pedro",
+                name: "pedro Abreu",
+                rol:"user",
+                password:await encrypt("Emanuel12"),
+                position: "62e3df964db2354847e3142c",
+                document: "27571714",
+                entity: "62e3df964db2352847e3462c"
             },
         ]),
 

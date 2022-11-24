@@ -24,17 +24,12 @@
       </p>
     </a>
     <!-- minicard -->
-    <!-- <div class="p-3 hidden lg:block">
-      <div class="border flex items-center bg-secondary rounded-lg p-2 ">
-        <img src="https://github.com/mdo.png" class="rounded-full h-10 w-10 mr-3">
-        <div>
-          <div class="text-black mb-1 text-sm">
-          </div>
-          <div class="text-zinc-400 text-xs">
-          </div>
-        </div>
+    <div class="p-3 hidden lg:block">
+      <div class="border bg-secondary rounded-lg p-2 text-center text-slate-800">
+        <font-awesome-icon :icon="['fa','user']" class="text-primary"/>
+        <span class="ml-5">{{mainStore.logedUser.name}}</span>
       </div>
-    </div> -->
+    </div>
   </nav>
 </template>
 
@@ -47,12 +42,14 @@ const mainStore = useMainStore();
 const router = useRouter();
 
 const userLinks = [
-  { to: 'userHome'   , name:'Inicio',       icon:['fa','house']        },
+  { to: 'userHome'   , name:'Inicio',       icon:['fa','house']             },
+  //{ to: 'chatHome'   , name:'Chat',         icon:['fa','comment']           },
 ];
 
 const techLinks = [
-  { to: 'techHome'   , name:'Inicio',       icon:['fa','house']        },
-  { to: 'ticket-list', name:'Tickets',      icon:['fa','list']         },
+  { to: 'techHome'   , name:'Inicio',       icon:['fa','house']             },
+  { to: 'ticket-list', name:'Tickets',      icon:['fa','list']              },
+  //{ to: 'chatHome'   , name:'Chat',         icon:['fa','comment']           },
 ];
 
 const adminLinks = [
@@ -61,6 +58,7 @@ const adminLinks = [
   { to: 'userHome'   , name:'Solicitudes',  icon:['fa','file-circle-check'] },
   { to: 'adminHome'  , name:'Estadisticas', icon:['fa','chart-column']      },
   { to: 'userSignin' , name:'Registrar',    icon:['fa','user-plus']         },
+  { to: 'chatHome'   , name:'Chat',         icon:['fa','comment']           },
 ];
 
 const links = ref([]);

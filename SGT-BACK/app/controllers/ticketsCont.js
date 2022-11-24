@@ -45,7 +45,7 @@ export const getPendingTickets = async (req, res) =>{
 
     try{
         //get all the ticket 
-        //populate the user who made the ticket and his information
+        //populate the user who made the ticket and its information
         const tickets = await ticketModel.find({status:'pending'})
         .select('-takeBy') // <= parent
         .populate({

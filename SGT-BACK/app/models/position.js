@@ -6,17 +6,6 @@ const positionSchema  = new Schema ({
     required:true,
     trim:true,
   },
-  type:{
-    type:Number,
-    enum:[1,2],
-    default:1,
-    required:true,
-    trim:true,
-  },
-  entity:{
-    type: Types.ObjectId,
-    ref:'Entity'
-  },
   users:[{
     type:Types.ObjectId,
     ref:'User',
