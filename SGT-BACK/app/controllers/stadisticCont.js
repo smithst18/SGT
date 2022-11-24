@@ -36,7 +36,7 @@ export const general = async (req, res) =>{
       
       //sacar el porcentaje 
       const techPersent = Object.entries(ticketsPerTech).map( 
-        elm => [elm[0], elm[1] = elm[1] * 100 /tickets.length ]
+        elm => [elm[0], (elm[1] = elm[1] * 100 /tickets.length).toFixed(2) ]
       );
 
       const ticketsPerEntity = countItems( tickets.map( elem => elem.sendBy.entity.name ) );
