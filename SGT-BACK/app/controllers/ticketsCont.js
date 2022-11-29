@@ -89,6 +89,37 @@ export const getPendingTicketsById = async (req, res) =>{
     }
 }
 
+/**
+ *  
+ * @param {*} req 
+ * @param {*} res 
+ * @returns lista de tikcets aceptados por id de tecnico 
+ */
+ export const getAceptedTicketsByTech = async (req, res) =>{
+
+    try{
+        const cleanBody = matchedData(req);
+        const { userId } = cleanBody;
+
+        const tickets = await ticketModel.find({ takeBy: userId, status:'in-process' })
+        .select('-takeBy') // <= parent
+        .populate({
+            path:'sendBy',   //< = son // parent 2
+            select:'name',
+            populate: { 
+                path: 'entity',
+                select:'name' 
+            }
+        });
+
+        if(tickets.length >= 1)return res.status(200).send({data: tickets});
+        else return handleError(res,404,"ANY TICKET FOUND");
+
+    }catch(e){
+        console.log(e)
+        return handleError(res,403,`ERROR_GETTING_TICKETS, ${e}`);
+    }
+}
 
 /**
  *  

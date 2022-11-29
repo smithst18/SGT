@@ -13,6 +13,7 @@ const router = Router();
 router.post('/save-ticket', authMiddleware, validTicket,ticketController.save);
 router.get('/pending-tickets', authMiddleware, ticketController.getPendingTickets);
 router.get('/pending-tickets-byId', authMiddleware,validUserId, ticketController.getPendingTicketsById);
+router.get('/acepted-tickets-by-tech', authMiddleware,validUserId, ticketController.getAceptedTicketsByTech);
 router.get('/take-pending', authMiddleware, validTakeTicket, ticketController.takeTicket);
 router.get('/return-pending', authMiddleware, validTicketId, ticketController.returnTicket);
 router.get('/get-current', authMiddleware, validUserId, ticketController.getCurrentTicket);

@@ -65,6 +65,30 @@ export const PendingTicketsByUser = async (userId) => {
   }
 }
 
+export const AceptedTicketsByTech = async (userId) => {
+  
+  try{
+    const { data }  = await api.get('ticket/acepted-tickets-by-tech',{
+      params:{
+        userId
+      }
+    });
+    return { status:true, data };
+
+  }catch(err){
+
+    if(err.response){
+
+      const { response:{ data:{ errors } } } = err;
+
+      if(errors) return { status:false, errors };
+      else if(err.response.data) return { status:false, data:err.response.data };
+      throw new Error(err);
+
+    }else return { status:false, data:err };
+  }
+}
+
 export const takeTicket = async (userId,ticketId) => {
   
   try{

@@ -11,6 +11,13 @@ export default {
             beforeEnter: [ rolGuard ],
             component:() => import(/* webpackChunkName: "user sign in view "*/"@/modules/user/pages/SignIn.vue"),
         },
+        {
+            path:'update',
+            name:'userUpdate',
+            meta:{ rolsAllow: ['admin','user','tech'] },
+            beforeEnter: [ rolGuard ],
+            component:() => import(/* webpackChunkName: "user sign in view "*/"@/modules/user/pages/UpdateUser.vue"),
+        },
         { 
             path: '/:pathMatch(.*)*', 
             redirect:{ name:"userSignin" }

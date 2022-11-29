@@ -7,7 +7,8 @@ import {
   currenTicket, 
   returnTicket,
   PendingTicketsByUser,
-  closeTicket
+  closeTicket,
+  AceptedTicketsByTech
 } from "../../../services/ticketService.js";
 import { useMainStore } from "@/stores/mainStore.js";
 import moment from "moment"
@@ -18,6 +19,7 @@ export const useTicketStore = defineStore('ticketStore', () => {
   const activeTicket = ref({});
   const pendingTickets = ref([]);
   const pendingTicketsByUser = ref([]);
+  const aceptedTicketsByTech = ref([]);
   const myTickets = ref([]);
 
   
@@ -42,6 +44,15 @@ export const useTicketStore = defineStore('ticketStore', () => {
     const { status, data } = await PendingTicketsByUser(mainStore.logedUser.id);
     
     if(status) pendingTicketsByUser.value = data.data;
+    else return { status:false, data };
+  };
+
+  //guarda en el store los tickets aceptados por un det tech
+  const setaceptedTicketsByTech = async () => {
+
+    const { status, data } = await AceptedTicketsByTech(mainStore.logedUser.id);
+    
+    if(status) aceptedTicketsByTech.value = data.data;
     else return { status:false, data };
   };
   
@@ -95,7 +106,6 @@ export const useTicketStore = defineStore('ticketStore', () => {
   /**********************************  GETTERS  **********************************/
   const getPendingTickets = computed(() => 
     pendingTickets.value.map((ele) => {
-      console.log(ele)
       let newElem = {
         id          :ele._id,
         item        :ele.item,
@@ -152,23 +162,42 @@ export const useTicketStore = defineStore('ticketStore', () => {
     }else return {}
   });
 
+  const getAceptedTicketsByTech = computed(() => 
+    aceptedTicketsByTech.value.map((ele) => {
+      let newElem = {
+        item        :ele.item,
+        tipo        :ele.type,
+        estado      :'Pendiente',
+        solicitante :ele.sendBy.name,
+        fecha  :moment(ele.createdAt).format("Y-MM-D"),
+        hora: moment(ele.createdAt).add(24, 'hours').format('HH:mm'),
+        descripcion :ele.description,
+        entidad:ele.sendBy.entity.name
+      }
+    return newElem;
+  }
+));
+
   return {
     pendingTickets,
     myTickets,
     activeTicket,
     pendingTicketsByUser,
+    aceptedTicketsByTech,
     //actions
     takePendingTicket,
     returnPendingTicket,
     setPendingTickets,
     setClosedTickets,
     setCurrentTicket,
+    setaceptedTicketsByTech,
     setPendingTicketsByUser,
     closeOneTicket,
     //getters
     getPendingTickets,
     getPendingTicketsById,
     getMyTickets,
-    getCurrent
+    getCurrent,
+    getAceptedTicketsByTech
   }
 });

@@ -25,7 +25,9 @@
     </a>
     <!-- minicard -->
     <div class="p-3 hidden lg:block">
-      <div class="border bg-secondary rounded-lg p-2 text-center text-slate-800">
+      <div 
+        class="border bg-secondary rounded-lg p-2 text-center text-slate-800 pointer"
+        @click="router.push({ name: 'userUpdate' })">
         <font-awesome-icon :icon="['fa','user']" class="text-primary"/>
         <span class="ml-5">{{mainStore.logedUser.name}}</span>
       </div>
