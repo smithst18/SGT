@@ -5,7 +5,7 @@ import { positionController } from "../controllers";
 import { sesionAuth as authMiddleware } from "../middlewares/jwtAuth";
 import { authRol as authRolMiddleware  } from "../middlewares/authRol";
 //validations 
-import { validPosition, validId } from "../middlewares/validators/positionVal";
+import { validPosition, validId } from "../validators/positionVal";
 
 const router = Router();
 

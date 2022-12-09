@@ -5,6 +5,8 @@ import { encrypt, compare } from "../helpers/handlePassword";
 import { signToken, verifyToken } from "../helpers/handleJWT";
 import { read, utils } from "xlsx";
 
+const PUBLIC_URL = process.env.PUBLIC_URL || "http://localhost:3200/public";
+
 
 /**
  * controlador encargado de crear sesions POST
@@ -146,5 +148,67 @@ export const saveUser = async (req,res) =>{
   }catch(e){
     console.log(e);
     return handleError(res,403,'Error_user_register');
+  }
+};
+
+/**
+ * 
+ * @param {*} req datos + archivo tipo imagen
+ * @param {*} res datos guardados
+ * @returns 
+ */
+export const updateProfile = async (req,res) =>{
+  //propiedad que es creada en el middleware de multer si el archivo es incorrecto
+  // a futuro validad la cabecera debe ser  multipart form data 
+  const { invalidFile, file } = req;
+  console.log(invalidFile, file);
+
+  if(!invalidFile && file){
+    // clean the body peticion
+    const cleanBody = matchedData(req);
+
+    try{
+
+      const userUpdated = await userModel.findByIdAndUpdate(
+        cleanBody.id,
+          {
+            $set:
+            {
+              profileImgUrl:`${PUBLIC_URL}/images/${file.filename}`,
+              nickName: cleanBody.nickName
+            },
+          },{ new:true }
+      );
+      
+      return res.status(200).send({ updated: userUpdated });
+      
+    }catch(e){
+      console.log(e);
+      return handleError(res,403,'Error_user_register');
+    }
+
+  }else return handleError(res,400,'invalidFile');
+};
+
+
+/**
+ * @param {*} req vacio
+ * @param {*} res lista de usuarios disponibles
+ * @returns  devuelve todos los usuarios que esten en el sistema
+ */
+
+export const userListChat = async (req,res) =>{
+
+  try{
+
+    const userList = await userModel.find().select('_id name nickName');
+
+    if(userList.length >= 1)return res.status(200).send({data: userList});
+
+    else return handleError(res,400,'ANY_USER_AVAILABLE');
+
+  }catch(e){
+
+    return handleError(res,400,'SERVER_ERROR');
   }
 };

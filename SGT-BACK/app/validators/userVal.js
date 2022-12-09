@@ -1,7 +1,7 @@
 import { check } from "express-validator";
-import { validateResult } from '../../helpers/handleValidator';
+import { validateResult } from '../helpers/handleValidator';
 //customVals
-import { confirmPass, findItem } from "./custom/userCustomValidations";
+import { confirmPass, findItem, validIMG } from "./custom/userCustomValidations";
 
 /**
  * Middleware login validator
@@ -114,5 +114,24 @@ export const validUserId = [
         .withMessage('No debe estar vacio')
         .isMongoId()
         .withMessage('Debe ser mongoID'),
+    (req, res, next) => validateResult(req, res, next),
+];
+
+export const validUpdate = [
+    check("id")
+        .exists()
+        .withMessage('debe existir')
+        .notEmpty()
+        .withMessage('No debe estar vacio')
+        .isMongoId()
+        .withMessage('Debe ser mongoID'),
+    check("nickName")
+        .trim()
+        .notEmpty()
+        .withMessage('No debe estar vacio')
+        .isString()
+        .withMessage('debe ser un string')
+        .isLength({min:2,max:20})
+        .withMessage('minimo 2 caracteres max 20'),
     (req, res, next) => validateResult(req, res, next),
 ];

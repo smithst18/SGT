@@ -95,7 +95,7 @@ export const getPendingTicketsById = async (req, res) =>{
  * @param {*} res 
  * @returns lista de tikcets aceptados por id de tecnico 
  */
- export const getAceptedTicketsByTech = async (req, res) =>{
+export const getAceptedTicketsByTech = async (req, res) =>{
 
     try{
         const cleanBody = matchedData(req);

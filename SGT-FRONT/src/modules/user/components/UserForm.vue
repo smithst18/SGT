@@ -161,7 +161,7 @@ const userToSave = {
   rol:'',
   entity:'',
   position:'',
-}
+};
 
 const validations = {
   nickName:{ 
@@ -198,7 +198,7 @@ const validations = {
   position:{ 
     required 
   },
-}
+};
 
 const { form, v$, validateForm, resetForm } = useFormValidator(userToSave,validations,'Usuario Guardado Correctamente'); 
 
@@ -222,11 +222,11 @@ const submitForm = async () => {
       swal({title:"Error al Guardar",text:`${response.errors[0].msg} campo ${response.errors[0].param} ${response.errors[0].value}`, icon:"error"});
     }
   }
-}
+};
 
 onMounted(() =>{
   entityStore.setAllEntitys();
-})
+});
 </script>
 
 <style>

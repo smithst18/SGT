@@ -14,6 +14,9 @@ app.use(express.urlencoded({extended:true}));
 //cors configuration
 app.use(cors());
 
+//config para archivos publicos
+app.use('/public',express.static(__dirname + '/public'));
+
 //Routes
 //user routs
 app.use('/api/user',routes.userRoutes);

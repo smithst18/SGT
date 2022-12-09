@@ -5,8 +5,8 @@ import { ticketController } from "../controllers";
 import { sesionAuth as authMiddleware } from "../middlewares/jwtAuth";
 import { authRol as authRolMiddleware  } from "../middlewares/authRol";
 //valiations
-import { validTicket, validTakeTicket, validTicketId } from '../middlewares/validators/ticketVal';
-import { validUserId } from '../middlewares/validators/userVal';
+import { validTicket, validTakeTicket, validTicketId } from '../validators/ticketVal';
+import { validUserId } from '../validators/userVal';
 
 const router = Router();
 

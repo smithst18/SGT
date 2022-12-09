@@ -38,3 +38,46 @@ export const userLogin = async (form) => {
     }else return { status:false, data: err }
   }
 }
+export const updateUser = async (form) => {
+  
+  try{
+    const { data } = await api.put('user/update',form,{
+      headers: {
+        "Content-Type": "multipart/form-data",
+      }
+    });
+
+    return { status:true, data };
+
+  }catch(err){
+    if(err.response){
+
+      const { response:{ data } } = err;
+  
+      if(data) return { status:false, data };
+      
+      throw new Error(err);
+
+    }else return { status:false, data: err }
+  }
+}
+
+export const getUsersList = async () => {
+  
+  try{
+    const { data } = await api.get('user/list');
+
+    return { status:true, data };
+
+  }catch(err){
+    if(err.response){
+
+      const { response:{ data } } = err;
+  
+      if(data) return { status:false, data };
+      
+      throw new Error(err);
+
+    }else return { status:false, data: err }
+  }
+}

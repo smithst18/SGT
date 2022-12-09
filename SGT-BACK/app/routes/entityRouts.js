@@ -5,7 +5,7 @@ import { entityController } from "../controllers";
 import { sesionAuth as authMiddleware } from "../middlewares/jwtAuth";
 import { authRol as authRolMiddleware  } from "../middlewares/authRol";
 //validations
-import { validEntity } from '../middlewares/validators/entity';
+import { validEntity } from '../validators/entity';
 
 const router = Router();
 

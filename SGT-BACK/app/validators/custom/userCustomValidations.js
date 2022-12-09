@@ -1,4 +1,5 @@
-import { User } from "../../../models/user";
+import { User } from "../../models/user";
+
 /**
  * permite det si un user ya esta registrado
  * @param {*} search campo a buscar en el modelo
@@ -13,6 +14,8 @@ export const findItem = async (search,value) =>{
         }
     });
 }
+
+
 /**
  * permite verificar si 2 contrase;as coinciden
  * @param {*} value 

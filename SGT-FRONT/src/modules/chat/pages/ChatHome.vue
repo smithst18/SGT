@@ -3,8 +3,8 @@
     <!-- barra izquierda para chats -->
     <div class="w-1/4 shadow">
       <!-- buscador de personas -->
-      <div class="h-[10%] w-full border-b-2 flex items-center text-center">
-        <searching-bar/>
+      <div class="h-[10%] w-full border-b-2">
+        <searching-bar @search="searchChat"/>
       </div>
       <!-- chats previamente abiertos -->
       <div class="h-[90%] w-full overflow-y-auto scrollbar">
@@ -23,11 +23,28 @@
 </template>
 
 <script setup>
-  import { defineAsyncComponent } from 'vue';
-  const ChatItem = defineAsyncComponent(() => import('../components/ChatItem.vue'));
-  const ActiveChat = defineAsyncComponent(() => import('../components/ChatConversation.vue'));
-  const SearchingBar = defineAsyncComponent(() => import('@/components/SearchingBar.vue'))
+// imports
+import { defineAsyncComponent, onMounted } from 'vue';
+import { useMainStore } from '../../../stores/mainStore';
+// componentes 
+const ChatItem = defineAsyncComponent(() => import('../components/ChatItem.vue'));
+const ActiveChat = defineAsyncComponent(() => import('../components/ChatConversation.vue'));
+const SearchingBar = defineAsyncComponent(() => import('@/components/SearchingBar.vue'));
 
+// storage
+const mainStore = useMainStore();
+
+// metodos
+
+//1 recibimos en el envento un string que viene del componente  barra de busqueda
+const searchChat = (searchString) =>{
+  if(mainStore.getSearchedClient(searchString)) console.log( mainStore.getSearchedClient(searchString));
+}
+
+// life cicle
+onMounted(async () => {
+  await mainStore.setChatClients();
+});
 </script>
 
 <style>

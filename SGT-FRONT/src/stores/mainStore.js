@@ -3,7 +3,7 @@ import { computed, ref } from "vue";
 //cookies package
 import { useCookies } from "vue3-cookies";
 //import service for user api consume
-import { userLogin } from "../services/userService"; 
+import { userLogin, getUsersList } from "../services/userService"; 
 
 // const localStorage = window.localStorage; 
 const { cookies } = useCookies();
@@ -14,6 +14,7 @@ export const useMainStore = defineStore('main', () => {
   const logedUser = ref({});
   const isLoged = ref(false);
   const requestLoading = ref(false);
+  const chatClients = ref([]);
 
   /**********************************  ACTIONS  **********************************/
   
@@ -42,7 +43,7 @@ export const useMainStore = defineStore('main', () => {
   const setUser = () => {
     logedUser.value = cookies.get('user_loged');
     if(logedUser.value !=  null) isLoged.value = true;
-  }
+  };
 
   const logOut = async (user) => {
     // reiniciar el stado del store
@@ -52,20 +53,28 @@ export const useMainStore = defineStore('main', () => {
     cookies.remove('token');
     cookies.remove('user_loged');
   };
-
-  const requestToTrue = () => requestLoading.value = true;
-  const requestToFalse = () => requestLoading.value = false;
+  
+  const setChatClients = async () =>{
+    const { status, data } = await getUsersList();
+    if(status) chatClients.value = data.data;
+    else return { status:false, data };
+  };
 
   /**********************************  GETTERS  **********************************/
   
   const getRol = computed(() =>{
     if(logedUser.value) return logedUser.value.rol;
-  })
+  });
 
   const getRequestStatus = computed(() =>{
     return requestLoading.value;
-  })
+  });
 
+  const getSearchedClient = computed(() => (searchString) =>{
+    if(searchString.length >= 3) return chatClients.value
+    .filter((elem) => elem.nickName.includes(searchString))//;elem.nickName == searchString);
+    else false
+  });
 
 
   //actions to call
@@ -74,13 +83,16 @@ export const useMainStore = defineStore('main', () => {
     logedUser, 
     isLoged,
     requestLoading,
+    chatClients,
     //actions
     logIn, 
     logOut,
-    requestToTrue,
-    requestToFalse,
+    requestToTrue:() => requestLoading.value = true,
+    requestToFalse:() => requestLoading.value = false,
+    setChatClients,
     //getters
     getRol,
     getRequestStatus,
+    getSearchedClient
   }
 });

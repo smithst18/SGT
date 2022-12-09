@@ -6,7 +6,7 @@ import { useMainStore } from "../stores/mainStore"
 const { cookies } = useCookies();
 
 export const api = axios.create({
-  baseURL: 'http://localhost:3200/api/',
+  baseURL: `${import.meta.env.VITE_API_URL}/api/`,
   timeout: 3000,
 });
 
