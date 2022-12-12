@@ -8,14 +8,14 @@
       </div>
       <!-- chats previamente abiertos -->
       <div class="h-[90%] w-full overflow-y-auto scrollbar">
-        <div v-for="n in 10" :key="n" class="h-16">
-          <chat-item/>
+        <div v-for="item in chats" :key="item.id" class="h-16">
+          <chat-item :chat="item" @show-chat="loadChat"/>
         </div>
         <!-- chat item para seleccion -->
       </div>
     </div>
     <!-- barra derecha para mensajes -->
-    <div class="w-3/4 shadow flex flex-col">
+    <div class="w-3/4 shadow flex flex-col border-l-2">
       <!-- chat seleccionado -->
       <active-chat/>
     </div>
@@ -24,7 +24,7 @@
 
 <script setup>
 // imports
-import { defineAsyncComponent, onMounted } from 'vue';
+import { defineAsyncComponent, onMounted, ref } from 'vue';
 import { useMainStore } from '../../../stores/mainStore';
 // componentes 
 const ChatItem = defineAsyncComponent(() => import('../components/ChatItem.vue'));
@@ -34,13 +34,20 @@ const SearchingBar = defineAsyncComponent(() => import('@/components/SearchingBa
 // storage
 const mainStore = useMainStore();
 
+//states
+const chats = ref([]);
 // metodos
 
 //1 recibimos en el envento un string que viene del componente  barra de busqueda
 const searchChat = (searchString) =>{
-  if(mainStore.getSearchedClient(searchString)) console.log( mainStore.getSearchedClient(searchString));
+  if(mainStore.getSearchedClient(searchString)){
+    //console.log(mainStore.getSearchedClient(searchString))
+    chats.value = mainStore.getSearchedClient(searchString);
+  }else chats.value = [];
 }
-
+const loadChat = (chatId) =>{
+  console.log(chatId);
+}
 // life cicle
 onMounted(async () => {
   await mainStore.setChatClients();

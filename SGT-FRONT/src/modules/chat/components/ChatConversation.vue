@@ -58,7 +58,7 @@ const mensajes= [
   {user:"2",text:'Lorem ipsum dolor sit amet consectetur adipisicing elit. Excepturi perferendis officiis commodi nisi nihil aut, non voluptate ipsa quam alias exercitationem, quo doloremque incidunt? Nemo blanditiis odit eveniet culpa suscipitLorem ipsum dolor sit amet consectetur adipisicing elit. Maiores ad soluta magni dolorum natus. Molestiae nihil nulla, culpa eum quis consectetur possimus reprehenderit explicabo minus incidunt hic, aut voluptate tempore.Lorem ipsum dolor, sit amet consectetur adipisicing elit. Eum, placeat at voluptas animi laborum ipsam. Voluptatibus ea ullam veniam culpa, quos sunt soluta quae temporibus placeat iusto et, deleniti distinctio.'},
   {user:"1",text:"Lorem ipsum dolor sit amet consectetur adipisicing elit. Excepturi perferendis officiis commodi nisi nihil aut, non voluptate ipsa quam alias exercitationem, quo doloremque incidunt? Nemo blanditiis odit eveniet culpa suscipitLorem ipsum dolor sit amet consectetur adipisicing elit. Maiores ad soluta magni dolorum natus. Molestiae nihil nulla, culpa eum quis consectetur possimus reprehenderit explicabo minus incidunt hic, aut voluptate tempore.Lorem ipsum dolor, sit amet consectetur adipisicing elit. Eum, placeat at voluptas animi laborum ipsam. Voluptatibus ea ullam veniam culpa, quos sunt soluta quae temporibus placeat iusto et, deleniti distinctio."},
   {user:"2",text:':)'}
-]
+];
 </script>
 
 <style scoped>
