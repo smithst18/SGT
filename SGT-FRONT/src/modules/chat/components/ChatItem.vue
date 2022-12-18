@@ -1,22 +1,41 @@
 <template>
-  <div class="grid grid-cols-4 pointer hover:bg-slate-100 w-full h-full border-b-2" 
-  @click="emit('showChat',props.chat._id)">
-    <div class="col-span-1 flex">
+  <a class="grid grid-cols-4 pointer hover:bg-slate-100 w-full h-full border-b-2 shadow-sm" 
+    @click="emit('showChat',props.chat._id)">
+    <!-- imagen del perfil del chat  -->
+    <div class="col-span-1 flex border-r-2" v-if="props.chat.profileImgUrl">
+      <div class="w-12 h-12 m-auto rounded-full">
+        <img :src="props.chat.profileImgUrl" class="w-full h-full rounded-full object-cover object-center" alt="img_profile">
+      </div>
+    </div>
+    <!-- icono si no hay imagen -->
+    <div class="col-span-1 flex border-r-2" v-else>
       <font-awesome-icon :icon="['fa','user']" class="text-primary m-auto"/>
     </div>
-    <div class="col-span-3 flex">
-      <p class="text-sm text-slate-500 whitespace-nowrap overflow-hidden text-ellipsis my-auto mr-4">
-        <span class="text-slate-900 block">
-          {{props.chat.name}}
-        </span>
-        Lorem ipsum dolor, sit amet consectetur adipisicing elit. Qui similique est impedit autem. Illum asperiores natus quae tenetur possimus, cumque debitis praesentium accusamus ut eos quibusdam perferendis nostrum consectetur fugit?
-      </p>
+    <!-- data del chat -->
+    <div class="col-span-3 flex items-center p-2">
+      <div class="w-full h-full">
+        <p class="text-sm flex mb-1">
+          <span class="capitalize">
+            {{ props.chat.name }}
+          </span>
+          <span class="text-xs ml-auto text-slate-500">
+            7:30
+          </span>
+        </p>
+        <p class="text-xs flex">
+          <span class="capitalize text-slate-400 whitespace-nowrap overflow-hidden text-ellipsis max-w-[185px]">
+            algun mensaje pasadoasddddddddddddddddd asdddddddddddddd asdddddddddddddddddd
+          </span>
+          <span class="ml-auto bg-primary text-white w-4 text-center rounded-full">
+            3
+          </span>
+        </p>
+      </div>
     </div> 
-  </div>
+  </a>
 </template>
 
 <script setup>
-import { onMounted } from "@vue/runtime-core";
 const emit = defineEmits(["showChat"]);
 
 const props = defineProps({
@@ -24,10 +43,6 @@ const props = defineProps({
     type:Object,
     required:true,
   }
-});
-
-onMounted(() => {
-  console.log(props.chat)
 });
 </script>
 

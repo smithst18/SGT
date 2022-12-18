@@ -17,15 +17,16 @@
     <!-- barra derecha para mensajes -->
     <div class="w-3/4 shadow flex flex-col border-l-2">
       <!-- chat seleccionado -->
-      <active-chat/>
+      <active-chat :allow-chat="allowChat" @private-msg="sendMsg"/>
     </div>
   </div>
 </template>
 
 <script setup>
 // imports
-import { defineAsyncComponent, onMounted, ref } from 'vue';
+import { defineAsyncComponent, onMounted, onUnmounted, ref } from 'vue';
 import { useMainStore } from '../../../stores/mainStore';
+import { socket } from '@/services/socket.js';
 // componentes 
 const ChatItem = defineAsyncComponent(() => import('../components/ChatItem.vue'));
 const ActiveChat = defineAsyncComponent(() => import('../components/ChatConversation.vue'));
@@ -35,22 +36,56 @@ const SearchingBar = defineAsyncComponent(() => import('@/components/SearchingBa
 const mainStore = useMainStore();
 
 //states
+//lsita de chats
 const chats = ref([]);
+// chat elejido
+const currentChat = ref(null);
+// variable boleana q permite escribir o no en el componente conversacion
+const allowChat = ref(false);
+
 // metodos
 
 //1 recibimos en el envento un string que viene del componente  barra de busqueda
 const searchChat = (searchString) =>{
   if(mainStore.getSearchedClient(searchString)){
-    //console.log(mainStore.getSearchedClient(searchString))
     chats.value = mainStore.getSearchedClient(searchString);
-  }else chats.value = [];
+  }else chats.value = mainStore.chatClients;;
 }
-const loadChat = (chatId) =>{
-  console.log(chatId);
+
+//setear  custom chat
+const loadChat = (chatId) => socket.emit('chat:join-room',chatId,mainStore.logedUser.id);
+
+// enviar mensaje 
+const sendMsg = (msg) =>{
+  socket.emit('chat:private-msg',msg);
 }
+
+
 // life cicle
 onMounted(async () => {
-  await mainStore.setChatClients();
+  //coneccion con el soccket
+  socket.connect();
+  //guardar cliente en el socket
+  socket.emit('chat:store-cliente',mainStore.logedUser);
+  //setear el chat 
+  socket.on('chat:join-room',async (chat) => {
+    //seterar current chat
+    mainStore.setCurrentChat(chat);
+    allowChat.value = true;
+  });
+  //guardar los chats al ser recibidos 
+  socket.on('chat:send-chats',(data) =>{
+    mainStore.setChatClients(data);
+    chats.value = mainStore.chatClients;
+  });
+
+  socket.on('chat:private-msg',(msg) => {
+    mainStore.addMsgToCurrentChat(msg);
+  });
+});
+
+onUnmounted(() =>{
+  socket.disconnect();
 });
 </script>
 

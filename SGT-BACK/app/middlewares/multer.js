@@ -1,6 +1,6 @@
 import multer from 'multer';
 import { extname } from 'path';
-
+import { handleError } from '../helpers/handleHttpErrors'
 const mimetypes = ["image/jpeg","image/png","image/svg","image/jpeg"];
 //configuracion del storage de multer
 const storage = multer.diskStorage({
@@ -22,9 +22,9 @@ const storage = multer.diskStorage({
 });
 
 //esta constate contiene las funciones para leer archivos
-export const upload = multer();
+// export const upload = multer(); // no utilizado de momento
 //esta constate contiene las funciones de multer y el storage para guardar de manera local
-export const uploadWithStorage = multer({
+export const uploadFile = multer({
   storage,
   fileFilter: (req,file,cb) =>{
     if(mimetypes.includes(file.mimetype)) cb(null,true);
@@ -35,7 +35,13 @@ export const uploadWithStorage = multer({
     }
   }, 
   limits:{
-    fileSize: 1000000,
-  }
+    //permitiendo aprox 5 mb de peso foto
+    fileSize: 5000000,  
+  },
 });
 
+export const multerErrorHandler = (err, req, res, next) => {
+  // err.stack
+  if(err instanceof multer.MulterError) handleError(res,403,'tamaño de archivo permitido excedido');
+  next();
+}

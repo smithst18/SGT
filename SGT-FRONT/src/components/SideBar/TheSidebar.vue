@@ -26,10 +26,16 @@
     <!-- minicard -->
     <div class="p-3 hidden lg:block">
       <div 
-        class="border bg-secondary rounded-lg p-2 text-center text-slate-800 pointer"
+        class="border bg-secondary rounded-lg py-2 px-4  text-center text-slate-800 pointer flex items-center"
         @click="router.push({ name: 'userUpdate' })">
-        <font-awesome-icon :icon="['fa','user']" class="text-primary"/>
-        <span class="ml-5">{{mainStore.logedUser.name}}</span>
+        <div class="w-10 h-10 rounded-full shadow-sm" v-if="mainStore.logedUser.profileImgUrl">
+          <img :src="mainStore.logedUser.profileImgUrl" class="w-full h-full rounded-full object-scale-down" alt="img_profile">
+        </div>
+        <font-awesome-icon :icon="['fa','user']" class="text-primary" v-else/>
+        <div class="px-4 capitalize text-sm">
+          <p>{{mainStore.logedUser.name}}</p>
+          <p class="text-slate-500 text-left">{{mainStore.logedUser.nickName}}</p>
+        </div>
       </div>
     </div>
   </nav>

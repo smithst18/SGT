@@ -3,7 +3,6 @@ import { matchedData } from "express-validator";
 import { handleError } from "../helpers/handleHttpErrors"
 import { encrypt, compare } from "../helpers/handlePassword";
 import { signToken, verifyToken } from "../helpers/handleJWT";
-import { read, utils } from "xlsx";
 
 const PUBLIC_URL = process.env.PUBLIC_URL || "http://localhost:3200/public";
 
@@ -20,7 +19,7 @@ export const login = async (req,res) =>{
     const headerAuth = req.headers.authorization;
     
     const user = await userModel.findOne({ nickName: cleanBody.nickName.toLowerCase()})
-    .select('sub nickName name rol position entity password')
+    .select('sub nickName name rol position entity password profileImgUrl')
     .populate({
       path:'position',   //< = son // parent 2
       select:'name',
@@ -37,7 +36,7 @@ export const login = async (req,res) =>{
     if(!match) return handleError(res,401,'Contrase;a incorrecta');
     
     //send token 
-    
+    console.log(user);
     if(!headerAuth) return res.status(200).send({ token: signToken(user) });
     else {
       //send payload
@@ -179,8 +178,7 @@ export const updateProfile = async (req,res) =>{
             },
           },{ new:true }
       );
-      
-      return res.status(200).send({ updated: userUpdated });
+      if(userUpdated) return res.status(200).send({ updated: userUpdated });
       
     }catch(e){
       console.log(e);
@@ -188,27 +186,4 @@ export const updateProfile = async (req,res) =>{
     }
 
   }else return handleError(res,400,'invalidFile');
-};
-
-
-/**
- * @param {*} req vacio
- * @param {*} res lista de usuarios disponibles
- * @returns  devuelve todos los usuarios que esten en el sistema
- */
-
-export const userListChat = async (req,res) =>{
-
-  try{
-
-    const userList = await userModel.find().select('_id name nickName');
-
-    if(userList.length >= 1)return res.status(200).send({data: userList});
-
-    else return handleError(res,400,'ANY_USER_AVAILABLE');
-
-  }catch(e){
-
-    return handleError(res,400,'SERVER_ERROR');
-  }
 };

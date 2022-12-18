@@ -18,6 +18,7 @@ export const signToken = (data) =>{
         rol: data.rol,
         position: data.position.name,
         entity: data.entity.name,
+        profileImgUrl:data.profileImgUrl
     }
     const token = jwt.sign(
         payLoad,

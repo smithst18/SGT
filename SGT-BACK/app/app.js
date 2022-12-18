@@ -4,6 +4,8 @@ import cors from "cors";
 //import routes
 import routes from "./routes";
 
+//error middle handlers 
+import { multerErrorHandler } from './middlewares/multer';
 //serv instance
 const app = express();
 
@@ -29,4 +31,5 @@ app.use('/api/position',routes.positionRoutes);
 //stadistics routs
 app.use('/api/stadistics',routes.stadisticsRoutes);
 
+app.use(multerErrorHandler);
 export default app;

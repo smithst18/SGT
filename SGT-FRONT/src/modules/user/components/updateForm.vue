@@ -110,6 +110,8 @@ import { useImgs } from '@/composables/useImgs';
 import { ref } from '@vue/reactivity';
 import { useMainStore } from '@/stores/mainStore';
 import { updateUser } from '@/services/userService.js';
+import { useCookies } from "vue3-cookies";
+const { cookies } = useCookies();
 const mainStore = useMainStore();
 // const EditImageModal = defineAsyncComponent(() => import('@/components/BasicModal.vue'));
   const swal = inject('$swal');
@@ -163,6 +165,9 @@ const mainStore = useMainStore();
     if(validForm && validFile.value){
       const response  = await updateUser(form);
       if(response.status){
+        console.log(response.data);
+        cookies.set('user_loged',response.data.updated);
+        mainStore.logedUser.profileImgUrl = response.data.updated.profileImgUrl;
         swal({title:"Usuario actualizado",icon:"success"});
       }else{
         swal({title:"Error al actualizar",text:`${response.data.message}`, icon:"error"});

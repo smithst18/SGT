@@ -4,7 +4,7 @@ export const useImgs = () => {
 
   const imgSrc = reactive({});
 
-  const availableTypes = ['jpg','png','svg'];
+  const availableTypes = ['jpg','png','svg','jpeg'];
 
   //transform img to url
   // const transformImgToUrl = (file) => {
@@ -18,24 +18,25 @@ export const useImgs = () => {
   const validateImg = (file) =>{
     
     // separar el sub estring del formato y buscar si es valido
-    const { type, size } = file;
-    const validFile = availableTypes.indexOf( type.substring( type.lastIndexOf('/') + 1 ) );
-    
-    // si el formato es correcto se tranforma el archivo a una url valida
-    if(validFile == -1) 
-    {
-      imgSrc.value = {};
-      return false;
-    }
-    else {
-      imgSrc.value = file;
-      return true
-    }
-      //{
-    //   // transformImgToUrl(file);
-    //   return true;
-    // };
-  };
-
+    if(file){
+      const { type, size } = file;
+      const validFile = availableTypes.indexOf( type.substring( type.lastIndexOf('/') + 1 ) );
+      // si el formato es correcto se tranforma el archivo a una url valida
+      if(validFile == -1) 
+      {
+        imgSrc.value = {};
+        return false;
+      }
+      else {
+        imgSrc.value = file;
+        return true
+      }
+        //{
+      //   // transformImgToUrl(file);
+      //   return true;
+      // };
+    };
+  
+  }
   return { imgSrc, validateImg }
 }

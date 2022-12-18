@@ -3,7 +3,7 @@ import { computed, ref } from "vue";
 //cookies package
 import { useCookies } from "vue3-cookies";
 //import service for user api consume
-import { userLogin, getUsersList } from "../services/userService"; 
+import { userLogin } from "../services/userService"; 
 
 // const localStorage = window.localStorage; 
 const { cookies } = useCookies();
@@ -14,7 +14,11 @@ export const useMainStore = defineStore('main', () => {
   const logedUser = ref({});
   const isLoged = ref(false);
   const requestLoading = ref(false);
+
+
+  //CHAT STATE
   const chatClients = ref([]);
+  const currentChat = ref(undefined);
 
   /**********************************  ACTIONS  **********************************/
   
@@ -53,12 +57,26 @@ export const useMainStore = defineStore('main', () => {
     cookies.remove('token');
     cookies.remove('user_loged');
   };
+
   
-  const setChatClients = async () =>{
-    const { status, data } = await getUsersList();
-    if(status) chatClients.value = data.data;
-    else return { status:false, data };
+  //CHAT ACTIONS
+  const setChatClients = (data) =>{
+    if(data) chatClients.value = data;
+    else return { status:false, data:'an error ocurred on socket' };
   };
+
+  const setCurrentChat = (data) =>{
+    if(data){
+      currentChat.value = data;
+    }
+  };
+
+  const addMsgToCurrentChat = (data) => {
+    if(data){
+      currentChat.value.messages.push(data);
+      return true;
+    }
+  }
 
   /**********************************  GETTERS  **********************************/
   
@@ -76,7 +94,10 @@ export const useMainStore = defineStore('main', () => {
     else false
   });
 
-
+  //CHAT GETTERS
+  const getCurrentChat = computed(() => {
+    if(currentChat.value) return currentChat.value 
+  });
   //actions to call
   setUser();
   return { 
@@ -84,15 +105,19 @@ export const useMainStore = defineStore('main', () => {
     isLoged,
     requestLoading,
     chatClients,
+    currentChat,
     //actions
     logIn, 
     logOut,
     requestToTrue:() => requestLoading.value = true,
     requestToFalse:() => requestLoading.value = false,
     setChatClients,
+    setCurrentChat,
+    addMsgToCurrentChat,
     //getters
     getRol,
     getRequestStatus,
-    getSearchedClient
+    getSearchedClient,
+    getCurrentChat
   }
 });
