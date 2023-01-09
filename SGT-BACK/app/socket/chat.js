@@ -1,11 +1,39 @@
 import { userModel, chatModel } from "../models";
-
-export const getChats = async (id) => {
+//esta funcion no retorna chats  retorna los usuarios y un chat subjetivo dependiendo de si existe o no una conversacion previa
+export const getChats = async (senderId) => {
   try{
+    //tento el id del usuario conectado
+    const clients = await userModel.find({ _id:{ $nin: senderId } }).select('_id name nickName profileImgUrl');
+    const availableChats = await chatModel.find({ users: { $all: senderId} } );
 
-    const chats = await userModel.find({ _id:{ $nin: id } }).select('_id name nickName profileImgUrl');
+    const dataChat = clients.map( (client) => {
+      //buscar si hay algun chat perteneciente ambos usuarios
+      const chat = availableChats.find((chat) => chat.users.includes(senderId) && chat.users.includes(client._id));
 
-    if(chats.length >= 1)return chats;
+      if(chat){
+        const data = {
+          _id:client._id,
+          name:client.name,
+          nickName:client.nickName,
+          profileImgUrl:client.profileImgUrl,
+          unreadMsg: chat.messages.filter((e) => e.read == false && e.user != senderId).length,
+          lastMsg: chat.messages[chat.messages.length - 1]
+        }
+        return data
+        //si no se envia el cliente puro
+      }else return {
+          _id:client._id,
+          name:client.name,
+          nickName:client.nickName,
+          profileImgUrl:client.profileImgUrl,
+          unreadMsg:0,
+          lastMsg:null
+        }
+    });
+
+    //console.log('nuevo array seteado',dataChat);
+
+    if(clients.length >= 1) return dataChat;
 
     else return { msg: 'ANY_USER_AVAILABLE' };
 
@@ -59,12 +87,43 @@ export const saveChat = async ({ id, data }) => {
 
     chatToSave.messages.push(data);
 
-    await chatToSave.save();
+    const saved = await chatToSave.save();
 
-    return true;
+    return saved;
   }catch(e){
     console.log('error de servidor:',e);
 
     return false;
   }
 };
+
+//
+export const saveReadMsgs = async (chatId,userId) => {
+  try{
+    const chat = await chatModel.findById(chatId);
+    if(chat && chat.messages.length > 0){
+
+      let r = await chatModel.updateOne({
+        _id: chatId
+      },
+      {
+        $set: {
+          "messages.$[message].read": true
+        }
+      },
+      {
+        //aqui van las validaciones la propiedad message es uan representacion abstracta de la posicion del array
+        arrayFilters: [
+          {
+            "message.user": {
+              $ne: userId
+            },
+            "message.read": false
+          }
+        ],
+      });
+    };
+  }catch(e){
+    console.log(e);
+  }
+}

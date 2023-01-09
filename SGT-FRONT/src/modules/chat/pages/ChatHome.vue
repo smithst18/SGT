@@ -17,7 +17,7 @@
     <!-- barra derecha para mensajes -->
     <div class="w-3/4 shadow flex flex-col border-l-2">
       <!-- chat seleccionado -->
-      <active-chat :allow-chat="allowChat" @private-msg="sendMsg"/>
+      <RouterView />
     </div>
   </div>
 </template>
@@ -27,69 +27,74 @@
 import { defineAsyncComponent, onMounted, onUnmounted, ref } from 'vue';
 import { useMainStore } from '../../../stores/mainStore';
 import { socket } from '@/services/socket.js';
+
 // componentes 
 const ChatItem = defineAsyncComponent(() => import('../components/ChatItem.vue'));
-const ActiveChat = defineAsyncComponent(() => import('../components/ChatConversation.vue'));
+// const ActiveChat = defineAsyncComponent(() => import('../components/ChatConversation.vue'));
 const SearchingBar = defineAsyncComponent(() => import('@/components/SearchingBar.vue'));
-
 // storage
 const mainStore = useMainStore();
-
 //states
-//lsita de chats
-const chats = ref([]);
+const chats = ref(null);
 // chat elejido
 const currentChat = ref(null);
 // variable boleana q permite escribir o no en el componente conversacion
 const allowChat = ref(false);
-
 // metodos
 
 //1 recibimos en el envento un string que viene del componente  barra de busqueda
 const searchChat = (searchString) =>{
   if(mainStore.getSearchedClient(searchString)){
     chats.value = mainStore.getSearchedClient(searchString);
-  }else chats.value = mainStore.chatClients;;
+  }else chats.value = mainStore.getClients;
 }
 
 //setear  custom chat
-const loadChat = (chatId) => socket.emit('chat:join-room',chatId,mainStore.logedUser.id);
-
+const loadChat = (chatId) => {
+  //cargar informacion del chat
+  socket.emit('chat:join-room',chatId,mainStore.logedUser.id);
+  mainStore.resetMsgCount(chatId)
+}
 // enviar mensaje 
 const sendMsg = (msg) =>{
   socket.emit('chat:private-msg',msg);
 }
-
-
 // life cicle
 onMounted(async () => {
   //coneccion con el soccket
   socket.connect();
   //guardar cliente en el socket
   socket.emit('chat:store-cliente',mainStore.logedUser);
+  //guardar los chats al ser recibidos 
+  socket.on('chat:send-chats',(data) =>{
+    mainStore.setChatClients(data);
+    chats.value = mainStore.getClients;
+  });
   //setear el chat 
   socket.on('chat:join-room',async (chat) => {
     //seterar current chat
     mainStore.setCurrentChat(chat);
     allowChat.value = true;
   });
-  //guardar los chats al ser recibidos 
-  socket.on('chat:send-chats',(data) =>{
-    mainStore.setChatClients(data);
-    chats.value = mainStore.chatClients;
-  });
 
   socket.on('chat:private-msg',(msg) => {
     mainStore.addMsgToCurrentChat(msg);
   });
+
+  socket.on('chat:msg-notification', (chatId) => {
+    mainStore.incrementMsgCount(chatId);
+    document.title = '(1) Mensaje Nuevo';
+  })
 });
 
 onUnmounted(() =>{
   socket.disconnect();
+  mainStore.currentChat = undefined;
+  document.title = 'SGT';
 });
 </script>
 
-<style>
+<style scoped>
 .scrollbar::-webkit-scrollbar {
     width: 7px;
     height: 2px;

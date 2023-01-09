@@ -5,9 +5,14 @@ const chatSchema  = new Schema ({
     type:Schema.Types.ObjectId,
     ref:'User'
   }],
-  messages:[{
-    type: Object,
-  }],
+  messages:[
+    {
+      user:String,
+      text:String,
+      time:String,
+      read:Boolean
+    }
+  ],
 },{
   timestamps:true,
   versionKey:false,

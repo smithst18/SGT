@@ -78,22 +78,50 @@ export const useMainStore = defineStore('main', () => {
     }
   }
 
+  const incrementMsgCount = (clientId) => {
+    const chatPosition = chatClients.value.findIndex((elm) => elm._id == clientId)
+    if(chatPosition == -1) console.log('no encontrado');
+
+    if(chatClients.value[chatPosition] != -1 && chatClients.value[chatPosition]._id == clientId ) {
+      chatClients.value[chatPosition].unreadMsg ++;
+    }
+  }
+  const resetMsgCount = (clientId) =>{
+    const chatPosition = chatClients.value.findIndex((elm) => elm._id == clientId)
+    if(chatPosition == -1) console.log('no encontrado');
+
+    if(chatClients.value[chatPosition] != -1 && chatClients.value[chatPosition]._id == clientId ) {
+      chatClients.value[chatPosition].unreadMsg = 0;
+    }
+  }
   /**********************************  GETTERS  **********************************/
   
   const getRol = computed(() =>{
     if(logedUser.value) return logedUser.value.rol;
   });
+  const getClients = computed (() => {
+    const sorted = chatClients.value.filter((elm) => elm.lastMsg).sort((a,b) => {
+      if(a.unreadMsg > b.unreadMsg) return -1
 
+      if(a.unreadMsg < b.unreadMsg)  return 1
+
+      return 0
+    });
+    return sorted
+  });
   const getRequestStatus = computed(() =>{
     return requestLoading.value;
   });
 
   const getSearchedClient = computed(() => (searchString) =>{
     if(searchString.length >= 3) return chatClients.value
-    .filter((elem) => elem.nickName.includes(searchString))//;elem.nickName == searchString);
+    .filter((elem) => 
+      elem.nickName.toLowerCase().includes( searchString.toLowerCase() )
+      ||
+      elem.name.toLowerCase().includes( searchString.toLowerCase() )
+      )//;elem.nickName == searchString);
     else false
   });
-
   //CHAT GETTERS
   const getCurrentChat = computed(() => {
     if(currentChat.value) return currentChat.value 
@@ -114,9 +142,12 @@ export const useMainStore = defineStore('main', () => {
     setChatClients,
     setCurrentChat,
     addMsgToCurrentChat,
+    incrementMsgCount,
+    resetMsgCount,
     //getters
     getRol,
     getRequestStatus,
+    getClients,
     getSearchedClient,
     getCurrentChat
   }

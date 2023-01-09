@@ -5,11 +5,26 @@ export default {
     redirect: { name:"chatHome" },
     children:[
         {
-            path:'chat',
+            path:'conversations',
             name:'chatHome',
             meta:{ rolsAllow: ['admin','user','tech'] },
             beforeEnter: [ rolGuard ],
             component:() => import(/* webpackChunkName: "chat home in view "*/"@/modules/chat/pages/ChatHome.vue"),
+            //para q se muestre la ruta vacia con el empezar conversacion
+            redirect:{ name:"activeChat", params: { name:'none' } },
+            children:[
+                {
+                    path:':name',
+                    name:'activeChat',
+                    meta:{ rolsAllow: ['admin','user','tech'] },
+                    beforeEnter: [ rolGuard ],
+                    component:() => import(/* webpackChunkName: "chat conversation "*/"@/modules/chat/components/ChatConversation.vue"),
+                },
+                { 
+                    path: '/:pathMatch(.*)*', 
+                    redirect:{ name:"activeChat" }
+                },
+            ]
         },
         { 
             path: '/:pathMatch(.*)*', 

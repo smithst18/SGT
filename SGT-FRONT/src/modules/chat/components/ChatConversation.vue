@@ -28,12 +28,12 @@
     <div class="h-[10%] border-t">
       <form class="h-full flex" @submit.prevent="submitForm"> 
         <input 
-        v-model="form.text"
-        :disabled="!allowChat"
+        v-model="msgTosend.text"
+        :disabled="!mainStore.getCurrentChat"
         ref="msgRef"
         @blur="onBlur"
         type="text" class="w-[90%] m-2 rounded bg-gray-200 text-sm text-slate-600 focus:outline-none placeholder:italic placeholder:text-slate-400 placeholder:ml-2 py-2 pl-9 pr-3" placeholder="enviar mensaje">
-        <button type="submit" class="w-[10%] enter-btn">
+        <button type="submit" class="w-[10%] enter-btn hover:opacity-60">
           <font-awesome-icon :icon="['fa','arrow-turn-right']" class="text-primary h-6 w-6 m-auto"/>
         </button>
       </form>
@@ -42,57 +42,49 @@
 </template>
 
 <script setup>
-import { ref } from "@vue/reactivity";
+import { reactive, ref } from "@vue/reactivity";
 import { computed, onMounted, onUpdated } from "@vue/runtime-core";
 import { useMainStore } from '../../../stores/mainStore';
 import moment from "moment";
-import { useFormValidator } from "@/composables/useFormValidator.js";
-import { minLength, required } from "@vuelidate/validators";
+import { socket } from '@/services/socket.js';
 
 const mainStore = useMainStore();
+
 const emit = defineEmits(["privateMsg"]);
-const props = defineProps({
-  allowChat:{
-    type:Boolean,
-    required:true,
-  }
-});
+
 /******************************** STATE  *******************************************/
+
+const msgTosend = reactive({
+  user: mainStore.logedUser.id,
+  text:'',
+  time:'',
+});
 
 //DOM REFS
 const msgRef = ref(null);
 const chatBoxRef = ref(null);
 
-//STATE
-const msg = {
-  user: mainStore.logedUser.id,
-  text:'',
-  time:'',
-};
-const validations = {
-  text:{ 
-    required,
-    minLength: minLength(1),
-  },
-};
-const { form, resetForm, validateForm } = useFormValidator(msg, validations); 
 /******************************** COMPUTED PROPERTYS  *******************************************/
 
-const formatedDate = computed(() => (fecha) =>{
-  return moment(fecha,'MMMM Do YYYY, h:mm a').format('h:mm a');
-})
+const formatedDate = computed(() => (fecha) => moment(fecha,'MMMM Do YYYY, h:mm a').format('h:mm a'));
 /********************************  METHODS *****************************************/
 
-const submitForm = async () => {
-  const valid  = await validateForm();
+const submitForm = () => {
+  msgTosend.time = moment(Date.now()).format('MMMM Do YYYY, h:mm a');
 
-  if(valid) {
-    form.time = moment(Date.now()).format('MMMM Do YYYY, h:mm a');
-    emit('privateMsg',form);
-    resetForm();
-  };
+  if(msgTosend.text.trim()){
+
+    let msg = {
+      user: msgTosend.user,
+      text: msgTosend.text,
+      time: msgTosend.time,
+      read: false,
+    };
+    
+    socket.emit('chat:private-msg',msg,mainStore.logedUser.id);
+  }
+    msgTosend.text = '';
 };
-
 const scrollToEnd = () =>{
   if(chatBoxRef.value){
     let scrollHeight = chatBoxRef.value.scrollHeight

@@ -4,7 +4,8 @@ import { Server } from "socket.io";
 import { createServer } from "http";
 //import of services
 
-import { getChats, findOrCreateChat, saveChat } from './socket/chat';
+import { getChats, findOrCreateChat, saveChat, saveReadMsgs } from './socket/chat';
+import { Console } from 'console';
 
 const httpServer = createServer(app);
 
@@ -53,20 +54,40 @@ io.on('connection', async (socket) => {
 
       console.log('socket unido a room :',idToString);
 
+      // se pasa el id del chat y el id de la persona que abrio el chat 
+      console.log('marcando mensajes como leidos');
+
+      await saveReadMsgs(chatToJoin.id,sender);
+      
       console.log(socket.rooms);
+
     }else console.log('error creando chat');
   });
   
-  socket.on('chat:private-msg',async (msg) => {
+  socket.on('chat:private-msg',async (msg,senderId) => {
+    //guardar conversacion
     const chatSaved = await saveChat({ id:chatToJoin.id, data:msg });
-    if(chatSaved) io.to(chatToJoin._id.toString()).emit('chat:private-msg',msg);
+    
+    if(chatSaved) {
+      io.to(chatToJoin._id.toString()).emit('chat:private-msg',msg);
+      //notificar de nuevo mensaje 
+
+      //sender sokcet id a mongo id para busqueda
+      const receiberMongoId = chatSaved.users.find((e) => e != senderId).toString();
+      
+      const { socketId } = clients.find((e) => e.clientId == receiberMongoId);
+
+      io.to(socketId).emit('chat:msg-notification',senderId);
+      
+    }
     else console.log('error guardando el chat');
   });
 
   socket.on('disconnect', () => {
-    console.log('se ha desconectado',socket.id)
 
+    console.log('se ha desconectado',socket.id);
     clients.splice(clients.map((elm) => elm.socketId).indexOf(socket.id),1);
+
   });
 
   
