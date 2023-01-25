@@ -36,7 +36,6 @@ export const login = async (req,res) =>{
     if(!match) return handleError(res,401,'Contrase;a incorrecta');
     
     //send token 
-    console.log(user);
     if(!headerAuth) return res.status(200).send({ token: signToken(user) });
     else {
       //send payload

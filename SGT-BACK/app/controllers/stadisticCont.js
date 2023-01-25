@@ -31,9 +31,18 @@ export const general = async (req, res) =>{
     
     if(tickets.length >= 1){
       // sacar los elemento de interes
-      const ticketsPerTech = countItems( tickets.map( elm => elm.takeBy.name ) );
+      const ticketsPerTech = countItems( tickets.map( elm => { 
+        if(elm.takeBy) return elm.takeBy.name
+        else{
+          elm.takeBy = {
+            name:'User Elim'
+          }
+          return elm.takeBy.name;  
+        };
+          
+      }
+      ) );
       //reducir el arreglo a un objeto + su cuenta por elemento
-      
       //sacar el porcentaje 
       const techPersent = Object.entries(ticketsPerTech).map( 
         elm => [elm[0], (elm[1] = elm[1] * 100 /tickets.length).toFixed(2) ]
