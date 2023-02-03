@@ -14,20 +14,31 @@ export const general = async (req, res) =>{
 
   try{
     
-    const tickets = await ticketModel.find({ status : 'closed' })
-    .select('_id')
-    .populate({ 
-      path:'takeBy', 
-      select:'name',
-    })
-    .populate({ 
-      path:'sendBy', 
-      select:'name',
-      populate:{
-        path:'entity',
-        select:'name'
+    const tickets = await ticketModel.find(
+      { 
+        status : 'closed',
+        "$expr": {
+          "$and": [
+            { $eq: [{ $year: "$createdAt" }, { $year: new Date("2023-01-01") }]},
+            /*{ $eq: [ { $month:   '$fecha' }, { $month: today } ] },
+            { $eq: [ { $dayOfMonth: '$fecha' }, { $dayOfMonth: today } ] } */
+          ]
+        }
+      })
+      .select('_id')
+      .populate({ 
+        path:'takeBy', 
+        select:'name',
+      })
+      .populate({ 
+        path:'sendBy', 
+        select:'name',
+        populate:{
+          path:'entity',
+          select:'name'
+        }
       }
-    });
+    );
     
     if(tickets.length >= 1){
       // sacar los elemento de interes

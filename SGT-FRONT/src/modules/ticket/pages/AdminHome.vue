@@ -6,11 +6,11 @@
     <div id="element-to-print">
 
       <div class="h-full">
-        <TechStads title="Soportes Por Tecnico" :data="pieData"/>
+        <TechStads title="Soportes Por Tecnico:" :data="pieData"/>
       </div>
 
       <div class="h-full">
-        <EntityStads title="Soportes Anuales por Departamento" :data="barsData"/>
+        <EntityStads title="Soportes Anuales por Departamentos:" :data="barsData"/>
       </div>
 
     </div>
@@ -54,7 +54,7 @@ const downloadPdf = () => {
 };
 
 onMounted( async () => {
-  const { data:{ data:{ techPersent, ticketsPerEntity}} } = await getGeneralStads();
+  const { data:{ data:{ techPersent, ticketsPerEntity } } } = await getGeneralStads();
   pieData.value = techPersent;
   barsData.value = ticketsPerEntity;
 })

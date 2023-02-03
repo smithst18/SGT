@@ -10,6 +10,8 @@
 </template>
 
 <script setup>
+import { computed, onMounted } from "@vue/runtime-core";
+
 
 const props = defineProps({
   data:{
@@ -21,9 +23,8 @@ const props = defineProps({
     required:true,
   }
 });
-
 </script>
 
-<style>
+<style scoped>
 
 </style>
