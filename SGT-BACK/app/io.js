@@ -5,15 +5,15 @@ import { createServer } from "http";
 //import of services
 
 import { getChats, findOrCreateChat, saveChat, saveReadMsgs } from './socket/chat';
-import { Console } from 'console';
 
 const httpServer = createServer(app);
-
+const originUrl = process.env.FRONT_ORIGIN_URL || 'sgt.minpesca.gob.ve';
 const io = new Server();
 
 io.attach( httpServer, {
   cors: {
-    origin: `${process.env.FRONT_ORIGIN_URL}`,
+    origin: originUrl,
+    methods: ["GET", "POST"],
   },
 });
 
