@@ -53,7 +53,6 @@ export const general = async (req, res) =>{
           
       }
       ) );
-      console.log(ticketsPerTech,'tickets por tecnico');
       //reducir el arreglo a un objeto + su cuenta por elemento
       //sacar el porcentaje 
       const techPersent = Object.entries(ticketsPerTech).map( 
@@ -62,7 +61,7 @@ export const general = async (req, res) =>{
 
       const ticketsPerEntity = countItems( tickets.filter((elem) => elem.sendBy != undefined || elem.sendBy != null ).map( elem => elem.sendBy.entity.name
       ));
-      console.log(ticketsPerEntity,"tickets por entidad")
+      
       return res.status(200).send({msg:'stadisticas generales', data : {
         techPersent,
         ticketsPerEntity
