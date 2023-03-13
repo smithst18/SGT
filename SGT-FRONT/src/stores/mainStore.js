@@ -31,10 +31,11 @@ export const useMainStore = defineStore('main', () => {
       if(data.token) cookies.set('token',data.token);
       //recibir el payload
       const payload = await userLogin(user);
-      //set user in cookies
+
+
       cookies.set('user_loged',payload.data.user);
-      //setear el usuario en el store
-      logedUser.value = payload.data.user;
+        //setear el usuario en el store
+      logedUser.value= payload.data.user;
       isLoged.value = true;
       return { status: true, data: payload.data.user };
     }

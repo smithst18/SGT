@@ -12,7 +12,6 @@ export const signIn = async (form) => {
     const { response:{ data:{ errors } } } = err;
     console.log(errors)
     if(errors) return { status:false, errors };
-    ;
     
     throw new Error(err);
   }
@@ -22,13 +21,11 @@ export const userLogin = async (form) => {
   
   try{
     const { data } = await api.post('user/login',form);
-
     return { status:true, data };
-
   }catch(err){
 
     if(err.response){
-
+      console.log(err);
       const { response:{ data } } = err;
   
       if(data) return { status:false, data };

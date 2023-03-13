@@ -12,12 +12,10 @@ export const sesionAuth = (req,res,next) =>{
         const headerAuth = req.headers.authorization;
 
         if(!headerAuth) return handleError(res,401,'header is missing');
-
-        const authenticated = verifyToken(headerAuth.split(' ').pop().trim()) 
-        
+        const authenticated = verifyToken(headerAuth.split(' ').pop().trim());
         if(authenticated){
             req.user = authenticated;
-            next()
+            next();
         }
         else handleError(res,419,'Invalidad_Token');
 

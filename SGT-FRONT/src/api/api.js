@@ -17,6 +17,7 @@ api.interceptors.request.use( (request) => {
   const token = cookies.get('token');
 
   if(token) request.headers.common['Authorization'] = `Bearer ${token}`;
+  else console.log('el token no existe');
   mainStore.requestToTrue();
   return request
 }, function (error) {

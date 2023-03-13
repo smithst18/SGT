@@ -17,7 +17,6 @@ export const login = async (req,res) =>{
   try{
     const cleanBody = matchedData(req);
     const headerAuth = req.headers.authorization;
-    
     const user = await userModel.findOne({ nickName: cleanBody.nickName.toLowerCase()})
     .select('sub nickName name rol position entity password profileImgUrl')
     .populate({
@@ -28,7 +27,7 @@ export const login = async (req,res) =>{
       path:'entity',   //< = son // parent 2
       select:'name',
     });
-
+    
     if(!user) return handleError(res,403,'No Existe el Usuario');
     
     const match = await compare(cleanBody.password, user.password);
@@ -36,11 +35,12 @@ export const login = async (req,res) =>{
     if(!match) return handleError(res,401,'Contrase;a incorrecta');
     
     //send token 
-    if(!headerAuth) return res.status(200).send({ token: signToken(user) });
+    if(!headerAuth) {
+      return res.status(200).send({ token: signToken(user) });
+    }
     else {
       //send payload
       const auth = verifyToken(headerAuth.split(' ').pop().trim());
-      
       auth ? res.status(200).send({ user: auth }) : handleError(res,403,'Invalid_Token');
       
     }
