@@ -4,7 +4,7 @@
 </script>
 
 <template>
-  <main class="w-screen h-screen  border border-green-500">
+  <main class="w-screen h-screen">
     <RouterView />
   </main>
 </template>

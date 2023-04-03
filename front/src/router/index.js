@@ -1,5 +1,5 @@
 import { createRouter, createWebHistory } from 'vue-router';
-import LogIn from '../views/LogInVue.vue';
+import LogIn from '../views/LogInView.vue';
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
@@ -10,14 +10,24 @@ const router = createRouter({
       component: LogIn
     },
     {
-      path: '/about',
-      name: 'about',
-      // route level code-splitting
-      // this generates a separate chunk (About.[hash].js) for this route
-      // which is lazy-loaded when the route is visited.
-      //component: () => import('../views/AboutView.vue')
-    }
+      path: "/home",
+      name:"home",
+      //beforeEnter: [ isAuthGuard ],
+      component: () => import(/* webpackChunkName: "Vista principal"*/"@/views/HomeView.vue"),
+      //redirect: { name:"users" },
+      /*children:[
+        { path: "tickets", ...ticketsRoutes },
+        { path: "users", ...usersRoutes },
+        { path: "chats", ...chatRoutes },
+        { path: "mail", ...chatRoutes },
+      ]*/
+    },
+    { 
+      path: '/:pathMatch(.*)*', 
+      redirect:{ name:"login" }
+    },
+
   ]
 })
 
-export default router
+export default router;

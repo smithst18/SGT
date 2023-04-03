@@ -8,11 +8,15 @@ const sendForm =() => {
 </script>
 
 <template>
-  <div class="text-left w-full h-full border border-gray-900">
-    <div class="border border-purple-800 w-full h-full flex items-center justify-center">
-      addasasdasdasd
+  <div class="text-left w-full h-full" id="login">
+    <div class="w-full h-full flex flex-col items-center justify-center">
+      <!-- LOGO -->
+      <div class="w-4/5 lg:w-1/4 md:w-1/3 sm:w-3/6 mb-5 py-3">
+        <img src="../assets/imgs/logo_transparent.png" alt="SGTI logo" class="w-full h-auto">
+      </div>
+      <!-- fORMULARIO -->
       <form @submit.prevent="sendForm" id="form" 
-      class="h-2/4 md:w-1/4  p-10 border border-gray-300 rounded-sm shadow-sm">
+      class="h-2/4 w-4/5 lg:w-1/4 md:w-1/3 sm:w-3/6  p-10 border rounded-sm shadow-md bg-white">
         <div class="relative z-0 w-full mb-10">
           <input
           type="text"
@@ -38,7 +42,7 @@ const sendForm =() => {
           class="text-sm text-center text-red-600" 
           id="error"
           v-show="errorlogin">
-            Usuario / Contraseña invalidos
+            Usuario o Contraseña invalidos.
           </span>
         </div>
   
@@ -47,13 +51,13 @@ const sendForm =() => {
           class="text-sm text-center text-red-600" 
           id="error"
           v-show="errorServer">
-            Error de Servidor
+            Error de Servidor.
           </span>
-        </div>
-              
+        </div>  
         <button 
         type="submit"
-        class="px-6 py-2 mt-4 text-white bg-blue-700 rounded-sm hover:bg-blue-500 w-full">
+        class="px-6 py-2 mt-4 w-full text-white bg-primary rounded-sm hover:bg-primary-light w-full
+        focus:ring-2 focus:ring-primary transition delay-150 duration-150 ease-in-out">
           Iniciar Sesion
         </button>
       </form>
@@ -62,12 +66,22 @@ const sendForm =() => {
 </template>
 
 <style scoped>
-
-input {
-  @apply pt-3 pb-2 block w-full px-0 mt-0 bg-transparent border-0 border-b-2 appearance-none focus:outline-none focus:ring-0 focus:border-blue-700 border-gray-300
+#login {
+  background-image: url("../assets/imgs/loginBackground.jpg");
+  background-repeat:no-repeat;
+  background-position: center;
+  background-size:cover ;
 }
-
-input:-webkit-autofill
+input {
+  @apply pt-3 pb-2 block w-full px-0 mt-0 bg-transparent border-0 border-b-2 appearance-none focus:outline-none focus:ring-0 focus:border-primary-light border-gray-300
+}
+/* estilos para evitar errores en ela utocompletar de el formulario */ 
+input {
+    color: #000000 !important;
+    -webkit-text-fill-color: #000000 !important;
+    -webkit-background-clip: text !important;
+    background-clip:  text !important;
+  }
 
 .-z-1 {
     z-index: -1;
