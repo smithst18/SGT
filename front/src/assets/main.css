@@ -1,8 +1,13 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
-
+:root{
+    --sidebar-width:300px
+}
 *{
     font-family: 'Poppins', sans-serif;
-    font-size: 14px;
+    font-size: 12px;
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
 }
