@@ -5,7 +5,7 @@
 </script>
 
 <template>
-  <aside class="bg-blue-300 relative" :class="{ is_spanded:is_spanded }">
+  <aside class="bg-primary relative" :class="{ is_spanded:is_spanded }">
     <!-- logotype -->
     <div class="logo">
       <img src="@/assets/imgs/minilog.png" alt="SGTI_LOGO">
@@ -13,48 +13,45 @@
     <!-- Toggle button -->
     <button 
       id="toggle-wrap"
-      class="absolute w-6 h-6 -right-2 top-16 z-100 shadow-md bg-red-500 rounded-full material-symbols-outlined text-[18px]"
+      class="absolute w-6 h-6 -right-2 top-16 z-100 shadow-md bg-secondary rounded-full material-symbols-outlined text-[18px] text-third"
       @click="toggleMenu">
       chevron_right
     </button>
     <!--menu options-->
-    <div class="menu-toggle-wrap">
-      <h3 class="hidden lg:block font-bold uppercase text-slate-500">
+    <div class="menu">
+      <h3 class="hidden lg:block font-bold uppercase text-slate-500 menu-text">
         General.
       </h3>
 
-      <div>
+      <router-link class="menu-item" to="/">
         <span class="material-symbols-sharp">local_activity</span>
-        <span>text</span>
-      </div>
+        <span class="menu-text">text</span>
+      </router-link>
 
-      <div>
+      <router-link class="menu-item" to="/">
         <span class="material-symbols-sharp">inventory</span>
-        <span>Inventario</span>
-      </div>
+        <span class="menu-text">Inventario</span>
+      </router-link>
 
-      <div>
+      <router-link class="menu-item" to="/">
         <span class="material-symbols-sharp">mail</span>
-        <span>Correo</span>
-      </div>
+        <span class="menu-text">Correo</span>
+      </router-link>
 
-      <div>
+      <router-link class="menu-item" to="/">
         <span class="material-symbols-sharp">chat</span>
-        <span>Chat</span>
-      </div>
+        <span class="menu-text">Chat</span>
+      </router-link>
 
-      <div>
+      <router-link class="menu-item" to="/">
         <span class="material-symbols-sharp">manage_accounts</span>
-        <span>Gestion</span>
-      </div>
+        <span class="menu-text">Gestion</span>
+      </router-link>
     </div>
     <!--user config-->
-    <div class="mt-auto">
-      <h3 class="hidden lg:block font-bold uppercase text-slate-500">Config</h3>
-      <div class="border border-blue-500 flex">
-        <span class="border">Cliente</span>
-        <span class="material-symbols-sharp border ml-auto">logout</span>
-      </div>
+    <div class="border border-blue-500 flex mt-auto user-card">
+      <span class="border menu-text order-2">Cliente</span>
+      <span class="material-symbols-sharp border ml-auto logout-icon order-1 text-third">logout</span>
     </div>
 
   </aside>
@@ -64,15 +61,52 @@
 aside{
   display: flex;
   flex-direction: column;
-  width: calc(2.5rem + 32px);
+  width: calc(2rem + 32px);
   padding: 1rem;
   
   transition: 0.2s ease-out;
+
+  h3, .menu-item .menu-text {
+    visibility: hidden;
+    transition: 0.3s ease-out;
+  }
+
+  .menu {
+    margin: 0 -1rem;
+    @apply mt-16;
+    
+    .menu-item {
+      @apply flex items-center;
+      padding: 0.5rem 1rem;
+      transition: 0.2s ease-out;
+      &:hover {
+        @apply bg-secondary
+      }
+    }
+    .material-symbols-sharp { 
+      @apply text-[2.5rem] text-third;
+      transition: 0.2s ease-out;
+    }
+    .menu-text {
+      @apply text-third ml-5;
+      transition: 0.2s ease-out;
+    }
+  }
+
   &.is_spanded {
     width: var(--sidebar-width);
 
     #toggle-wrap {
       transform: rotate(-180deg);
+    }
+    h3, .menu-item .menu-text {
+      visibility: visible;
+    }
+    .material-symbols-sharp { 
+      @apply text-[2rem];
+    }
+    .logout-icon { 
+      @apply order-2
     }
   }
 
@@ -82,5 +116,11 @@ aside{
     min-height: 100vh;
   }
 
+  .logout-icon{
+    &:hover {
+      @apply text-secondary
+    }
+  }
 }
+
 </style>
