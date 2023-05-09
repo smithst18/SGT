@@ -18,6 +18,8 @@
 
 
 <style scoped lang="scss">
+
+/*permite que cuadre la vista con la barra responsive*/
 .router-views{
   @media (max-width:768px){
     padding-left: 5rem;
