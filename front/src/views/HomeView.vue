@@ -3,7 +3,7 @@
 </script>
 
 <template>
-  <main class="w-full h-full flex border border-green-500" id="home">
+  <main class="w-full h-full flex" id="home">
     <!--sidebard-->
     <SideBar/>
 
