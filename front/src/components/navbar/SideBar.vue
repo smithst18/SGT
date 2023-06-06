@@ -17,7 +17,7 @@
     </div>
     <!-- Toggle button -->
     <button 
-      id="toggle-wrap"
+      id="toggle-wrap"  
       class="absolute w-6 h-6 -right-2 top-20 z-100 shadow-md bg-secondary rounded-full material-symbols-outlined text-[18px] text-third transition duration-700 ease-out hover:-translate-x-1"
       @click="toggleMenu">
       chevron_right
@@ -87,10 +87,11 @@ aside{
     }
 
     /*stylos para el submenu cuando la barra no esta desplegada*/
-    .menu-list {
-      display : none ;
-      // @apply bg-secondary absolute left-full -mt-14 p-5 min-w-[200px] text-third;
-    }
+    // .menu-list {
+    //   display : none ;
+    //   transition: 0.3s ease-out;
+    //   // @apply bg-secondary absolute left-full -mt-14 p-5 min-w-[200px] text-third;
+    // }
   }
 
   &.is_spanded {
@@ -116,10 +117,10 @@ aside{
       visibility: visible;
     }
     .menu-list {
-      display: block;
+      transition: 0.4s ease-out;
        @apply text-third left-0 mt-0;
        li{
-        @apply ml-5 mt-3
+        @apply ml-5 my-3
        }
     }
   }
