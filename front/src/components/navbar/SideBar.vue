@@ -85,7 +85,6 @@ aside{
       @apply text-third ml-3;
       transition: 0.2s ease-out;
     }
-
     /*stylos para el submenu cuando la barra no esta desplegada*/
     // .menu-list {
     //   display : none ;
@@ -117,7 +116,6 @@ aside{
       visibility: visible;
     }
     .menu-list {
-      transition: 0.4s ease-out;
        @apply text-third left-0 mt-0;
        li{
         @apply ml-5 my-3

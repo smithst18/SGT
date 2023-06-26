@@ -21,7 +21,7 @@
       <span class="ml-auto material-symbols-outlined desplegable-icon text-third">chevron_right</span>
     </div>
     <transition name="submenu">
-      <ol class="menu-list" v-if="list_is_spanded">
+      <ol class="menu-list" v-if="list_is_spanded && is_spanded">
         <li>opcion1</li>
         <li>opcion2</li>
         <li>opcion3</li>
@@ -37,6 +37,7 @@
 }
 .submenu-enter-from,
 .submenu-leave-to {
+  animation: rotateMenu 00ms ease-in;
   opacity: 0;
   @apply bg-secondary
 }
