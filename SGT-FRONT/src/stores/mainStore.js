@@ -17,7 +17,7 @@ export const useMainStore = defineStore('main', () => {
 
   //survey state
 
-  const userSurvey = ref({});
+  const userSurvey = ref(false);
 
 
   //CHAT STATE
@@ -25,7 +25,9 @@ export const useMainStore = defineStore('main', () => {
   const currentChat = ref(undefined);
 
   /**********************************  ACTIONS  **********************************/
-  
+  const savedSurvey = async () => {
+    //termninar esto debe checar en base de datos si la encuesta se respondio y luego de eso responer un bool no la encuesta 
+  }
   const logIn = async (user) => {
 
     const { status, data } = await userLogin(user);

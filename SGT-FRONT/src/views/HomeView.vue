@@ -7,7 +7,6 @@
   import { saveSurvey } from "../services/surveyService";
   import { useFormValidator } from "../composables/useFormValidator";
   import { required, alphaNum, minLength, maxLength } from '@vuelidate/validators';
-  const encuesta = reactive({pregunta1:'',pregunta2:'',pregunta3:''});
   const { showModal, toggleModal } = useModal();
   showModal.value = true;
   const mainStore = useMainStore();
