@@ -13,10 +13,9 @@ const surveySchema  = new Schema ({
   },
   pre3:{
     type:String,
-    required:true,
     trim:true,
   },
-  users:{
+  client:{
     type:Types.ObjectId,
     ref:'User',
   },

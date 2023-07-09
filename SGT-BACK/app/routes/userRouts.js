@@ -13,7 +13,6 @@ const router = Router();
 //routes definition        //middleware
 router.post('/login',validLogin,userController.login);
 router.post('/register',authMiddleware,validCreateUser,userController.saveUser);
-// router.post('/upload-file',authMiddleware,upload.single('file'),userController.saveWithFile);
 router.put(
   '/update',//RUTA
   uploadFile.single('profileIMG'),//MULTER

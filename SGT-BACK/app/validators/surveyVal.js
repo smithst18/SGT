@@ -31,6 +31,14 @@ export const validSurvey = [
     check("pre3")
         .exists()
         .withMessage('debe existir'),
+    check("client")
+        .exists()
+        .withMessage('debe existir')
+        .trim()
+        .notEmpty()
+        .withMessage('No debe estar vacio')
+        .isMongoId()
+        .withMessage('debe ser un MongoID'),
     (req, res, next) => validateResult(req, res, next),
     
 ];

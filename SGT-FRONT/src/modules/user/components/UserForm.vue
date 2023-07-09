@@ -115,7 +115,7 @@
             <select :class="[ !v$.position.$error ?'input-item' : 'input-item-error']" id="grid-position" v-model="form.position">
               <option disabled value="">Seleccionar Cargo/Posicion</option>
               <option 
-                v-for="position in positionStore.getpositionsByEntity" 
+                v-for="position in positionStore.getpositionsByEntity.positions" 
                 :key="position._id" 
                 :value="position._id">
 

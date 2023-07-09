@@ -44,10 +44,11 @@ export const updateUser = async (form) => {
         "Content-Type": "multipart/form-data",
       }
     });
-
+    console.log(data);
     return { status:true, data };
 
   }catch(err){
+    console.log(err);
     if(err.response){
 
       const { response:{ data } } = err;

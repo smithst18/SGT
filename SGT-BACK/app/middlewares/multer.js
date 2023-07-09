@@ -35,8 +35,8 @@ export const uploadFile = multer({
     }
   }, 
   limits:{
-    //permitiendo aprox 5 mb de peso foto
-    fileSize: 5000000,  
+    //permitiendo aprox 10 mb de peso foto
+    fileSize: 10000000,  
   },
 });
 

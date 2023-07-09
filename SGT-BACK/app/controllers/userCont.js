@@ -20,11 +20,11 @@ export const login = async (req,res) =>{
     const user = await userModel.findOne({ nickName: cleanBody.nickName.toLowerCase()})
     .select('sub nickName name rol position entity password profileImgUrl')
     .populate({
-      path:'position',   //< = son // parent 2
+      path:'position',
       select:'name',
     })
     .populate({
-      path:'entity',   //< = son // parent 2
+      path:'entity',
       select:'name',
     });
     

@@ -4,8 +4,8 @@ export const saveSurvey = async (form) => {
   
     try{
         const data   = await api.post('survey/save',form);
-        console.log(data);
-      //return { status:true, data };
+
+        return data;
   
     }catch(err){
       console.log(err);

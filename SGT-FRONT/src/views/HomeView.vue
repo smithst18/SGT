@@ -15,7 +15,8 @@
   const surveyToSave = {
     pre1:'',
     pre2:'',
-    pre3:''
+    pre3:'',
+    client:mainStore.logedUser.id
   };
   
   const validations ={
@@ -41,13 +42,13 @@
   const sendSurvey = async () =>{
     const valid  = await validateForm();
     if(valid){
-      console.log(form)
       const resp = await saveSurvey(form);
-      //resetForm();
 
+      if(resp.status == 200){
+        toggleModal();
+        resetForm();
+      }else alert('error al enviar la encuesta');
     }
-    // toggleModal();
-    // mainStore.setSurvey('sdadasdasd');
   }
 </script>
 

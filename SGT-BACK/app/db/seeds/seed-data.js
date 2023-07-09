@@ -28,9 +28,9 @@ mongoose.connect(
                 _id:'62e3df964db2354847e3465c',
                 name:"R.R.H.H",
                 positions:[
-                    "62e3df964db2354847e3462c",
                     "62e3df964db2354847e3142c",
                     "62e3df964db2354847e3242c",
+                    "62e3df964db2354847e3342c",
                 ],
                 users:[]
             },
@@ -38,9 +38,9 @@ mongoose.connect(
                 _id:'62e3df964db2352847e3460c',
                 name:"Tecnologia",
                 positions:[
-                    "62e3df964db2354847e3462c",
                     "62e3df964db2354847e3142c",
                     "62e3df964db2354847e3242c",
+                    "62e3df964db2354847e3342c",
                 ],
                 users:[
                     "62e3df964db2354847e3463c"
@@ -50,9 +50,9 @@ mongoose.connect(
                 _id:'62e3df964db2352847e3462c',
                 name:"despacho",
                 positions:[
-                    "62e3df964db2354847e3462c",
                     "62e3df964db2354847e3142c",
                     "62e3df964db2354847e3242c",
+                    "62e3df964db2354847e3342c",
                 ],
                 users:[]
             }
