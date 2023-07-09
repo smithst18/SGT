@@ -161,10 +161,9 @@ const mainStore = useMainStore();
 
   const submitForm =  async(e) => {
     const validForm  = await validateForm();
-
+    
     if(validForm && validFile.value){
       const response  = await updateUser(form);
-      console.log(response)
       if(response.status){
         cookies.set('user_loged',response.data.updated);
         mainStore.logedUser.profileImgUrl = response.data.updated.profileImgUrl;
@@ -176,8 +175,8 @@ const mainStore = useMainStore();
   };
 
   onMounted(() =>{
-    form.id = mainStore.logedUser.id;
-    form.nickName = mainStore.logedUser.nickName;
+    form.id = mainStore.getLogedUser._id;
+    form.nickName = mainStore.getLogedUser.nickName;
   });
 </script>
 

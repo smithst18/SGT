@@ -126,11 +126,14 @@ export const useMainStore = defineStore('main', () => {
 
   const getSearchedClient = computed(() => (searchString) =>{
     if(searchString.length >= 3) return chatClients.value
-    .filter((elem) => 
-      elem.nickName.toLowerCase().includes( searchString.toLowerCase() )
-      ||
-      elem.name.toLowerCase().includes( searchString.toLowerCase() )
-      )//;elem.nickName == searchString);
+    .filter(
+      (elem) => 
+        elem.nickName.toLowerCase().includes( searchString.toLowerCase() )
+        ||
+        elem.name.toLowerCase().includes( searchString.toLowerCase() )
+    ).filter(
+      (elem) => elem._id !== logedUser.value._id
+    )
     else false
   });
   //CHAT GETTERS
@@ -158,6 +161,7 @@ export const useMainStore = defineStore('main', () => {
     incrementMsgCount,
     resetMsgCount,
     //getters
+    getLogedUser: computed(() => logedUser.value), 
     getRol,
     getRequestStatus,
     getClients,

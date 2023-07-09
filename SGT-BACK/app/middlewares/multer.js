@@ -41,8 +41,8 @@ export const uploadFile = multer({
 });
 
 export const multerErrorHandler = (err, req, res, next) => {
-  // err.stack
-  console.log(err);
+
+  ///console.log(err);
   if(err instanceof multer.MulterError) handleError(res,403,'tamaño de archivo permitido excedido');
   next();
 }

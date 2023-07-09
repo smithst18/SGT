@@ -1,11 +1,11 @@
 import app from './app';
-import http from "http"
+
 import { Server } from "socket.io";
 import { createServer } from "http";
 //import of services
 
 import { getChats, findOrCreateChat, saveChat, saveReadMsgs } from './socket/chat';
-import { Console } from 'console';
+
 
 const httpServer = createServer(app);
 
@@ -75,9 +75,9 @@ io.on('connection', async (socket) => {
       //sender sokcet id a mongo id para busqueda
       const receiberMongoId = chatSaved.users.find((e) => e != senderId).toString();
       
-      const { socketId } = clients.find((e) => e.clientId == receiberMongoId);
-
-      io.to(socketId).emit('chat:msg-notification',senderId);
+      const client = clients.find((e) => e.clientId == receiberMongoId);
+      if(client) io.to(client.socketId).emit('chat:msg-notification',senderId);
+      else console.log('usuario offline');
       
     }
     else console.log('error guardando el chat');
