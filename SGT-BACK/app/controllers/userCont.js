@@ -156,6 +156,7 @@ export const saveUser = async (req,res) =>{
  * @returns 
  */
 export const updateProfile = async (req,res) =>{
+
   //propiedad que es creada en el middleware de multer si el archivo es incorrecto
   // a futuro validad la cabecera debe ser  multipart form data 
   const { invalidFile, file } = req;

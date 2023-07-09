@@ -148,14 +148,14 @@ const mainStore = useMainStore();
   
 
   const handleFileUpload = (e) =>{
-    console.log('cambio')
+    //capturar la imagen cargada
     let file = e.target.files[0];
-
+    //asignar la imagen cargada al formulario a enviar
     form.profileIMG = file;
 
+    //mostrar alerta de archivo incorrecto si arroja falso
     if(validateImg(file)){
       validFile.value = true
-      // toggleModal();
     }else validFile.value = false;
   }
 
@@ -164,8 +164,8 @@ const mainStore = useMainStore();
 
     if(validForm && validFile.value){
       const response  = await updateUser(form);
+      console.log(response)
       if(response.status){
-        console.log(response.data);
         cookies.set('user_loged',response.data.updated);
         mainStore.logedUser.profileImgUrl = response.data.updated.profileImgUrl;
         swal({title:"Usuario actualizado",icon:"success"});
