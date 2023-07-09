@@ -1,3 +1,7 @@
+<script setup>
+  const props = defineProps({ showModal: Boolean});
+</script>
+
 <template>
   <transition name="modal">
     <div class="modal-mask" v-show="showModal">
@@ -27,9 +31,6 @@
   </transition>
 </template>
 
-<script setup>
-const props = defineProps({ showModal: Boolean});
-</script>
 
 <style scoped>  
 .modal-enter-active,

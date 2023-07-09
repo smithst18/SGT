@@ -25,9 +25,12 @@ import {
     faFileArrowDown,
     faComment,
     faUser,
+    faUserCheck,
+    faUserXmark,
     faArrowTurnRight,
     faXmark,
     faCircle,
+    faSquarePollVertical
 } from '@fortawesome/free-solid-svg-icons'
 
 //cookies
@@ -45,9 +48,12 @@ library.add(
     faFileArrowDown,
     faComment,
     faUser,
+    faUserCheck,
+    faUserXmark,
     faArrowTurnRight,
     faXmark,
     faCircle,
+    faSquarePollVertical
 );
 
 

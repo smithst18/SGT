@@ -4,7 +4,7 @@ import { connect } from "mongoose";
 
 export const dbConexion = async () =>{
 
-  const MONGO_URI = process.env.DB_URI || "mongodb://localhost:27017/sgt";
+  const MONGO_URI = process.env.DB_URI || "mongodb://0.0.0.0:27017/sgt";
 
   try{
     const db = await connect(

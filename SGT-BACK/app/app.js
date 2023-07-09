@@ -30,6 +30,8 @@ app.use('/api/entity',routes.entityRoutes);
 app.use('/api/position',routes.positionRoutes);
 //stadistics routs
 app.use('/api/stadistics',routes.stadisticsRoutes);
+//survey Routs 
+app.use('/api/survey',routes.surveyRoutes);
 
 app.use(multerErrorHandler);
 export default app;

@@ -15,6 +15,10 @@ export const useMainStore = defineStore('main', () => {
   const isLoged = ref(false);
   const requestLoading = ref(false);
 
+  //survey state
+
+  const userSurvey = ref({});
+
 
   //CHAT STATE
   const chatClients = ref([]);
@@ -59,6 +63,12 @@ export const useMainStore = defineStore('main', () => {
     cookies.remove('user_loged');
   };
 
+  //SURVEY ACTIONS
+  const setSurvey = (data) => {
+    if(data) userSurvey.value = data;
+    else return { status:false, data:'Invalidad Data' };
+    console.log('se ha setiado la data del survey');
+  }
   
   //CHAT ACTIONS
   const setChatClients = (data) =>{
@@ -132,12 +142,14 @@ export const useMainStore = defineStore('main', () => {
   return { 
     logedUser, 
     isLoged,
+    userSurvey,
     requestLoading,
     chatClients,
     currentChat,
     //actions
     logIn, 
     logOut,
+    setSurvey,
     requestToTrue:() => requestLoading.value = true,
     requestToFalse:() => requestLoading.value = false,
     setChatClients,

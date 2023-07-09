@@ -10,7 +10,7 @@
       </div>
     </div>
     <!-- links -->
-    <div class="md:mb-auto md:mt-16 md:z-auto md:static md:opacity-100 md:pl-0 pl-7  absolute bg-primary w-full left-0 opacity-0 top-[-400px] transition-all ease-out duration-700 md:transition-none" id="collapse"
+    <div class="md:mb-auto md:mt-5 md:z-auto md:static md:opacity-100 md:pl-0 pl-7  absolute bg-primary w-full left-0 opacity-0 top-[-400px] transition-all ease-out duration-700 md:transition-none" id="collapse"
       v-if="userLinks">
       <SidebarLinkVue v-for="link in links" :key="link.name" :link="link" class="block"/>
     </div>
@@ -61,12 +61,13 @@ const techLinks = [
 ];
 
 const adminLinks = [
-  { to: 'techHome'   , name:'Inicio',       icon:['fa','house']             },
-  { to: 'ticket-list', name:'Tickets',      icon:['fa','list']              },
-  { to: 'userHome'   , name:'Solicitudes',  icon:['fa','file-circle-check'] },
-  { to: 'adminHome'  , name:'Estadisticas', icon:['fa','chart-column']      },
-  { to: 'userSignin' , name:'Registrar',    icon:['fa','user-plus']         },
-  { to: 'chatHome'   , name:'Chat',         icon:['fa','comment']           },
+  { to: 'techHome'      , name:'Inicio'       , icon:['fa','house']                 },
+  { to: 'ticket-list'   , name:'Tickets'      , icon:['fa','list']                  },
+  { to: 'userHome'      , name:'Solicitudes'  , icon:['fa','file-circle-check']     },
+  { to: 'adminHome'     , name:'Estadisticas' , icon:['fa','chart-column']          },
+  { to: 'userSignin'    , name:'Registrar'    , icon:['fa','user-plus']             },
+  { to: 'chatHome'      , name:'Chat'         , icon:['fa','comment']               },
+  { to: 'survey'      , name:'Encuesta'     , icon:['fa','square-poll-vertical']  },
 ];
 
 const links = ref([]);

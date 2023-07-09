@@ -42,10 +42,6 @@ const userSchema  = new Schema ({
   profileImgUrl:{ //esto debe ser por asociation 
     type: String,
   },
-//   bankAcounts:[{
-//     type:Schema.Types.ObjectId,
-//     ref:'BanckAcount',
-//   }],
 },{
   timestamps:true,
   versionKey:false,
