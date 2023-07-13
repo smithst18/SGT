@@ -16,5 +16,6 @@ export const rolGuard = (to, from, next) => {
   else {
     if(store.logedUser.rol === 'tech') next({ name:'techHome'});
     if(store.logedUser.rol === 'user') next({ name:'userHome'});
+    if(store.logedUser.rol === 'admin') next({ name:'adminHome'});
   }
 }

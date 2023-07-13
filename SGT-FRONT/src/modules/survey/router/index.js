@@ -7,7 +7,7 @@ export default {
         {
             path:'surveyHome',
             name:'surveyHome',
-            meta:{ rolsAllow: ['admin'] },
+            meta:{ rolsAllow: ['boss'] },
             beforeEnter: [ rolGuard ],
             component:() => import(/* webpackChunkName: "tech principal view "*/"@/modules/survey/pages/SurveyHome.vue"),
         },

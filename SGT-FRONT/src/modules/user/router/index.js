@@ -7,14 +7,14 @@ export default {
         {
             path:'sign-in',
             name:'userSignin',
-            meta:{ rolsAllow: ['admin'] },
+            meta:{ rolsAllow: ['admin','boss'] },
             beforeEnter: [ rolGuard ],
             component:() => import(/* webpackChunkName: "user sign in view "*/"@/modules/user/pages/SignIn.vue"),
         },
         {
             path:'update',
             name:'userUpdate',
-            meta:{ rolsAllow: ['admin','user','tech'] },
+            meta:{ rolsAllow: ['admin','user','tech','boss'] },
             beforeEnter: [ rolGuard ],
             component:() => import(/* webpackChunkName: "user sign in view "*/"@/modules/user/pages/UpdateUser.vue"),
         },

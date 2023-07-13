@@ -4,7 +4,7 @@ import { computed, ref } from "vue";
 import { useCookies } from "vue3-cookies";
 //import service for user api consume
 import { userLogin } from "../services/userService"; 
-
+import { checkSurvey, getAllSurveys } from "../services/surveyService";
 // const localStorage = window.localStorage; 
 const { cookies } = useCookies();
 
@@ -16,18 +16,29 @@ export const useMainStore = defineStore('main', () => {
   const requestLoading = ref(false);
 
   //survey state
-
-  const userSurvey = ref(false);
+  //store de objeto de todas las surveys
+  const surveys = ref([]);
 
 
   //CHAT STATE
   const chatClients = ref([]);
   const currentChat = ref(undefined);
-
+  
   /**********************************  ACTIONS  **********************************/
-  const savedSurvey = async () => {
-    //termninar esto debe checar en base de datos si la encuesta se respondio y luego de eso responer un bool no la encuesta 
+  //SURVEY ACTIONS
+  const setSurveys = async () =>{
+    const resp = await getAllSurveys();
+    if(resp.surveys){
+      surveys.value = resp.surveys
+    }else console.log("No hay Data");
+  } 
+
+  const allowToSendSurvey = async (userId) => {
+    return await checkSurvey(userId); 
   }
+
+  //USER ACTIONS
+  
   const logIn = async (user) => {
 
     const { status, data } = await userLogin(user);
@@ -65,12 +76,6 @@ export const useMainStore = defineStore('main', () => {
     cookies.remove('user_loged');
   };
 
-  //SURVEY ACTIONS
-  const setSurvey = (data) => {
-    if(data) userSurvey.value = data;
-    else return { status:false, data:'Invalidad Data' };
-    console.log('se ha setiado la data del survey');
-  }
   
   //CHAT ACTIONS
   const setChatClients = (data) =>{
@@ -108,7 +113,23 @@ export const useMainStore = defineStore('main', () => {
     }
   }
   /**********************************  GETTERS  **********************************/
-  
+
+  //SURVEY SUTTERS
+  const getSurveys = computed(() => {
+    const data = surveys.value;
+
+    return data.map((item) => {
+      return {
+        client:item.client.name,
+        document:item.client.document,
+        pre1:item.pre1,
+        pre2:item.pre2,
+        pre3:item.pre3,
+      } 
+    });
+  });
+
+  //USER GETTES
   const getRol = computed(() =>{
     if(logedUser.value) return logedUser.value.rol;
   });
@@ -138,23 +159,36 @@ export const useMainStore = defineStore('main', () => {
     )
     else false
   });
+
   //CHAT GETTERS
   const getCurrentChat = computed(() => {
     if(currentChat.value) return currentChat.value 
   });
+  const getSurveyPorcentage = computed (() =>{
+    let count = 0;
+    //contar los si en las encuestas
+    surveys.value.forEach(element => {
+      if(element.pre1 === 'Si') count ++;
+    });
+    //retornar el porcentaje de las encuestas que dieron que si
+    return Math.trunc(count / surveys.value.length * 100)
+  });
   //actions to call
   setUser();
   return { 
+    surveys,
     logedUser, 
     isLoged,
-    userSurvey,
     requestLoading,
     chatClients,
     currentChat,
     //actions
+    //survey actions
+    allowToSendSurvey,
+    setSurveys,
+    //user actions
     logIn, 
     logOut,
-    setSurvey,
     requestToTrue:() => requestLoading.value = true,
     requestToFalse:() => requestLoading.value = false,
     setChatClients,
@@ -163,6 +197,10 @@ export const useMainStore = defineStore('main', () => {
     incrementMsgCount,
     resetMsgCount,
     //getters
+    //SURVEY GETTS
+    getSurveys,
+    getSurveyPorcentage,
+    //USER GETS
     getLogedUser: computed(() => logedUser.value), 
     getRol,
     getRequestStatus,

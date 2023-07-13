@@ -1,7 +1,6 @@
 <script setup>
 import { onMounted, ref } from "vue";
 const progress = document.querySelector('#progress');
-const progressporcentage = ref(70);
 const props = defineProps({
     progressporcentage:{
       require:true,

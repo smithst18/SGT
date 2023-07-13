@@ -42,3 +42,17 @@ export const validSurvey = [
     (req, res, next) => validateResult(req, res, next),
     
 ];
+
+export const validSurveyId = [
+
+    check("userId")
+        .exists()
+        .withMessage('debe existir')
+        .trim()
+        .notEmpty()
+        .withMessage('No debe estar vacio')
+        .isMongoId()
+        .withMessage('debe ser un MongoID'),
+    (req, res, next) => validateResult(req, res, next),
+    
+];

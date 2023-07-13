@@ -34,7 +34,7 @@
         <font-awesome-icon :icon="['fa','user']" class="text-primary" v-else/>
         <div class="px-4 capitalize text-sm">
           <p>{{mainStore.logedUser.name}}</p>
-          <p class="text-slate-500 text-left">{{mainStore.logedUser.nickName}}</p>
+          <p class="text-slate-500 text-center">{{mainStore.logedUser.nickName}}</p>
         </div>
       </div>
     </div>
@@ -67,6 +67,15 @@ const adminLinks = [
   { to: 'adminHome'     , name:'Estadisticas' , icon:['fa','chart-column']          },
   { to: 'userSignin'    , name:'Registrar'    , icon:['fa','user-plus']             },
   { to: 'chatHome'      , name:'Chat'         , icon:['fa','comment']               },
+];
+
+const bossLinks = [
+  { to: 'techHome'      , name:'Inicio'       , icon:['fa','house']                 },
+  { to: 'ticket-list'   , name:'Tickets'      , icon:['fa','list']                  },
+  { to: 'userHome'      , name:'Solicitudes'  , icon:['fa','file-circle-check']     },
+  { to: 'adminHome'     , name:'Estadisticas' , icon:['fa','chart-column']          },
+  { to: 'userSignin'    , name:'Registrar'    , icon:['fa','user-plus']             },
+  { to: 'chatHome'      , name:'Chat'         , icon:['fa','comment']               },
   { to: 'survey'      , name:'Encuesta'     , icon:['fa','square-poll-vertical']  },
 ];
 
@@ -80,7 +89,8 @@ const clsSession = () => {
 const setLinks = (rol) =>{
   if(rol == 'tech') links.value = techLinks; 
   else if(rol == 'user') links.value = userLinks; 
-  else links.value = adminLinks;
+  else if(rol == 'admin')links.value = adminLinks;
+  else links.value = bossLinks;
 }
 
 onMounted(() =>{

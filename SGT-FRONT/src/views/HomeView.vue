@@ -1,14 +1,14 @@
 <script setup>
   import SideBar from "../components/SideBar/TheSidebar.vue";
   import EncuestaModal from "../components/BasicModal.vue";
-  import { reactive, ref } from "vue";
+  import { onMounted } from "vue";
   import { useModal } from "../composables/useModal";
   import { useMainStore } from "../stores/mainStore";
   import { saveSurvey } from "../services/surveyService";
   import { useFormValidator } from "../composables/useFormValidator";
   import { required, alphaNum, minLength, maxLength } from '@vuelidate/validators';
   const { showModal, toggleModal } = useModal();
-  showModal.value = true;
+  showModal.value = false;
   const mainStore = useMainStore();
   
   const surveyToSave = {
@@ -49,6 +49,15 @@
       }else alert('error al enviar la encuesta');
     }
   }
+
+  onMounted( async () => {
+    //reviza si puede o no enviar la encuesta 
+    const resp = await mainStore.allowToSendSurvey(mainStore.logedUser.id);
+    // si se ha encontrado las respuestas del usuario no se muestra el modal
+    if(resp.status == 200) showModal.value = false;
+    // si no encuentra data ense;a el modal 
+    else showModal.value = true;
+  });
 </script>
 
 
