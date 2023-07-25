@@ -2,7 +2,8 @@
 </script>
 
 <template>
-  <main>
-    <TheWelcome />
-  </main>
+    <div>dsakjkadsjdas</div>
 </template>
+
+<style>
+</style>
