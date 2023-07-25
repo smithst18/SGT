@@ -1,32 +1,46 @@
-# SGT sistema de gestion de Tickets ⚙
+# arti
 
-## Comenzando 🚀
-Sistema de gestion de tickets que permite procesar solicitudes de soporte tecnico y generar estadisticas de las mismas.
-el sistema cuenta con un dashboard principal correspondiente a cada rol de usuario user, tenico, administrador
+This template should help get you started developing with Vue 3 in Vite.
 
+## Recommended IDE Setup
 
-### Instalación 🔧
-```
+[VSCode](https://code.visualstudio.com/) + [Volar](https://marketplace.visualstudio.com/items?itemName=Vue.volar) (and disable Vetur) + [TypeScript Vue Plugin (Volar)](https://marketplace.visualstudio.com/items?itemName=Vue.vscode-typescript-vue-plugin).
+
+## Type Support for `.vue` Imports in TS
+
+TypeScript cannot handle type information for `.vue` imports by default, so we replace the `tsc` CLI with `vue-tsc` for type checking. In editors, we need [TypeScript Vue Plugin (Volar)](https://marketplace.visualstudio.com/items?itemName=Vue.vscode-typescript-vue-plugin) to make the TypeScript language service aware of `.vue` types.
+
+If the standalone TypeScript plugin doesn't feel fast enough to you, Volar has also implemented a [Take Over Mode](https://github.com/johnsoncodehk/volar/discussions/471#discussioncomment-1361669) that is more performant. You can enable it by the following steps:
+
+1. Disable the built-in TypeScript Extension
+    1) Run `Extensions: Show Built-in Extensions` from VSCode's command palette
+    2) Find `TypeScript and JavaScript Language Features`, right click and select `Disable (Workspace)`
+2. Reload the VSCode window by running `Developer: Reload Window` from the command palette.
+
+## Customize configuration
+
+See [Vite Configuration Reference](https://vitejs.dev/config/).
+
+## Project Setup
+
+```sh
 npm install
-
-npm run dev para desarrollo
-
-npm run build  para despliegue
-
-colocar la carpeta dist en servidor ya se apache o algun servicio web.
-
 ```
-## Construido con 🛠️
 
-### Fronted
+### Compile and Hot-Reload for Development
 
-* [Vuejs](https://github.com/vuejs/) -  framework web usado
-* [Pinia](https://github.com/vuejs/pinia) - libreria utilizada para el manejo global del estado de la aplicacion
-* [Tailwindcss](https://github.com/tailwindlabs/tailwindcss) - framework de css para contruir de manera rapida la interface de usuario
+```sh
+npm run dev
+```
 
-### Backend
-* [Nodejs](https://github.com/nodejs) - Entorno en tiempo de ejecucion de javascript para el are de servidores.
-* [expressJs](https://github.com/expressjs/express) - framework de js para crear servidores y api de manera mas sencilla
-* [JWT](https://github.com/auth0/node-jsonwebtoken) - jwt para manejar las sesiones y permisos de manera rapida
+### Type-Check, Compile and Minify for Production
 
+```sh
+npm run build
+```
 
+### Lint with [ESLint](https://eslint.org/)
+
+```sh
+npm run lint
+```
