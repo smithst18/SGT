@@ -9,6 +9,23 @@ const router = createRouter({
       name: 'login',
       component: LoginView
     },
+    {
+      path: "/home",
+      name:"home",
+      //beforeEnter: [ isAuthGuard ],
+      component: () => import(/* webpackChunkName: "Vista principal"*/"@/views/HomeView.vue"),
+      //redirect: { name:"users" },
+      /*children:[
+        { path: "tickets", ...ticketsRoutes },
+        { path: "users", ...usersRoutes },
+        { path: "chats", ...chatRoutes },
+        { path: "mail", ...chatRoutes },
+      ]*/
+    },
+    { 
+      path: '/:pathMatch(.*)*', 
+      redirect:{ name:"login" }
+    },
   ]
 })
 
