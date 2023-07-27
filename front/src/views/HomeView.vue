@@ -9,7 +9,6 @@
 
     <!--routerview-->
     <div class="router-views border w-full">
-      1256 asdsdasdasdadsds
       <router-view/>
     </div>
 

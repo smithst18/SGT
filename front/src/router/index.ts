@@ -13,14 +13,14 @@ const router = createRouter({
       path: "/home",
       name:"home",
       //beforeEnter: [ isAuthGuard ],
-      component: () => import(/* webpackChunkName: "Vista principal"*/"@/views/HomeView.vue"),
-      //redirect: { name:"users" },
-      /*children:[
+      component: () => import(/* webpackChunkName: "Vista principal donde se cargan las rutas"*/"@/views/HomeView.vue"),
+      redirect: { name:"tickets" },
+      children:[
         { path: "tickets", ...ticketsRoutes },
-        { path: "users", ...usersRoutes },
-        { path: "chats", ...chatRoutes },
-        { path: "mail", ...chatRoutes },
-      ]*/
+        //{ path: "users", ...usersRoutes },
+        //{ path: "chats", ...chatRoutes },
+        //{ path: "mail", ...chatRoutes },
+      ]
     },
     { 
       path: '/:pathMatch(.*)*', 
