@@ -32,14 +32,14 @@
       maxLength: maxLength(20) 
     },
     pre3:{ 
-      alphaNum,
-      maxLength: maxLength(300) 
+      maxLength: maxLength(500) 
     },
   };
   const { form, v$, validateForm, resetForm } = useFormValidator(surveyToSave,validations,'Encuesta registrada satisfactoriamente'); 
 
   const sendSurvey = async () =>{
     const valid  = await validateForm();
+    console.log(valid,form,)
     if(valid){
       const resp = await saveSurvey(form);
 
