@@ -14,11 +14,11 @@
 </script>
 
 <template>
-  <div @click="emit('inFocus')" class="pb-2" :class="[list_is_spanded && is_spanded ? 'bg-secondary': 'bg-primary']">
+  <div @click="emit('inFocus')" class="pb-2">
     <div class="menu-item cursor-pointer" @click="toggleList" >
       <span class="material-symbols-sharp">{{ props.icon }}</span>
       <span class="menu-text">{{ props.title }}</span>
-      <span class="ml-auto material-symbols-outlined desplegable-icon text-third">chevron_right</span>
+      <span class="ml-auto material-symbols-outlined desplegable-icon">chevron_right</span>
     </div>
     <transition name="submenu">
       <ol class="menu-list" v-if="list_is_spanded && is_spanded">

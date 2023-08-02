@@ -2,15 +2,14 @@
 </script>
 
 <template>
-    <div class="text-left w-full h-full" id="login">
-    <div class="w-full h-full flex flex-col items-center justify-center">
+    <div class="h-screen w-screen flex items-center justify-center" id="login"> 
+    <div class="sm:w-full md:w-[50%] lg:w-[30%] sm: md: lg: bg-white flex flex-col justify-center items-center rounded shadow-xl">
       <!-- LOGO -->
-      <div class="w-4/5 lg:w-1/4 md:w-1/3 sm:w-3/6 mb-5 py-3">
-        <img src="../assets/imgs/logo_transparent.png" alt="SGTI logo" class="w-full h-auto">
+      <div class="w-[50%] mx-auto mt-5">
+        <img src="@/assets/imgs/logofondoblanco.jpg" alt="SGTI logo" class="w-full h-auto">
       </div>
       <!-- fORMULARIO -->
-      <form  id="form" 
-      class="h-2/4 w-4/5 lg:w-1/4 md:w-1/3 sm:w-3/6  p-10 border rounded-sm shadow-md bg-white">
+      <form  id="form" class="p-10 w-[90%]">
         <div class="relative z-0 w-full mb-10">
           <input
           type="text"
@@ -30,27 +29,10 @@
           />
           <label for="name" class="absolute duration-300 top-3 -z-1 origin-0 text-gray-500">Contraseña</label>
         </div>
-  
-        <div class="text-center">
-          <span 
-          class="text-sm text-center text-red-600" 
-          id="error"
-          >
-            Usuario o Contraseña invalidos.
-          </span>
-        </div>
-  
-        <div class="text-center">
-          <span 
-          class="text-sm text-center text-red-600" 
-          id="error"
-          >
-            Error de Servidor.
-          </span>
-        </div>  
+
         <button 
         type="submit"
-        class="px-6 py-2 mt-4 w-full text-white bg-primary rounded-sm hover:bg-primary-light focus:ring-2 focus:ring-primary transition delay-150 duration-150 ease-in-out">
+        class="px-6 py-2 mt-4 mb-3 w-full text-white bg-primary rounded-sm hover:bg-primary-light focus:ring-2 focus:ring-primary transition delay-75 duration-75 ease-in-out">
           Iniciar Sesion
         </button>
       </form>

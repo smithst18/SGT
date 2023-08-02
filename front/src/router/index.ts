@@ -1,4 +1,5 @@
 import { createRouter, createWebHistory } from 'vue-router'
+import ticketsRoutes from "@/modules/ticket/router"
 import LoginView from '../views/LoginView.vue';
 
 const router = createRouter({

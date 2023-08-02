@@ -16,6 +16,7 @@
 </template>
 
 <style>
+/* permite la vista de la barra en el responsive */
 .router-views{
   @media (max-width:768px){
     padding-left: 5rem;
