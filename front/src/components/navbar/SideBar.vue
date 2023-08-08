@@ -3,8 +3,15 @@
   import SidebarDropdown from '../DropDown.vue';
   import userCard from '../commons/userCard.vue';
 
+  const emits = defineEmits<{
+    (event:'OnToggleSidebar',is_spanded:boolean ):void
+  }>();
+
   const is_spanded = ref(false);
-  const toggleMenu = () => is_spanded.value = !is_spanded.value ;
+  const toggleMenu = () => {
+    is_spanded.value = !is_spanded.value ;
+    emits('OnToggleSidebar',is_spanded.value)
+  }
   const spandDropdown = () => { 
     if(is_spanded.value == false) toggleMenu();
   }
@@ -14,11 +21,11 @@
   <aside :class="{ is_spanded:is_spanded }">
 
     <!-- logotype -->
-    <div class="max-w-sm border" :class="is_spanded ? 'inline' : 'hidden'">
+    <div class="max-w-sm" :class="is_spanded ? 'inline' : 'hidden'">
       <img alt="SGTI_LOGO" id="logo" src="@/assets/imgs/artilogohorizontal.png">
     </div>
-    <div class="mx-0 px-0 border" :class="!is_spanded ? 'inline' : 'hidden'">
-      <img alt="SGTI_LOGO" id="logo" src="@/assets/imgs/brand.png">
+    <div class="mx-0 px-0" :class="!is_spanded ? 'inline' : 'hidden'">
+      <img alt="SGTI_LOGO" id="logo" src="@/assets/imgs/sidebardminilogo.webp">
     </div>
 
     <!-- Toggle button -->
@@ -35,7 +42,7 @@
     </button>
 
     <!--menu options-->
-    <div class="menu" :class="{'px-[1rem]':is_spanded}">
+    <div class="menu max-h-[65%]  overflow-y-auto" :class="{'px-[1rem]':is_spanded}">
       <SidebarDropdown title="Tickets" icon="local_activity" :options="[]" :is_spanded="is_spanded" @in-focus="spandDropdown"/>
       <SidebarDropdown title="Correo" icon="mail" :options="[]" :is_spanded="is_spanded" @in-focus="spandDropdown"/>
       <SidebarDropdown title="Chat" icon="chat" :options="[]" :is_spanded="is_spanded" @in-focus="spandDropdown"/>
@@ -43,7 +50,7 @@
     </div>
     <!--user config-->
     <div class="flex mt-auto mb-5">
-      <userCard/>
+      <userCard :is_spanded="is_spanded" class="cursor-pointer"/>
     </div>
 
       
@@ -69,10 +76,12 @@ aside{
     transition: 0.2s ease-out;
     cursor: auto;
   }
-
+  .menu::-webkit-scrollbar{
+    display: none;
+  }
   .menu {
     margin: 0 -1rem;
-    @apply mt-14;
+    @apply mt-16;
 
     
     .menu-item {
@@ -98,6 +107,9 @@ aside{
     width: var(--sidebar-width);
     @apply bg-secondary text-third;
 
+    .menu{
+      @apply mt-8;
+    }
     #toggle-wrap {
       transform: rotate(-180deg);
     }
@@ -134,5 +146,4 @@ aside{
     visibility: hidden;
   }
 }
-
 </style>

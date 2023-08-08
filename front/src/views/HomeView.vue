@@ -5,13 +5,12 @@
 <template>
   <main class="w-full h-full flex" id="home">
     <!--sidebard-->
-    <SideBar/>
+    <SideBar class="shadow-md"/>
 
-    <!--routerview-->
-    <div class="router-views border w-full">
+    <!--routerview desde aca se controlan los margenes generales  para todas las vistas con el md:p-6 marcando un p-6 desde vistas de tableta en adelante-->
+    <div class="router-views w-full md:px-6">
       <router-view/>
     </div>
-
   </main>
 </template>
 

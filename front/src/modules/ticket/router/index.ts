@@ -3,7 +3,7 @@ export default {
     redirect: { name:"dashboard" },
     children:[
         {
-            path:'dashboard',
+            path:'inicio',
             name:'dashboard',
             //meta:{ rolsAllow: ['admin', 'tech'] },
             //beforeEnter: [ rolGuard ],

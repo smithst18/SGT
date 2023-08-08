@@ -1,23 +1,25 @@
 <script lang="ts" setup>
     import { onMounted, ref, watch, watchEffect } from 'vue';
-    const props = defineProps({
-        icon: String,
-        title: String,
-        options: Array,
-        is_spanded: Boolean
-    });
-    watchEffect
-    const emit = defineEmits(['inFocus']);
+    const props = defineProps<{
+      icon: string,
+      title: string,
+      options: Array<string>,
+      is_spanded: boolean
+    }>();
+    
+    const emit = defineEmits<{
+        (event:'inFocus'):void,
+    }>();
 
     const list_is_spanded = ref(false);
     const toggleList = () => list_is_spanded.value = !list_is_spanded.value;
 </script>
 
 <template>
-  <div @click="emit('inFocus')" class="pb-2">
-    <div class="menu-item cursor-pointer" @click="toggleList" >
+  <div @click="emit('inFocus')" class="pb-2 cursor-pointer">
+    <div class="menu-item" @click="toggleList" >
       <span class="material-symbols-sharp">{{ props.icon }}</span>
-      <span class="menu-text">{{ props.title }}</span>
+      <span class="menu-text cursor-pointer">{{ props.title }}</span>
       <span class="ml-auto material-symbols-outlined desplegable-icon">chevron_right</span>
     </div>
     <transition name="submenu">

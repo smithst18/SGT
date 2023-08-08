@@ -1,0 +1,27 @@
+<script setup lang="ts">
+    import { ref} from 'vue';
+    const emit = defineEmits<{
+        ( event:'onSearchData', value:string ): void,
+    }>();
+
+    const dataToFind = ref('');
+
+</script>
+
+<template>
+    <div>
+        <div class="flex border bg-slate-100 p-1 rounded">
+            <img src="@/assets/icons/searchicon.svg" alt="" class="text-primary w-6 h-6 flex m-auto cursor-pointer hover:opacity-70" @click="$emit('search')">
+            <input 
+                type="text" 
+                placeholder="buscar" 
+                class="bg-transparent placeholder-third-light-400 text-third ml-1 focus:outline-none " 
+                v-model="dataToFind"
+                @keypress.enter="$emit('onSearchData', dataToFind)">
+        </div>
+    </div>
+</template>
+      
+<style scoped>
+    
+</style>
