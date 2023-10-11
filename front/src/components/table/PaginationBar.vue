@@ -1,73 +1,72 @@
 <script setup lang="ts">
-import { ref } from "vue";
-
+import { onMounted, ref } from "vue";
 
 const props = defineProps<{
     pages:number,
-    elementsPerPage:number,
-    results:number
+    elementsPerPage: number;
+    results: number;
+    visiblePages: Array<number>;
 }>();
 
-const activeIndex = ref(0);
+const activeIndex = ref(1);
 
 const emit = defineEmits<{
-    (event: 'dataPagination',pages:number):void,
-    (event: 'nextPage'):void
-    (event: 'prevPage'):void
+  (event: "dataPagination", page: number): void;
+  (event: "nextPage"): void;
+  (event: "prevPage"): void;
 }>();
 
-const clickedPage = ( page:number, index:number ) =>{
-  activeIndex.value = index;
-  emit('dataPagination',page);
-}
+const clickedPage = (page: number, index: number) => {
+  activeIndex.value = page;
+  emit("dataPagination", page);
+};
 
-const prevArroy = () =>{
-  if(activeIndex.value > 0) {
+const prevArroy = () => {
+  if (activeIndex.value > 1) {
     activeIndex.value -= 1;
-    emit('prevPage')
+    emit("prevPage");
   }
-}
+};
 
-const nextArroy = () =>{
-  if(activeIndex.value < props.pages - 1) {
+const nextArroy = () => {
+  if (activeIndex.value < props.pages) {
     activeIndex.value += 1;
-    emit('nextPage');
+    emit("nextPage");
   }
-}
+};
 
+onMounted(() => {
+});
 </script>
 
 <template>
-    <div class="flex items-center border border-purple-900 w-full h-full">
-        <div class="border border-green-500">
-            <span>mostrando datos de 1 a 8 de 500 entradas</span>
-        </div>
-        <nav class="ml-auto">
-            <ul class="border border-blue-500">
-                <li @click="prevArroy"><a href="#">&lt;</a></li>
-
-                <li 
-                    v-for="(page, index) in pages"
-                    :class="activeIndex === index ? 'text-primary-light' : 'text-third'" 
-                    :key="page">
-                    <a href="#">
-                        {{ page }}
-                    </a>
-                 </li>
-
-                <li @click="nextArroy"><a href="#">></a></li>
-            </ul>
-        </nav>
+  <div class="flex items-center w-full h-full">
+    <div class="">
+      <span class="ml-2">{{ elementsPerPage }} elementos de {{ results }} resultados totales</span>
     </div>
+    <nav class="ml-auto">
+      <ul class="">
+        <li @click="prevArroy"><a href="#">&lt;</a></li>
+
+        <li
+          v-for="(page, index) in visiblePages"
+          :class="activeIndex === page ? 'bg-primary-light' : 'bg-white'"
+          :key="page"
+          @click="clickedPage(page,index)">
+          <a href="#"> {{ page }} </a>
+        </li>
+
+        <li @click="nextArroy"><a href="#">></a></li>
+      </ul>
+    </nav>
+  </div>
 </template>
 
-
-
 <style scoped>
-    nav>ul{
-        @apply list-none flex items-center justify-end
-    }
-    nav>ul>li{
-        @apply  border rounded-md mx-1 py-1 w-8 h-8 text-center cursor-pointer font-semibold text-third hover:text-primary-light
-    }
+  nav>ul {
+    @apply list-none flex items-center justify-end;
+  }
+  nav>ul>li {
+    @apply border rounded-md mx-1 py-1 w-8 h-8 text-center cursor-pointer font-semibold text-third hover:text-white hover:bg-primary-light;
+  }
 </style>

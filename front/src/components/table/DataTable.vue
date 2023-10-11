@@ -1,9 +1,34 @@
 <script setup lang='ts'>
 import SearchingBar from "@/components/commons/SearchBar.vue";
 import PaginationBar from "@/components/table/PaginationBar.vue"
+import { useDataTable } from "@/composables/useDataTble"; 
+import { computed, onMounted } from "vue";
+
+const props =  defineProps<{
+    titles: Array <string>,
+    data:Array<object>,
+    elementsPerPage:number
+}>();
+const emit = defineEmits<{
+  (event: "pickedElement", id: string): void;
+}>();
+
+    const { 
+        paginatedData,
+        pages,
+        actualPage,
+        visiblePages,
+        getDataPagination,
+        getPreviusPage,
+        getNextPage
+    } = useDataTable(props.data,props.elementsPerPage); 
+    //propiedad computed para los resultados
+    const results =  computed(() => props.data.length );
     const searchData = (event:string) => { 
         console.log(event);
     }
+
+    onMounted(() => getDataPagination(actualPage.value));
 </script>
 
 <template>
@@ -21,130 +46,43 @@ import PaginationBar from "@/components/table/PaginationBar.vue"
                     <!-- <caption class="caption-bottom">
                         Table 3.1: Professional wrestlers and their signature moves.
                     </caption> -->
+                    <!-- TITLES FOR TABLE DATA -->
                     <thead class="bg-gray-50 border-gray-200 sticky top-0 drop-shadow-sm">
                         <tr class="">
-                            <th class="p-3 text-sm font-semibold opacity-75 tracking-wide capitalize text-left">campo 1</th>
-                            <th class="p-3 text-sm font-semibold opacity-75 tracking-wide capitalize text-left">campo 2</th>
-                            <th class="p-3 text-sm font-semibold opacity-75 tracking-wide capitalize text-left">campo 3</th>
-                            <th class="p-3 text-sm font-semibold opacity-75 tracking-wide capitalize text-left">campo 3</th>
+                            <th class="p-3 text-sm font-semibold opacity-75 tracking-wide capitalize text-left"
+                                v-for="title in titles" :key="title">
+                                {{ title }}
+                            </th>
                         </tr>
                     </thead>
 
                     <tbody class="">
-                        <tr>
-                            <td class="p-3 text-sm text-third capitalize text-left whitespace-nowrap overflow-x-auto">asdasdasdsa</td>
-                            <td class="p-3 text-sm text-third capitalize text-left whitespace-nowrap overflow-x-auto">asdkjajkdkjasasdasd</td>
-                            <td class="p-3 text-sm text-third capitalize text-left whitespace-nowrap overflow-x-auto">dasdsa</td>
-                            <td class="p-3 text-sm text-third capitalize text-left whitespace-nowrap overflow-x-auto">dasdsa</td>
-                        </tr>
-                        <tr>
-                            <td class="p-3 text-sm text-third capitalize text-left whitespace-nowrap overflow-x-auto">asdasdasdsa</td>
-                            <td class="p-3 text-sm text-third capitalize text-left whitespace-nowrap overflow-x-auto">asdkjajkdkjasasdasd</td>
-                            <td class="p-3 text-sm text-third capitalize text-left whitespace-nowrap overflow-x-auto">dasdsa</td>
-                            <td class="p-3 text-sm text-third capitalize text-left whitespace-nowrap overflow-x-auto">dasdsa</td>
-                        </tr>
-                        <tr>
-                            <td class="p-3 text-sm text-third capitalize text-left whitespace-nowrap overflow-x-auto">asdasdasdsa</td>
-                            <td class="p-3 text-sm text-third capitalize text-left whitespace-nowrap overflow-x-auto">asdkjajkdkjasasdasd</td>
-                            <td class="p-3 text-sm text-third capitalize text-left whitespace-nowrap overflow-x-auto">dasdsa</td>
-                            <td class="p-3 text-sm text-third capitalize text-left whitespace-nowrap overflow-x-auto">dasdsa</td>
-                        </tr>
-                        <tr>
-                            <td class="p-3 text-sm text-third capitalize text-left whitespace-nowrap overflow-x-auto">asdasdasdsa</td>
-                            <td class="p-3 text-sm text-third capitalize text-left whitespace-nowrap overflow-x-auto">asdkjajkdkjasasdasd</td>
-                            <td class="p-3 text-sm text-third capitalize text-left whitespace-nowrap overflow-x-auto">dasdsa</td>
-                            <td class="p-3 text-sm text-third capitalize text-left whitespace-nowrap overflow-x-auto">dasdsa</td>
-                        </tr>
-                        <tr>
-                            <td class="p-3 text-sm text-third capitalize text-left whitespace-nowrap overflow-x-auto">asdasdasdsa</td>
-                            <td class="p-3 text-sm text-third capitalize text-left whitespace-nowrap overflow-x-auto">asdkjajkdkjasasdasd</td>
-                            <td class="p-3 text-sm text-third capitalize text-left whitespace-nowrap overflow-x-auto">dasdsa</td>
-                            <td class="p-3 text-sm text-third capitalize text-left whitespace-nowrap overflow-x-auto">dasdsa</td>
-                        </tr>
-                        <tr>
-                            <td class="p-3 text-sm text-third capitalize text-left whitespace-nowrap overflow-x-auto">asdasdasdsa</td>
-                            <td class="p-3 text-sm text-third capitalize text-left whitespace-nowrap overflow-x-auto">asdkjajkdkjasasdasd</td>
-                            <td class="p-3 text-sm text-third capitalize text-left whitespace-nowrap overflow-x-auto">dasdsa</td>
-                            <td class="p-3 text-sm text-third capitalize text-left whitespace-nowrap overflow-x-auto">dasdsa</td>
-                        </tr>
-                        <tr>
-                            <td class="p-3 text-sm text-third capitalize text-left whitespace-nowrap overflow-x-auto">asdasdasdsa</td>
-                            <td class="p-3 text-sm text-third capitalize text-left whitespace-nowrap overflow-x-auto">asdkjajkdkjasasdasd</td>
-                            <td class="p-3 text-sm text-third capitalize text-left whitespace-nowrap overflow-x-auto">dasdsa</td>
-                            <td class="p-3 text-sm text-third capitalize text-left whitespace-nowrap overflow-x-auto">dasdsa</td>
-                        </tr>
-                        <tr>
-                            <td class="p-3 text-sm text-third capitalize text-left whitespace-nowrap overflow-x-auto">asdasdasdsa</td>
-                            <td class="p-3 text-sm text-third capitalize text-left whitespace-nowrap overflow-x-auto">asdkjajkdkjasasdasd</td>
-                            <td class="p-3 text-sm text-third capitalize text-left whitespace-nowrap overflow-x-auto">dasdsa</td>
-                            <td class="p-3 text-sm text-third capitalize text-left whitespace-nowrap overflow-x-auto">dasdsa</td>
-                        </tr>
-                        <tr>
-                            <td class="p-3 text-sm text-third capitalize text-left whitespace-nowrap overflow-x-auto">asdasdasdsa</td>
-                            <td class="p-3 text-sm text-third capitalize text-left whitespace-nowrap overflow-x-auto">asdkjajkdkjasasdasd</td>
-                            <td class="p-3 text-sm text-third capitalize text-left whitespace-nowrap overflow-x-auto">dasdsa</td>
-                            <td class="p-3 text-sm text-third capitalize text-left whitespace-nowrap overflow-x-auto">dasdsa</td>
-                        </tr>
-                        <tr>
-                            <td class="p-3 text-sm text-third capitalize text-left whitespace-nowrap overflow-x-auto">asdasdasdsa</td>
-                            <td class="p-3 text-sm text-third capitalize text-left whitespace-nowrap overflow-x-auto">asdkjajkdkjasasdasd</td>
-                            <td class="p-3 text-sm text-third capitalize text-left whitespace-nowrap overflow-x-auto">dasdsa</td>
-                            <td class="p-3 text-sm text-third capitalize text-left whitespace-nowrap overflow-x-auto">dasdsa</td>
-                        </tr>
-                        <tr>
-                            <td class="p-3 text-sm text-third capitalize text-left whitespace-nowrap overflow-x-auto">asdasdasdsa</td>
-                            <td class="p-3 text-sm text-third capitalize text-left whitespace-nowrap overflow-x-auto">asdkjajkdkjasasdasd</td>
-                            <td class="p-3 text-sm text-third capitalize text-left whitespace-nowrap overflow-x-auto">dasdsa</td>
-                            <td class="p-3 text-sm text-third capitalize text-left whitespace-nowrap overflow-x-auto">dasdsa</td>
-                        </tr>
-                        <tr>
-                            <td class="p-3 text-sm text-third capitalize text-left whitespace-nowrap overflow-x-auto">asdasdasdsa</td>
-                            <td class="p-3 text-sm text-third capitalize text-left whitespace-nowrap overflow-x-auto">asdkjajkdkjasasdasd</td>
-                            <td class="p-3 text-sm text-third capitalize text-left whitespace-nowrap overflow-x-auto">dasdsa</td>
-                            <td class="p-3 text-sm text-third capitalize text-left whitespace-nowrap overflow-x-auto">dasdsa</td>
-                        </tr>
-                        <tr>
-                            <td class="p-3 text-sm text-third capitalize text-left whitespace-nowrap overflow-x-auto">asdasdasdsa</td>
-                            <td class="p-3 text-sm text-third capitalize text-left whitespace-nowrap overflow-x-auto">asdkjajkdkjasasdasd</td>
-                            <td class="p-3 text-sm text-third capitalize text-left whitespace-nowrap overflow-x-auto">dasdsa</td>
-                            <td class="p-3 text-sm text-third capitalize text-left whitespace-nowrap overflow-x-auto">dasdsa</td>
-                        </tr>
-                        <tr>
-                            <td class="p-3 text-sm text-third capitalize text-left whitespace-nowrap overflow-x-auto">asdasdasdsa</td>
-                            <td class="p-3 text-sm text-third capitalize text-left whitespace-nowrap overflow-x-auto">asdkjajkdkjasasdasd</td>
-                            <td class="p-3 text-sm text-third capitalize text-left whitespace-nowrap overflow-x-auto">dasdsa</td>
-                            <td class="p-3 text-sm text-third capitalize text-left whitespace-nowrap overflow-x-auto">dasdsa</td>
-                        </tr>
-                        <tr>
-                            <td class="p-3 text-sm text-third capitalize text-left whitespace-nowrap overflow-x-auto">asdasdasdsa</td>
-                            <td class="p-3 text-sm text-third capitalize text-left whitespace-nowrap overflow-x-auto">asdkjajkdkjasasdasd</td>
-                            <td class="p-3 text-sm text-third capitalize text-left whitespace-nowrap overflow-x-auto">dasdsa</td>
-                            <td class="p-3 text-sm text-third capitalize text-left whitespace-nowrap overflow-x-auto">dasdsa</td>
-                        </tr>
-                        <tr>
-                            <td class="p-3 text-sm text-third capitalize text-left whitespace-nowrap overflow-x-auto">asdasdasdsa</td>
-                            <td class="p-3 text-sm text-third capitalize text-left whitespace-nowrap overflow-x-auto">asdkjajkdkjasasdasd</td>
-                            <td class="p-3 text-sm text-third capitalize text-left whitespace-nowrap overflow-x-auto">dasdsa</td>
-                            <td class="p-3 text-sm text-third capitalize text-left whitespace-nowrap overflow-x-auto">dasdsa</td>
-                        </tr>
-                        <tr>
-                            <td class="p-3 text-sm text-third capitalize text-left whitespace-nowrap overflow-x-auto">asdasdasdsa</td>
-                            <td class="p-3 text-sm text-third capitalize text-left whitespace-nowrap overflow-x-auto">asdkjajkdkjasasdasd</td>
-                            <td class="p-3 text-sm text-third capitalize text-left whitespace-nowrap overflow-x-auto">dasdsa</td>
-                            <td class="p-3 text-sm text-third capitalize text-left whitespace-nowrap overflow-x-auto">dasdsa</td>
-                        </tr>
-                        <tr>
-                            <td class="p-3 text-sm text-third capitalize text-left whitespace-nowrap overflow-x-auto">asdasdasdsa</td>
-                            <td class="p-3 text-sm text-third capitalize text-left whitespace-nowrap overflow-x-auto">asdkjajkdkjasasdasd</td>
-                            <td class="p-3 text-sm text-third capitalize text-left whitespace-nowrap overflow-x-auto">dasdsa</td>
-                            <td class="p-3 text-sm text-third capitalize text-left whitespace-nowrap overflow-x-auto">dasdsa</td>
+                        <tr v-for="elm in paginatedData" :key="elm">
+                            <td class="text-sm text-third capitalize text-left whitespace-nowrap overflow-x-auto"
+                                v-for="(property, index) in elm" :key="index">
+                                <p v-if="index !== 'nombre'" class="p-3">
+                                    {{ property }}
+                                </p>
+                                <p v-if="index === 'nombre'" class="p-3"
+                                    @click="emit('pickedElement',elm.numero_random)">
+                                    {{ property }}
+                                </p>
+                            </td>
                         </tr>
                     </tbody>
                 </table>
             </div>
             <!--pagination component-->
-            <div class="border-t-2 mt-2 border w-full h-10">
-                <PaginationBar :pages="5" :elements-per-page="5" :results="15"/>
+            <div class="border-t-2 mt-2 w-full h-10">
+                <PaginationBar 
+                    :pages="pages" 
+                    :visible-pages="visiblePages"
+                    :elementsPerPage="props.elementsPerPage"
+                    :results="results"
+                    @dataPagination="getDataPagination"
+                    @prevPage="getPreviusPage"
+                    @nextPage="getNextPage"
+                />
             </div>
         </div>
         

@@ -1,45 +1,57 @@
 import { computed, ref } from "vue";
 
-export const useDataTable = (data:any, elementsPerPage:number) => {
-
-  //data que se va a mostrar en la tabla 
-  const paginatedData = ref([]);
-  //numero de paginas que se envian al componente pagination
+export const useDataTable = (data: any[], elementsPerPage: number) => {
+  const paginatedData = ref<any[]>([]);
   const pages = computed(() => Math.ceil(data.length / elementsPerPage));
-  //pagina actual a mostrar por defecto es la 1 
   const actualPage = ref(1);
 
-  const getDataPagination = (page:number) => {
-      //asignamos el valor de la pagina recibida al valor actual manejado
-      actualPage.value = page;
-      //valor inicial va ser la pagina data * la cantidad de  elementos a mostrar - la cantidad de  elementos a mostrar
-      let ini = (page * elementsPerPage) - elementsPerPage;
-      //valor final va a ser la pagina dada *  la cantidad de  elementos a mostrar
-      let fin = (page * elementsPerPage);
-      //los valores a mostrar seran desde ini hasta fin
-      paginatedData.value = data.slice(ini,fin);
+  const visiblePages = computed(() => {
+    const visiblePagesCount = Math.min(5, pages.value);
+    const middlePage = Math.ceil(visiblePagesCount / 2);
+    let startPage = actualPage.value - middlePage + 1;
+    let endPage = actualPage.value + middlePage -1;
+
+    if (startPage < 1) {
+      startPage = 1;
+      endPage = Math.min(visiblePagesCount, pages.value);
+    }
+
+    if (endPage > pages.value) {
+      endPage = pages.value;
+      startPage = Math.max(1, endPage - visiblePagesCount + 1);
+    }
+
+    return Array.from({ length: endPage - startPage + 1 }, (_, i) => startPage + i);
+  });
+
+  const getDataPagination = (page: number) => {
+    actualPage.value = page;
+    let ini = (page - 1) * elementsPerPage;
+    let fin = page * elementsPerPage;
+    paginatedData.value = data.slice(ini, fin);
   };
 
   const getPreviusPage = () => {
-    if(actualPage.value > 1){
+    if (actualPage.value > 1) {
       actualPage.value -= 1;
     }
     getDataPagination(actualPage.value);
   };
-  
+
   const getNextPage = () => {
-    if(actualPage.value < pages.value){
+    if (actualPage.value <= pages.value) {
       actualPage.value += 1;
     }
     getDataPagination(actualPage.value);
   };
 
-  return { 
+  return {
     paginatedData,
     pages,
     actualPage,
+    visiblePages,
     getDataPagination,
     getPreviusPage,
     getNextPage,
-  }
-}
+  };
+};
