@@ -60,10 +60,10 @@ const emit = defineEmits<{
                         <tr v-for="elm in paginatedData" :key="elm">
                             <td class="text-sm text-third capitalize text-left whitespace-nowrap overflow-x-auto"
                                 v-for="(property, index) in elm" :key="index">
-                                <p v-if="index !== 'nombre'" class="p-3">
+                                <p v-if="String(index) !== 'nombre'" class="p-3">
                                     {{ property }}
                                 </p>
-                                <p v-if="index === 'nombre'" class="p-3"
+                                <p v-if="String(index) === 'nombre'" class="p-3"
                                     @click="emit('pickedElement',elm.numero_random)">
                                     {{ property }}
                                 </p>

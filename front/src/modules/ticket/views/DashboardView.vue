@@ -847,7 +847,7 @@ const elementos = [
     },
     
 ];
-const showPickedElement = (event:Event) =>{
+const showPickedElement = (event:string) =>{
     console.log(event)
 }
 </script>
