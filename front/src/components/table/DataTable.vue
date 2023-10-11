@@ -22,8 +22,10 @@ const emit = defineEmits<{
         getPreviusPage,
         getNextPage
     } = useDataTable(props.data,props.elementsPerPage); 
+
     //propiedad computed para los resultados
     const results =  computed(() => props.data.length );
+    //componente barra de busqueda retorna mediante un evento  el string a buscar
     const searchData = (event:string) => { 
         console.log(event);
     }
