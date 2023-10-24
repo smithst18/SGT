@@ -2,15 +2,21 @@
   import { ref } from 'vue';
   import SidebarDropdown from '../DropDown.vue';
   import userCard from '../commons/userCard.vue';
-
   const emits = defineEmits<{
     (event:'OnToggleSidebar',is_spanded:boolean ):void
   }>();
 
   const is_spanded = ref(false);
+
+  const ticketLinks = [
+    { to: 'userHome'   , name:'Inicio',       icon:['fa','house']             },
+    { to: 'chatHome'   , name:'Chat',         icon:['fa','comment']           },
+  ]
+
+
   const toggleMenu = () => {
     is_spanded.value = !is_spanded.value ;
-    emits('OnToggleSidebar',is_spanded.value)
+    emits('OnToggleSidebar',is_spanded.value);
   }
   const spandDropdown = () => { 
     if(is_spanded.value == false) toggleMenu();
@@ -43,10 +49,10 @@
 
     <!--menu options-->
     <div class="menu max-h-[65%]  overflow-y-auto" :class="{'px-[1rem]':is_spanded}">
-      <SidebarDropdown title="Tickets" icon="local_activity" :options="[]" :is_spanded="is_spanded" @in-focus="spandDropdown"/>
-      <SidebarDropdown title="Correo" icon="mail" :options="[]" :is_spanded="is_spanded" @in-focus="spandDropdown"/>
+      <SidebarDropdown title="Tickets" icon="local_activity" :links="ticketLinks" :is_spanded="is_spanded" @in-focus="spandDropdown"/>
+      <!-- <SidebarDropdown title="Correo" icon="mail" :options="[]" :is_spanded="is_spanded" @in-focus="spandDropdown"/>
       <SidebarDropdown title="Chat" icon="chat" :options="[]" :is_spanded="is_spanded" @in-focus="spandDropdown"/>
-      <SidebarDropdown title="Gestion" icon="manage_accounts" :options="[]" :is_spanded="is_spanded" @in-focus="spandDropdown"/>
+      <SidebarDropdown title="Gestion" icon="manage_accounts" :options="[]" :is_spanded="is_spanded" @in-focus="spandDropdown"/> -->
     </div>
     <!--user config-->
     <div class="flex mt-auto mb-5">

@@ -1,9 +1,10 @@
 <script lang="ts" setup>
-    import { onMounted, ref, watch, watchEffect } from 'vue';
+    import { ref } from 'vue';
+    import type { TicketLink } from '@/interfaces/navbarInterface';
     const props = defineProps<{
       icon: string,
       title: string,
-      options: Array<string>,
+      links: Array<TicketLink>,
       is_spanded: boolean
     }>();
     
@@ -19,14 +20,22 @@
   <div @click="emit('inFocus')" class="pb-2 cursor-pointer">
     <div class="menu-item" @click="toggleList" >
       <span class="material-symbols-sharp">{{ props.icon }}</span>
-      <span class="menu-text cursor-pointer">{{ props.title }}</span>
-      <span class="ml-auto material-symbols-outlined desplegable-icon">chevron_right</span>
+      <span class="menu-text">{{ props.title }}</span>
+      <span 
+        class="ml-auto material-symbols-outlined desplegable-icon transition duration-900 ease-out"
+        :class="{'toggle-wrap-icon': list_is_spanded}"
+        >chevron_right</span>
     </div>
     <transition name="submenu">
       <ol class="menu-list" v-if="list_is_spanded && is_spanded">
-        <li>opcion1</li>
-        <li>opcion2</li>
-        <li>opcion3</li>
+        <li v-for="link in links">
+          <router-link
+            :to="link.to"
+            v-slot="{isActive}"
+            >
+            {{link.name}}
+          </router-link>
+        </li>
       </ol>
     </transition>
   </div>
@@ -41,7 +50,6 @@
 .submenu-leave-to {
   animation: rotateMenu 00ms ease-in;
   opacity: 0;
-  @apply bg-secondary
 }
 @keyframes rotateMenu {
     0% {
@@ -53,5 +61,8 @@
     100% {
         transform: rotateX(0deg) 
     }
+}
+.toggle-wrap-icon {
+  transform: rotate(90deg);
 }
 </style>
