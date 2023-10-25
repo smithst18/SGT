@@ -853,14 +853,14 @@ const showPickedElement = (event:string) =>{
 </script>
 
 <template>
-    <div class="w-full h-full">
-        <div class="flex items-center justify-around w-full h-1/3">
+    <div class="w-full h-full border">
+        <div class="flex items-center justify-around w-full h-1/4">
             <ticketInfoCard title="Tickets Cerrados" :porcentValue="32"  :percentage="null" src-img="../../src/assets/icons/logout.svg"/>
             <ticketInfoCard title="Tickets Abiertos"  :porcentValue="45" :percentage="null" src-img="../../src/assets/icons/logout.svg"/>
             <ticketInfoCard title="Tickets Completados" :porcentValue="75" percentage="%" src-img="../../src/assets/icons/logout.svg"/>
         </div>
-       <div class="w-full h-2/3 px-5 py-2 ">
-            <DataTable  :data="elementos" :titles="['nombre','edad','pais','random']" :elements-per-page="10"  @picked-element="showPickedElement"/>
+       <div class="w-full h-3/4 px-5 py-2">
+            <DataTable  :data="elementos" :titles="['nombre','edad','pais','random']" :elements-per-page="20"  @picked-element="showPickedElement"/>
        </div>
     </div>
 </template>

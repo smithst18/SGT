@@ -1,6 +1,6 @@
 import { createRouter, createWebHistory } from 'vue-router'
 import ticketsRoutes from "@/modules/ticket/router"
-import LoginView from '../views/LoginView.vue';
+import LoginView from '@/views/LoginView.vue';
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
@@ -11,7 +11,7 @@ const router = createRouter({
       component: LoginView
     },
     {
-      path: "/home",
+      path: "/",
       name:"home",
       //beforeEnter: [ isAuthGuard ],
       component: () => import(/* webpackChunkName: "Vista principal donde se cargan las rutas"*/"@/views/HomeView.vue"),

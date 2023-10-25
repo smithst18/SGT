@@ -1,6 +1,6 @@
 <script lang="ts" setup>
   import { ref } from 'vue';
-  import SidebarDropdown from '../DropDown.vue';
+  import SidebarDropdown from '@/components/sidebar/DropDown.vue';
   import userCard from '../commons/userCard.vue';
   const emits = defineEmits<{
     (event:'OnToggleSidebar',is_spanded:boolean ):void
@@ -9,9 +9,9 @@
   const is_spanded = ref(false);
 
   const ticketLinks = [
-    { to: 'userHome'   , name:'Inicio',       icon:['fa','house']             },
-    { to: 'chatHome'   , name:'Chat',         icon:['fa','comment']           },
-  ]
+    { to: 'dashboard'    , name:'Inicio',      icon:['fa','comment']      },
+    { to: 'pending'      , name:'Pendientes',  icon:['fa','comment']      },
+  ];
 
 
   const toggleMenu = () => {
@@ -88,7 +88,6 @@ aside{
   .menu {
     margin: 0 -1rem;
     @apply mt-16;
-
     
     .menu-item {
       @apply flex items-center relative; 
@@ -141,7 +140,7 @@ aside{
     .menu-list {
        @apply left-0 mt-0;
        li{
-        @apply ml-8 my-3
+        @apply ml-8 my-2
        }
     }
     .logout-icon{

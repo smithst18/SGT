@@ -1,6 +1,6 @@
 <script lang="ts" setup>
-    import { ref } from 'vue';
-    import type { TicketLink } from '@/interfaces/navbarInterface';
+    import { onMounted, ref } from 'vue';
+    import type { TicketLink } from '@/interfaces/sidebarInterface';
     const props = defineProps<{
       icon: string,
       title: string,
@@ -30,10 +30,10 @@
       <ol class="menu-list" v-if="list_is_spanded && is_spanded">
         <li v-for="link in links">
           <router-link
-            :to="link.to"
-            v-slot="{isActive}"
+            :to="{ name:link.to }"
+            v-slot="{ isActive }"
             >
-            {{link.name}}
+            <span :class="{'text-primary-light': isActive}"> {{ link.name }} </span>
           </router-link>
         </li>
       </ol>
