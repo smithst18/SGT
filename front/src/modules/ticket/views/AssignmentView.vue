@@ -17,11 +17,5 @@ const TicketInfoCard = defineAsyncComponent(() => import('@/modules/ticket/compo
 </template>
 
 <style scoped lang='scss'>
-::-webkit-scrollbar{
-    @apply bg-secondary w-2
-}
 
-::-webkit-scrollbar-thumb{
-    @apply bg-primary-light w-2 rounded-md
-}
 </style>

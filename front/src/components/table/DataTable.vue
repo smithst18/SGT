@@ -108,13 +108,9 @@ table tbody tr td:first-child {
 thead {
     box-shadow: 0 1px 0 0 rgba(0, 0, 0, 0.1);
 }
-::-webkit-scrollbar{
-    @apply bg-secondary w-2
-}
+
 td::-webkit-scrollbar{
     @apply hidden
 }
-::-webkit-scrollbar-thumb{
-    @apply bg-primary-light w-2 rounded-md
-}
+
 </style>
