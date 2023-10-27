@@ -11,10 +11,10 @@ const NavbarItem = defineAsyncComponent(() => import('@/components/navbar/Navbar
                 <NavbarItem title="No asignados" :notifications="3" rout-name="unAssigned" type="unAssigned"/>
             </li>
             <li class=""> 
-                <NavbarItem title="Asignados" :notifications="0" rout-name="assigned" type="assigned"/>
+                <NavbarItem title="Asignados" :notifications="5" rout-name="assigned" type="assigned"/>
             </li>
             <li class=""> 
-                <NavbarItem title="Completados" :notifications="0" rout-name="closed" type="closed"/>
+                <NavbarItem title="Completados" :notifications="2" rout-name="closed" type="closed"/>
             </li>
         </ul>
         <!-- aditionals elements for navbar -->
