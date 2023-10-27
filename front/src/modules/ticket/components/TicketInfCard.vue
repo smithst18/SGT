@@ -1,26 +1,38 @@
 <script setup lang='ts'>
-
+import type { TicketInterface } from "@/interfaces/ticketInterfaces";
+const props = defineProps<{
+    ticket: TicketInterface,
+}>();
 </script>
 
 <template>
-    <div class="border border-blue-600 p-5 rounded-md shadow-md my-4 h-[185px] w-full grid grid-rows-5 grid-cols-1"> 
-        <div class="border flex items-center mb-5 row-span-1">
-            <h4 class="text-base font-medium">Problema con computadora lenta</h4>
-            <p class="ml-auto border font-medium">23 oct 8:27</p>
+    <div class="p-5 rounded-md shadow-md my-4 h-[185px] w-full grid grid-rows-5 grid-cols-1"> 
+        <div class="flex items-center mb-5 row-span-1">
+            <h4 class="text-base font-medium">{{ ticket.title }}.</h4>
+            <p class="ml-auto font-medium">{{ ticket.date }}</p>
         </div>
-        <div class="border border-green-600 text-sm font-light mb-5 row-span-3">
+        <div class="text-sm font-light mb-5 row-span-3">
             <p class="overflow-y-auto break-words h-full">
-                Lorem ipsum, dolor sit amet consectetur adipisicing elit. Quos assumenda minus laudantium quia aliquam voluptate qui cupiditate! Molestiae cumque, distinctio dignissimos nihil ut a neque ab sequi quam obcaecati aspernatur.Lorem ipsum dolor sit amet consectetur adipisicing elit. Veniam sint sit natus laborum, sequi neque, iste culpa harum ad dicta in fuga quia dolor laudantium numquam aut quidem! Quis, sit! Lorem ipsum dolor sit, amet consectetur adipisicing elit. Tempora nam ex quidem explicabo ad rem, reprehenderit omnis cum tempore libero rerum, voluptas dolore odio sint obcaecati est incidunt. Ullam, ex? Lorem ipsum dolor sit amet consectetur adipisicing elit. Atque voluptatem adipisci perspiciatis magnam, labore, animi rem sapiente distinctio consequuntur blanditiis tempora, culpa iusto recusandae alias quibusdam veniam eveniet? Animi, aut? Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quidem quod consectetur, unde distinctio doloribus veniam reprehenderit enim minima dolor nam temporibus ut doloremque illum, eligendi commodi hic impedit vero! Nemo!
+                {{ ticket.description }}
             </p>
         </div>
-        <div class="border flex text-xs mt-auto font-medium row-span-1">
-            <div class="border rounded-full mr-3 px-2 py-1">Urgente</div>
-            <div class="border rounded-full px-2 py-1">#12566</div>
-            <div class="border rounded-full px-2 py-1">#Consultoria juridica</div>
-            <div class="border rounded-full px-2 py-1">#Maria Centolla</div>
+        <div class="flex text-xs mt-auto font-medium row-span-1">
+            <div class="ticket_tag"
+            :class="[
+                { 'bg-red-500 text-white': ticket.status === 'urgente' },
+                { 'bg-yellow-500': ticket.status === 'abierto' },
+                { 'bg-blue-500 text-white': ticket.status === 'cerrado' },
+                { 'bg-orange-500 text-white': ticket.status === 'espera' }
+             ]">{{ ticket.status }}</div>
+            <div class="ticket_tag bg-slate-500">#{{ ticket.id }}</div>
+            <div class="ticket_tag bg-slate-300">#{{ ticket.requester }}</div>
+            <div class="ticket_tag bg-slate-300">#{{ ticket.location  }}</div>
         </div>
     </div>
 </template>
 
 <style scoped lang='scss'>
+.ticket_tag{
+    @apply rounded-full mr-3 px-3 py-1
+}
 </style>

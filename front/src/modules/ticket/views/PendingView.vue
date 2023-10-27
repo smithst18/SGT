@@ -16,22 +16,22 @@ import { useRouter } from 'vue-router';
 <template>
     <div class="w-full h-full ">
         <!-- TITTLE AND BUTTON FOR CREATE NEW TICKETS -->
-        <div class="border border-blue-500 w-full h-[15%]">
-            <div class="flex items-center w-full h-full px-5 border">
-                <h1 class="text-2xl border">Tickets Pendientes y Cerrados</h1>
+        <div class="w-full h-[15%]">
+            <div class="flex items-center w-full h-full px-5">
+                <h1 class="text-2xl">Tickets Pendientes y Cerrados</h1>
                 <BaseButton  class="ml-auto" title="Nuevo Ticket" :fullSize="false"/>
             </div>
         </div>
         <!--BOX WITH TICKETS  AND STUFF-->
-        <div class="border border-red-500 w-full h-[85%] pl-2">
+        <div class="w-full h-[85%] pl-2">
             <!-- navigation bar -->
-            <NavbarComponent class="h-[10%] border pl-5">
+            <NavbarComponent class="h-[10%] pl-5 shadow-md">
                 <template v-slot:extra-element>
                     <SearchingBar/>
                 </template>
             </NavbarComponent>
             <!-- body -->
-            <div class="border border-green-600 h-[90%] w-full max-w-max">
+            <div class="h-[90%] w-full max-w-max">
                 <router-view/>
             </div>
         </div>
