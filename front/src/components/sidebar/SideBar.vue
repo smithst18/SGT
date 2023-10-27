@@ -10,7 +10,7 @@
 
   const ticketLinks = [
     { to: 'dashboard'    , name:'Inicio',      icon:['fa','comment']      },
-    { to: 'pending'      , name:'Pendientes',  icon:['fa','comment']      },
+    { to: 'pending'      , name:'Gestion',  icon:['fa','comment']      },
   ];
 
 

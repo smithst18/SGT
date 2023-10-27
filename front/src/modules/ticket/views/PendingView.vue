@@ -1,10 +1,16 @@
 <script setup lang="ts">
-import { defineAsyncComponent } from 'vue';
-const BaseButton = defineAsyncComponent(() => import('@/components/commons/MainButton.vue'));
-const navbar = defineAsyncComponent(() => import('@/components/navbar/NavBar.vue'));
-    const showdata = (event:string) =>{
-        console.log(event)
-    }
+import { defineAsyncComponent, onMounted } from 'vue';
+import { useRouter } from 'vue-router';
+    const BaseButton = defineAsyncComponent(() => import('@/components/commons/MainButton.vue'));
+    const NavbarComponent = defineAsyncComponent(() => import('@/components/navbar/NavBar.vue'));
+    const SearchingBar = defineAsyncComponent(() => import('@/components/commons/SearchBar.vue'));
+
+    const router = useRouter();
+
+    onMounted(() => {
+        // a tener en cuenta de esta manera no tenemos los params en tiempo real IMPORTANTE
+        router.push({ name: 'unAssigned', params: { type: 'unAssigned' } });
+    });
 </script>
 
 <template>
@@ -17,15 +23,15 @@ const navbar = defineAsyncComponent(() => import('@/components/navbar/NavBar.vue
             </div>
         </div>
         <!--BOX WITH TICKETS  AND STUFF-->
-        <div class="border border-red-500 w-full h-[85%] px-5">
+        <div class="border border-red-500 w-full h-[85%] pl-2">
             <!-- navigation bar -->
-            <navbar>
+            <NavbarComponent class="h-[10%] border pl-5">
                 <template v-slot:extra-element>
-                    aqui va los demas widgets
+                    <SearchingBar/>
                 </template>
-            </navbar>
+            </NavbarComponent>
             <!-- body -->
-            <div>
+            <div class="border border-green-600 h-[90%] w-full max-w-max">
                 <router-view/>
             </div>
         </div>
