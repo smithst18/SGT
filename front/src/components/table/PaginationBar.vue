@@ -50,7 +50,10 @@ onMounted(() => {
 
         <li
           v-for="(page, index) in visiblePages"
-          :class="activeIndex === page ? 'bg-primary-light' : 'bg-white'"
+          :class="[
+            { 'bg-primary text-white': activeIndex === page },
+            { 'text-zinc-600': activeIndex !== page },
+          ]"
           :key="page"
           @click="clickedPage(page,index)">
           <a href="#"> {{ page }} </a>
@@ -67,6 +70,6 @@ onMounted(() => {
     @apply list-none flex items-center justify-end;
   }
   nav>ul>li {
-    @apply border rounded-md mx-1 py-1 w-8 h-8 text-center cursor-pointer font-semibold text-third hover:text-white hover:bg-primary-light;
+    @apply border rounded-md mx-1 py-1 w-8 h-8 text-center cursor-pointer hover:text-white hover:bg-primary;
   }
 </style>

@@ -855,9 +855,9 @@ const showPickedElement = (event:string) =>{
 <template>
     <div class="w-full h-full border">
         <div class="flex items-center justify-around w-full h-1/4">
-            <ticketInfoCard title="Tickets Cerrados" :porcentValue="32"  :percentage="null" src-img="../../src/assets/icons/logout.svg"/>
-            <ticketInfoCard title="Tickets Abiertos"  :porcentValue="45" :percentage="null" src-img="../../src/assets/icons/logout.svg"/>
-            <ticketInfoCard title="Tickets Completados" :porcentValue="75" percentage="%" src-img="../../src/assets/icons/logout.svg"/>
+            <ticketInfoCard title="Tickets Cerrados" :porcentValue="32"  :percentage="null" icon="description"/>
+            <ticketInfoCard title="Tickets Abiertos"  :porcentValue="45" :percentage="null" icon="description"/>
+            <ticketInfoCard title="Tickets Completados" :porcentValue="75" percentage="%" icon="description"/>
         </div>
        <div class="w-full h-3/4 px-5 py-2">
             <DataTable  :data="elementos" :titles="['nombre','edad','pais','random']" :elements-per-page="20"  @picked-element="showPickedElement"/>
