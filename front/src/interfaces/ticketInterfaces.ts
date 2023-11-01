@@ -6,4 +6,5 @@ export interface TicketInterface{
     date: string;
     requester:string;
     location:string;
+    type:string
 }

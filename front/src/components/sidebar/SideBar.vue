@@ -31,19 +31,14 @@
       <img alt="SGTI_LOGO" id="logo" src="@/assets/imgs/artilogohorizontal.png">
     </div>
     <div class="mx-0 px-0" :class="!is_spanded ? 'inline' : 'hidden'">
-      <img alt="SGTI_LOGO" id="logo" src="@/assets/imgs/sidebardminilogo.webp">
+      <img alt="SGTI_LOGO" id="logo" src="@/assets/imgs/sidebarminilogoazul.webp">
     </div>
 
     <!-- Toggle button -->
     <button 
       id="toggle-wrap"  
-      class="absolute w-6 h-6 -right-2 top-20 z-100 shadow-md rounded-full material-symbols-outlined text-[18px] transition duration-700 ease-out hover:-translate-x-1" 
-      :class="[
-        { 'bg-primary' : is_spanded },
-        { 'text-secondary' : is_spanded },
-        { 'bg-secondary' : !is_spanded },
-        { 'text-primary' : !is_spanded }
-      ]"
+      class="absolute w-6 h-6 -right-2 top-20 z-100 shadow-md rounded-full material-symbols-outlined text-[18px] transition duration-700 ease-out hover:-translate-x-1 bg-primary text-secondary" 
+     
       @click="toggleMenu">
       chevron_right
     </button>
@@ -67,7 +62,7 @@
 
 <style lang="scss">
 aside{
-  @apply bg-primary flex flex-col relative p-[1rem] text-secondary;
+  @apply bg-secondary flex flex-col relative p-[1rem] text-gray-500;
   width: calc(2rem + 32px);
   transition: 0.3s ease-out;
   
@@ -91,11 +86,11 @@ aside{
     @apply mt-16;
     
     .menu-item {
-      @apply flex items-center relative; 
+      @apply flex items-center relative rounded-sm; 
       padding: 0.5rem 1rem;
       transition: 0.2s ease-out;
       &:hover{
-        @apply text-primary bg-secondary
+        @apply text-secondary bg-primary rounded-sm
       }
     }
     .material-symbols-sharp { 
@@ -126,7 +121,7 @@ aside{
     .menu-item {
       @apply rounded-md;
       &:hover {
-        @apply text-secondary bg-primary
+        @apply text-secondary bg-primary rounded-md
       }
     }
     .material-symbols-sharp { 

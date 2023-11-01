@@ -13,8 +13,8 @@
           <div class="modal-header flex items-center">
             <slot name="header">
             </slot>
-            <button class="modal-default-button ml-auto w-8 h-8" @click="$emit('close-modal')">
-                <span class="material-symbols-outlined">
+            <button class="modal-default-button ml-auto flex items-center rounded" @click="$emit('close-modal')">
+                <span class="material-symbols-outlined text-xl text-red-400">
                     close
                 </span>
             </button>

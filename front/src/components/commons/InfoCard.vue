@@ -1,9 +1,9 @@
 <script setup lang='ts'>
     const props = defineProps<{
-        porcentValue:number
+        porcentValue: number
         percentage: string | null,
-        title:string,
-        icon:string
+        title: string,
+        icon: string
     }>();
 </script>
     

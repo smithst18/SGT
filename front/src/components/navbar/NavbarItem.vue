@@ -16,7 +16,7 @@
                     {{ title }}
                 </div>
                 <!-- NOTIFICATIONS ICON -->
-                <div class="relative ml-2" v-if="notifications > 1 && isActive">
+                <div class="relative ml-2" v-if="notifications > 1">
                     <div class="w-[16px] h-[16px] left-0 top-0 absolute bg-red-600 bg-opacity-70 rounded-full"></div>
                     <div class="w-1 h-3 left-[5px] top-[3px] absolute text-center text-white text-xs font-normal leading-none">
                         {{ notifications }}

@@ -21,19 +21,19 @@ export default {
                 { 
                     path: "asignados/:type?", 
                     name:"assigned",
-                    component:() => import(/* webpackChunkName: "tech principal view "*/"@/modules/ticket/views/AssignmentView.vue"),
+                    component:() => import(/* webpackChunkName: "tech principal view "*/"@/modules/ticket/pages/AssignmentView.vue"),
                     props:true,
                 },
                 { 
                     path: "no-asignados/:type?", 
                     name:"unAssigned",
-                    component:() => import(/* webpackChunkName: "tech principal view "*/"@/modules/ticket/views/AssignmentView.vue"),
+                    component:() => import(/* webpackChunkName: "tech principal view "*/"@/modules/ticket/pages/AssignmentView.vue"),
                     props:true,
                 },
                 { 
                     path: "completados/:type?", 
                     name:"closed",
-                    component:() => import(/* webpackChunkName: "tech principal view "*/"@/modules/ticket/views/AssignmentView.vue"),
+                    component:() => import(/* webpackChunkName: "tech principal view "*/"@/modules/ticket/pages/AssignmentView.vue"),
                     props:true,
                 },
             ],

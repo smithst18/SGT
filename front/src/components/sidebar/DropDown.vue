@@ -18,7 +18,7 @@
 
 <template>
   <div @click="emit('inFocus')" class="pb-2 cursor-pointer">
-    <div class="menu-item" @click="toggleList" >
+    <div class="menu-item" @click="toggleList" :class="{'bg-primary text-secondary': list_is_spanded}">
       <span class="material-symbols-sharp">{{ props.icon }}</span>
       <span class="menu-text">{{ props.title }}</span>
       <span 

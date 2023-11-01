@@ -13,7 +13,7 @@ const props = defineProps<{
         </div>
         <div class="text-sm font-light mb-5 row-span-2">
             <p class="overflow-y-auto break-words h-full">
-                {{ ticket.description }}
+                {{ ticket.description }}.
             </p>
         </div>
         <div class="flex text-xs mt-auto font-medium row-span-1">
@@ -26,6 +26,7 @@ const props = defineProps<{
             <div class="ticket_tag bg-slate-200 border border-slate-400 text-slate-600">#{{ ticket.id }}</div>
             <div class="ticket_tag bg-slate-200 border border-slate-400 text-slate-600">#{{ ticket.requester }}</div>
             <div class="ticket_tag bg-slate-200 border border-slate-400 text-slate-600">#{{ ticket.location  }}</div>
+            <div class="ticket_tag bg-slate-200 border border-slate-400 text-slate-600">#{{ ticket.type  }}</div>
         </div>
     </div>
 </template>
