@@ -22,12 +22,8 @@
   ];
 
   const adminLinks = [
-    { to: 'imbox'    , name:'Registro'       ,      icon:'inbox'         },
-    { to: 'favorite'      , name:'Administrar'   ,      icon:'star'          },
-    { to: 'sended'      , name:'Enviados'    ,      icon:'send'          },
-    { to: 'clip'      , name:'Borradores'  ,      icon:'description'   },
-    { to: 'spam'      , name:'spam'        ,      icon:'info'          },
-    { to: 'deleted'      , name:'Papelera'    ,      icon:'delete'        },
+    { to: 'signin'    ,     name:'Registro'    ,      icon:'person_add'         },
+    { to: 'management'      , name:'Gestion'   ,      icon:'manage_accounts'          },
   ];
 
 

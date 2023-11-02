@@ -1,7 +1,7 @@
 
 export default {
     name:"mails",
-    redirect: { name:"menu" },
+    redirect: { name:"imbox" },
     children:[
         {
             path:'inicio',

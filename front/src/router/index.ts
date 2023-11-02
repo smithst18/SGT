@@ -1,6 +1,7 @@
 import { createRouter, createWebHistory } from 'vue-router'
 import ticketsRoutes from "@/modules/ticket/router"
 import mailRoutes from "@/modules/mail/router"
+import managementRoutes from "@/modules/users/router"
 import LoginView from '@/views/LoginView.vue';
 
 const router = createRouter({
@@ -20,7 +21,7 @@ const router = createRouter({
       children:[
         { path: "tickets", ...ticketsRoutes },
         { path: "mail", ...mailRoutes },
-        //{ path: "chats", ...chatRoutes },
+        { path: "user", ...managementRoutes },
         //{ path: "mail", ...chatRoutes },
       ]
     },
