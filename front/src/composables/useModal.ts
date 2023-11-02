@@ -6,6 +6,6 @@ const showModal = ref(modal);
 
     return {
         showModal,
-        showModalAction: () => showModal.value = !showModal.value,
+        toggleModal: () => showModal.value = !showModal.value,
     };
 };

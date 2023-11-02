@@ -13,9 +13,6 @@ const NavbarItem = defineAsyncComponent(() => import('@/components/navbar/Navbar
             <li class=""> 
                 <NavbarItem title="Asignados" :notifications="5" rout-name="assigned" type="assigned"/>
             </li>
-            <li class=""> 
-                <NavbarItem title="Completados" :notifications="2" rout-name="closed" type="closed"/>
-            </li>
         </ul>
         <!-- aditionals elements for navbar -->
         <div class="ml-auto">

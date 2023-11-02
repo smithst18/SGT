@@ -1,15 +1,16 @@
 <script setup lang="ts">
-import { defineAsyncComponent, onMounted } from 'vue';
-import { useRouter } from 'vue-router';
-import { useModal } from "@/composables/useModal";
-import { useForm } from 'vee-validate';
-const BaseButton = defineAsyncComponent(() => import('@/components/commons/MainButton.vue'));
-const NavbarComponent = defineAsyncComponent(() => import('@/components/navbar/NavBar.vue'));
-const SearchingBar = defineAsyncComponent(() => import('@/components/commons/SearchBar.vue'));
-const TicketModal = defineAsyncComponent(() => import('@/components/commons/GenericModal.vue'));
-const router = useRouter();
-const { showModal, showModalAction } = useModal(true);
-const { values, defineInputBinds, errors, handleSubmit } = useForm();
+    import { defineAsyncComponent, onMounted } from 'vue';
+    import { useRouter } from 'vue-router';
+    import { useModal } from "@/composables/useModal";
+    import { useForm } from 'vee-validate';
+    const BaseButton = defineAsyncComponent(() => import('@/components/commons/MainButton.vue'));
+    const NavbarComponent = defineAsyncComponent(() => import('@/components/navbar/NavBar.vue'));
+    const SearchingBar = defineAsyncComponent(() => import('@/components/commons/SearchBar.vue'));
+    const FilterButton = defineAsyncComponent(() => import('@/components/commons/FilterButton.vue'));
+    const TicketModal = defineAsyncComponent(() => import('@/components/commons/GenericModal.vue'));
+    const router = useRouter();
+    const { showModal, toggleModal } = useModal(false);
+    const { values, defineInputBinds, errors, handleSubmit } = useForm();
 
     const title = defineInputBinds('title');
     const description = defineInputBinds('description');
@@ -31,7 +32,7 @@ const { values, defineInputBinds, errors, handleSubmit } = useForm();
         <div class="w-full h-[15%]">
             <div class="flex items-center w-full h-full px-5">
                 <h1 class="text-2xl font-bold">Tickets</h1>
-                <BaseButton  class="ml-auto" title="Nuevo Ticket" :fullSize="false" @click="showModalAction"/>
+                <BaseButton  class="ml-auto" title="Nuevo Ticket" :fullSize="false" @click="toggleModal"/>
             </div>
         </div>
         <!--BOX WITH TICKETS  AND STUFF-->
@@ -39,7 +40,10 @@ const { values, defineInputBinds, errors, handleSubmit } = useForm();
             <!-- navigation bar -->
             <NavbarComponent class="h-[10%] pl-5 border-b-2">
                 <template v-slot:extra-element>
-                    <SearchingBar/>
+                    <div class="flex items-center">
+                        <SearchingBar class="mr-5"/>
+                        <FilterButton :options="['fecha','tipo']"/>
+                    </div>
                 </template>
             </NavbarComponent>
             <!-- body -->
@@ -48,7 +52,7 @@ const { values, defineInputBinds, errors, handleSubmit } = useForm();
             </div>
         </div>
         <teleport to='body'>
-            <TicketModal :show-modal="showModal" @close-modal="showModalAction">
+            <TicketModal :show-modal="showModal" @close-modal="toggleModal">
                 <template #header>
                     <div class="flex items-center justify-center w-full h-10 mx-5">
                         <div class="w-8 h-9">

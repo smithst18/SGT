@@ -1,7 +1,7 @@
 
 export default {
     name:"tickets",
-    redirect: { name:"menu" },
+    redirect: { name:"dashboard" },
     children:[
         {
             path:'inicio',

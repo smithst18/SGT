@@ -9,8 +9,25 @@
   const is_spanded = ref(false);
 
   const ticketLinks = [
-    { to: 'dashboard'    , name:'Inicio',      icon:['fa','comment']      },
-    { to: 'pending'      , name:'Gestion',  icon:['fa','comment']      },
+    { to: 'dashboard'    , name:'Inicio',       icon:'home'   },
+    { to: 'pending'      , name:'Gestion',      icon:'fact_check'   },
+  ];
+  const mailLinks = [
+    { to: 'imbox'    , name:'Inbox'       ,      icon:'inbox'         },
+    { to: 'favorite'      , name:'Favoritos'   ,      icon:'star'          },
+    { to: 'sended'      , name:'Enviados'    ,      icon:'send'          },
+    { to: 'clip'      , name:'Borradores'  ,      icon:'description'   },
+    { to: 'spam'      , name:'spam'        ,      icon:'info'          },
+    { to: 'deleted'      , name:'Papelera'    ,      icon:'delete'        },
+  ];
+
+  const adminLinks = [
+    { to: 'imbox'    , name:'Registro'       ,      icon:'inbox'         },
+    { to: 'favorite'      , name:'Administrar'   ,      icon:'star'          },
+    { to: 'sended'      , name:'Enviados'    ,      icon:'send'          },
+    { to: 'clip'      , name:'Borradores'  ,      icon:'description'   },
+    { to: 'spam'      , name:'spam'        ,      icon:'info'          },
+    { to: 'deleted'      , name:'Papelera'    ,      icon:'delete'        },
   ];
 
 
@@ -46,9 +63,9 @@
     <!--menu options-->
     <div class="menu max-h-[65%]  overflow-y-auto" :class="{'px-[1rem]':is_spanded}">
       <SidebarDropdown title="Tickets" icon="local_activity" :links="ticketLinks" :is_spanded="is_spanded" @in-focus="spandDropdown"/>
-      <!-- <SidebarDropdown title="Correo" icon="mail" :options="[]" :is_spanded="is_spanded" @in-focus="spandDropdown"/>
-      <SidebarDropdown title="Chat" icon="chat" :options="[]" :is_spanded="is_spanded" @in-focus="spandDropdown"/>
-      <SidebarDropdown title="Gestion" icon="manage_accounts" :options="[]" :is_spanded="is_spanded" @in-focus="spandDropdown"/> -->
+      <SidebarDropdown title="Mail" icon="mail" :links="mailLinks" :is_spanded="is_spanded" @in-focus="spandDropdown"/>
+      <SidebarDropdown title="Gestion" icon="manage_accounts" :links="adminLinks" :is_spanded="is_spanded" @in-focus="spandDropdown"/>
+      <!--<SidebarDropdown title="Gestion" icon="manage_accounts" :options="[]" :is_spanded="is_spanded" @in-focus="spandDropdown"/> -->
     </div>
     <!--user config-->
     <div class="flex mt-auto mb-5">
@@ -135,9 +152,6 @@ aside{
     }
     .menu-list {
        @apply left-0 mt-0;
-       li{
-        @apply ml-8 my-2
-       }
     }
     .logout-icon{
       @apply text-aux;

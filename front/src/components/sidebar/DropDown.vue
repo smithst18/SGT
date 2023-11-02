@@ -31,9 +31,12 @@
         <li v-for="link in links">
           <router-link
             :to="{ name:link.to }"
-            v-slot="{ isActive }"
-            >
-            <span :class="{'text-primary-light': isActive}"> {{ link.name }} </span>
+            v-slot="{ isActive }">
+            <div class="flex items-center rounded-md my-2 mx-5 px-2" :class="{'text-secondary bg-primary ': isActive}">
+              <p class="material-symbols-outlined mr-3 text-lg">{{ link.icon }}</p>
+              <p> {{ link.name }} </p>
+              <!-- <p class="ml-auto text-xs"> 2 </p> -->
+            </div>
           </router-link>
         </li>
       </ol>
