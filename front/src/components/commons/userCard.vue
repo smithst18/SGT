@@ -8,7 +8,7 @@
 </script>
 
 <template>
-    <div class="flex items-center w-full"> 
+    <div class="flex items-center w-full h-full"> 
         <!-- USER ICON-->
         <div class="rounded-full overflow-hidden flex items-center bg-secondary shadow-lg hover:opacity-70" :class="[
             { 'w-10' : is_spanded   },

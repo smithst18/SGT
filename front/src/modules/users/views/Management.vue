@@ -3,7 +3,7 @@
     import { useRouter } from 'vue-router';
     const NavbarComponent = defineAsyncComponent(() => import('@/components/navbar/NavBar.vue'));
     const SearchingBar = defineAsyncComponent(() => import('@/components/commons/SearchBar.vue'));
-    const FilterButton = defineAsyncComponent(() => import('@/components/commons/FilterButton.vue'));
+    const AddButton = defineAsyncComponent(() => import('@/components/commons/MainButton.vue'));
     const router = useRouter();
 
     onMounted(() => {
@@ -21,7 +21,7 @@
                     <template v-slot:extra-element>
                         <div class="flex items-center">
                             <SearchingBar class="mr-5"/>
-                            <FilterButton :options="['fecha','tipo']"/>
+                            <AddButton :full-size="false" title="Añadir" icon="person_add"/>
                         </div>
                     </template>
                 </NavbarComponent>

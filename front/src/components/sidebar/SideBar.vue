@@ -92,7 +92,8 @@ aside{
     cursor: auto;
   }
   .menu::-webkit-scrollbar{
-    display: none;
+    display: none; 
+    // permite que se vea o no la barra de scroll en la barra de navegacion
   }
   .menu {
     margin: 0 -1rem;
@@ -120,7 +121,9 @@ aside{
   &.is_spanded {
     width: var(--sidebar-width);
     @apply bg-secondary text-third;
-
+    .menu::-webkit-scrollbar{
+      display: block;
+    }
     .menu{
       @apply mt-8;
     }
