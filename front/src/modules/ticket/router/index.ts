@@ -30,12 +30,6 @@ export default {
                     component:() => import(/* webpackChunkName: "tech principal view "*/"@/modules/ticket/pages/AssignmentView.vue"),
                     props:true,
                 },
-                { 
-                    path: "completados/:type?", 
-                    name:"closed",
-                    component:() => import(/* webpackChunkName: "tech principal view "*/"@/modules/ticket/pages/AssignmentView.vue"),
-                    props:true,
-                },
             ],
             component:() => import(/* webpackChunkName: "tech pending tickets view "*/"@/modules/ticket/views/PendingView.vue"),
         },

@@ -21,7 +21,7 @@ const router = createRouter({
       children:[
         { path: "tickets", ...ticketsRoutes },
         { path: "mail", ...mailRoutes },
-        { path: "user", ...managementRoutes },
+        { path: "gestion", ...managementRoutes },
         //{ path: "mail", ...chatRoutes },
       ]
     },

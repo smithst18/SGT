@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { onMounted, ref } from "vue";
+import { computed, ref } from "vue";
 
 const props = defineProps<{
     pages:number,
@@ -34,15 +34,15 @@ const nextArroy = () => {
     emit("nextPage");
   }
 };
+const endOfPage =  computed(() => activeIndex.value * props.elementsPerPage);
+const startOfPage = computed(() => endOfPage.value - props.elementsPerPage + 1);
 
-onMounted(() => {
-});
 </script>
 
 <template>
   <div class="flex items-center w-full h-full">
     <div class="">
-      <span class="ml-2">{{ elementsPerPage }} elementos de {{ results }} resultados totales</span>
+      <span class="ml-2">{{ startOfPage }} a {{ endOfPage }} elementos de {{ results }} resultados totales</span>
     </div>
     <nav class="ml-auto">
       <ul class="">

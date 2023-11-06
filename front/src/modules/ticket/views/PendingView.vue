@@ -38,7 +38,7 @@
         <!--BOX WITH TICKETS  AND STUFF-->
         <div class="w-full h-[85%] pl-2">
             <!-- navigation bar -->
-            <NavbarComponent class="h-[10%] pl-5 border-b-2">
+            <NavbarComponent class="h-[10%] pl-5 border-b-2" :routParams="[{title:'Por asignar',name:'unAssigned',notifications:3,type:'unAssigned'},{title:'asignados',name:'assigned',notifications:2,type:'assigned'}]">
                 <template v-slot:extra-element>
                     <div class="flex items-center">
                         <SearchingBar class="mr-5"/>

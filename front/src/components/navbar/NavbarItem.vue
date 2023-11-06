@@ -29,7 +29,7 @@
 
 <style scoped lang='scss'>
     .active {
-        @apply mr-8 underline underline-offset-[8px] decoration-solid decoration-2 decoration-primary font-bold
+        @apply mr-8 underline underline-offset-[8px] decoration-solid decoration-2 decoration-primary
     } 
     .unactive {
         @apply mr-8 opacity-75 no-underline font-normal

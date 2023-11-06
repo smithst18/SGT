@@ -1,17 +1,19 @@
 <script setup lang="ts">
-import { defineAsyncComponent } from 'vue';
-const NavbarItem = defineAsyncComponent(() => import('@/components/navbar/NavbarItem.vue'));
+    import { defineAsyncComponent } from 'vue';
+    import type { NavbarLink } from "@/interfaces/sidebarInterface"
+    const NavbarItem = defineAsyncComponent(() => import('@/components/navbar/NavbarItem.vue'));
+    const props = defineProps<{
+        routParams:Array<NavbarLink>
+        
+    }>();
 
 </script>
 
 <template>
      <nav class="flex items-center">
         <ul class="flex">
-            <li class=""> 
-                <NavbarItem title="No asignados" :notifications="3" rout-name="unAssigned" type="unAssigned"/>
-            </li>
-            <li class=""> 
-                <NavbarItem title="Asignados" :notifications="5" rout-name="assigned" type="assigned"/>
+            <li class="" v-for="rout in routParams" :key="rout.name"> 
+                <NavbarItem :title="rout.title" :notifications="rout.notifications" :rout-name="rout.name" :type="rout.type"/>
             </li>
         </ul>
         <!-- aditionals elements for navbar -->

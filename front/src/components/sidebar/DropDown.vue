@@ -1,24 +1,33 @@
 <script lang="ts" setup>
-    import { onMounted, ref } from 'vue';
-    import type { TicketLink } from '@/interfaces/sidebarInterface';
-    const props = defineProps<{
-      icon: string,
-      title: string,
-      links: Array<TicketLink>,
-      is_spanded: boolean
-    }>();
-    
-    const emit = defineEmits<{
-        (event:'inFocus'):void,
-    }>();
+  import { onMounted, ref, computed } from 'vue';
+  import type { TicketLink } from '@/interfaces/sidebarInterface';
+  import { useRoute } from 'vue-router';
+  const route = useRoute();
 
-    const list_is_spanded = ref(false);
-    const toggleList = () => list_is_spanded.value = !list_is_spanded.value;
+  //this property allows the navbar father element change is own color when the main rout is active
+  const isActive = computed(() =>{
+    let rut = route.path.split('/');
+    return rut[1] == props.title.toLowerCase() ? true : false
+  })
+
+  const props = defineProps<{
+    icon: string,
+    title: string,
+    links: Array<TicketLink>,
+    is_spanded: boolean
+  }>();
+  
+  const emit = defineEmits<{
+      (event:'inFocus'):void,
+  }>();
+
+  const list_is_spanded = ref(false);
+  const toggleList = () => list_is_spanded.value = !list_is_spanded.value;
 </script>
 
 <template>
   <div @click="emit('inFocus')" class="pb-2 cursor-pointer">
-    <div class="menu-item" @click="toggleList" :class="{'bg-primary text-secondary': list_is_spanded}">
+    <div class="menu-item" @click="toggleList" :class="{'bg-primary text-secondary': isActive}"> <!--:class="{'bg-primary text-secondary': list_is_spanded}"-->
       <span class="material-symbols-sharp">{{ props.icon }}</span>
       <span class="menu-text">{{ props.title }}</span>
       <span 
