@@ -1,6 +1,5 @@
 <script setup lang='ts'>
 import userCard from '@/components/commons/userCard.vue';
-
 const props = defineProps<{
     rol?:string
 }>();
@@ -9,14 +8,14 @@ const props = defineProps<{
 <template>
     <div class="grid grid-cols-4 capitalize"> 
         <div class="col-span-1 border ">
-            <userCard :is_spanded="false" class="cursor-pointer w-fit m-auto"/>
+            <userCard :is_spanded="false" class="cursor-pointer w-12 text-center m-auto"/>
         </div>
         <div class="col-span-1 border text-center">
             <p class="font-semibold ">
-                maria claudia
+                maria claudia.
             </p>
             <p class="text-sm opacity-80">
-                tecnologia
+                tecnologia.
             </p>
         </div>
         <div class="col-span-1 border">
@@ -29,7 +28,7 @@ const props = defineProps<{
             </p>
         </div>
         <div class="col-span-1 border">
-            hola
+            <p class="text-center mt-2">hola</p>
         </div>
     </div>
 </template>

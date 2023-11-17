@@ -8,8 +8,8 @@
 </script>
 
 <template>
-    <div class="border w-full h-full border-orange-600">
-        <div class="w-full h-[15%] grid grid-cols-4 border border-red-600">
+    <div class="w-full h-full">
+        <div class="w-full h-[15%] grid grid-cols-4">
             <div class="col-span-1 border">
 
                 <p class="flex items-center justify-center h-full">
@@ -44,12 +44,32 @@
                 </p>
             </div>
         </div>
-        <div class="w-full h-[85%] overflow-y-auto border border-purple-500"> 
+        <div class="w-full h-[85%] overflow-y-auto scrollbar-hidden"> 
+            <ManagUserCard rol="tecnico"/>
+            <ManagUserCard rol="tecnico"/>
+            <ManagUserCard rol="tecnico"/>
+            <ManagUserCard rol="tecnico"/>
+            <ManagUserCard rol="tecnico"/>
+            <ManagUserCard rol="tecnico"/>
+            <ManagUserCard rol="tecnico"/>
+            <ManagUserCard rol="tecnico"/>
+            <ManagUserCard rol="tecnico"/>
+            <ManagUserCard rol="tecnico"/>
+            <ManagUserCard rol="tecnico"/>
+            <ManagUserCard rol="tecnico"/>
+            <ManagUserCard rol="tecnico"/>
+            <ManagUserCard rol="tecnico"/>
+            <ManagUserCard rol="tecnico"/>
+            <ManagUserCard rol="tecnico"/>
+            <ManagUserCard rol="tecnico"/>
+            <ManagUserCard rol="tecnico"/>
             <ManagUserCard rol="tecnico"/>
         </div>
     </div>
 </template>
 
 <style scoped lang='scss'>
-
+.scrollbar-hidden::-webkit-scrollbar {
+    display: none;
+  }
 </style>

@@ -13,7 +13,7 @@
 </script>
 
 <template>
-    <div class="w-full h-full border border-green-700">
+    <div class="w-full h-full">
         <div class="h-1/5 pt-8">
             <h1 class="text-2xl font-bold h-2/4">Equipo</h1>
             <div class="h-2/4">
