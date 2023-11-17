@@ -7,8 +7,10 @@ const props = defineProps<{
 
 <template>
     <div class="grid grid-cols-4 capitalize"> 
-        <div class="col-span-1 border ">
-            <userCard :is_spanded="false" class="cursor-pointer w-12 text-center m-auto"/>
+        <div class="col-span-1 border flex">
+            <div class="w-12 m-auto">
+                <userCard :is_spanded="false" class="cursor-pointer w-12"/>
+            </div>
         </div>
         <div class="col-span-1 border text-center">
             <p class="font-semibold ">

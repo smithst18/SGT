@@ -12,6 +12,7 @@
             <span class="material-symbols-outlined text-xl mr-2" v-if="icon">
                 {{ props.icon }}
             </span>
-            {{ props.title }}
+            
+            <span class="m-auto">{{ props.title }}</span>
     </button>
 </template>

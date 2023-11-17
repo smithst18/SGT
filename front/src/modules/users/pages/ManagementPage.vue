@@ -1,10 +1,255 @@
 <script setup lang='ts'>
-    import { defineAsyncComponent } from 'vue';
+    import { defineAsyncComponent, onMounted, computed } from 'vue';
+    import { useDataTable } from "@/composables/useDataTble";
     const ManagUserCard = defineAsyncComponent(() => import('@/modules/users/components/ManagUserCard.vue'));
-
+    const PaginationBar = defineAsyncComponent(() => import('@/components/table/PaginationBar.vue'));
     const users = [
-        {}
-    ]
+        {
+            icono: "ruta/al/icono",
+            name: "nombre",
+            entity: "administracion",
+            rol: "tecnico",
+            conection: "fecha aleatoria"
+        },
+        {
+            icono: "ruta/al/icono",
+            name: "nombre",
+            entity: "administracion",
+            rol: "tecnico",
+            conection: "fecha aleatoria"
+        },
+        {
+            icono: "ruta/al/icono",
+            name: "nombre",
+            entity: "administracion",
+            rol: "tecnico",
+            conection: "fecha aleatoria"
+        },
+        {
+            icono: "ruta/al/icono",
+            name: "nombre",
+            entity: "administracion",
+            rol: "tecnico",
+            conection: "fecha aleatoria"
+        },
+        {
+            icono: "ruta/al/icono",
+            name: "nombre",
+            entity: "administracion",
+            rol: "administrador",
+            conection: "fecha aleatoria"
+        },
+        {
+            icono: "ruta/al/icono",
+            name: "nombre",
+            entity: "administracion",
+            rol: "tecnico",
+            conection: "fecha aleatoria"
+        },
+        {
+            icono: "ruta/al/icono",
+            name: "nombre",
+            entity: "administracion",
+            rol: "tecnico",
+            conection: "fecha aleatoria"
+        },
+        {
+            icono: "ruta/al/icono",
+            name: "nombre",
+            entity: "administracion",
+            rol: "tecnico",
+            conection: "fecha aleatoria"
+        },
+        {
+            icono: "ruta/al/icono",
+            name: "nombre",
+            entity: "administracion",
+            rol: "tecnico",
+            conection: "fecha aleatoria"
+        },
+        {
+            icono: "ruta/al/icono",
+            name: "nombre",
+            entity: "administracion",
+            rol: "tecnico",
+            conection: "fecha aleatoria"
+        },
+        {
+            icono: "ruta/al/icono",
+            name: "nombre",
+            entity: "administracion",
+            rol: "tecnico",
+            conection: "fecha aleatoria"
+        },
+        {
+            icono: "ruta/al/icono",
+            name: "nombre",
+            entity: "administracion",
+            rol: "tecnico",
+            conection: "fecha aleatoria"
+        },
+        {
+            icono: "ruta/al/icono",
+            name: "nombre",
+            entity: "administracion",
+            rol: "tecnico",
+            conection: "fecha aleatoria"
+        },
+        {
+            icono: "ruta/al/icono",
+            name: "nombre",
+            entity: "administracion",
+            rol: "tecnico",
+            conection: "fecha aleatoria"
+        },
+        {
+            icono: "ruta/al/icono",
+            name: "nombre",
+            entity: "administracion",
+            rol: "tecnico",
+            conection: "fecha aleatoria"
+        },
+        {
+            icono: "ruta/al/icono",
+            name: "nombre",
+            entity: "administracion",
+            rol: "tecnico",
+            conection: "fecha aleatoria"
+        },
+        {
+            icono: "ruta/al/icono",
+            name: "nombre",
+            entity: "administracion",
+            rol: "tecnico",
+            conection: "fecha aleatoria"
+        },
+        {
+            icono: "ruta/al/icono",
+            name: "nombre",
+            entity: "administracion",
+            rol: "tecnico",
+            conection: "fecha aleatoria"
+        },
+        {
+            icono: "ruta/al/icono",
+            name: "nombre",
+            entity: "administracion",
+            rol: "tecnico",
+            conection: "fecha aleatoria"
+        },
+        {
+            icono: "ruta/al/icono",
+            name: "nombre",
+            entity: "administracion",
+            rol: "tecnico",
+            conection: "fecha aleatoria"
+        },
+        {
+            icono: "ruta/al/icono",
+            name: "nombre",
+            entity: "administracion",
+            rol: "tecnico",
+            conection: "fecha aleatoria"
+        },
+        {
+            icono: "ruta/al/icono",
+            name: "nombre",
+            entity: "administracion",
+            rol: "tecnico",
+            conection: "fecha aleatoria"
+        },
+        {
+            icono: "ruta/al/icono",
+            name: "nombre",
+            entity: "administracion",
+            rol: "tecnico",
+            conection: "fecha aleatoria"
+        },
+        {
+            icono: "ruta/al/icono",
+            name: "nombre",
+            entity: "administracion",
+            rol: "tecnico",
+            conection: "fecha aleatoria"
+        },
+        {
+            icono: "ruta/al/icono",
+            name: "nombre",
+            entity: "administracion",
+            rol: "tecnico",
+            conection: "fecha aleatoria"
+        },
+        {
+            icono: "ruta/al/icono",
+            name: "nombre",
+            entity: "administracion",
+            rol: "tecnico",
+            conection: "fecha aleatoria"
+        },
+        {
+            icono: "ruta/al/icono",
+            name: "nombre",
+            entity: "administracion",
+            rol: "tecnico",
+            conection: "fecha aleatoria"
+        },
+        {
+            icono: "ruta/al/icono",
+            name: "nombre",
+            entity: "administracion",
+            rol: "tecnico",
+            conection: "fecha aleatoria"
+        },
+        {
+            icono: "ruta/al/icono",
+            name: "nombre",
+            entity: "administracion",
+            rol: "tecnico",
+            conection: "fecha aleatoria"
+        },
+        {
+            icono: "ruta/al/icono",
+            name: "nombre",
+            entity: "administracion",
+            rol: "tecnico",
+            conection: "fecha aleatoria"
+        },
+        {
+            icono: "ruta/al/icono",
+            name: "nombre",
+            entity: "administracion",
+            rol: "tecnico",
+            conection: "fecha aleatoria"
+        },
+        {
+            icono: "ruta/al/icono",
+            name: "nombre",
+            entity: "administracion",
+            rol: "tecnico",
+            conection: "fecha aleatoria"
+        },
+        {
+            icono: "ruta/al/icono",
+            name: "nombre",
+            entity: "administracion",
+            rol: "tecnico",
+            conection: "fecha aleatoria"
+        },
+        
+        
+    ];
+    const { 
+        paginatedData,
+        pages,
+        actualPage,
+        visiblePages,
+        getDataPagination,
+        getPreviusPage,
+        getNextPage
+    } = useDataTable(users,10);
+    // const results =  computed(() => 40 /** tama;o dela rray de data */);
+    
+    onMounted(() => getDataPagination(actualPage.value));
 </script>
 
 <template>
@@ -44,26 +289,23 @@
                 </p>
             </div>
         </div>
-        <div class="w-full h-[85%] overflow-y-auto scrollbar-hidden"> 
-            <ManagUserCard rol="tecnico"/>
-            <ManagUserCard rol="tecnico"/>
-            <ManagUserCard rol="tecnico"/>
-            <ManagUserCard rol="tecnico"/>
-            <ManagUserCard rol="tecnico"/>
-            <ManagUserCard rol="tecnico"/>
-            <ManagUserCard rol="tecnico"/>
-            <ManagUserCard rol="tecnico"/>
-            <ManagUserCard rol="tecnico"/>
-            <ManagUserCard rol="tecnico"/>
-            <ManagUserCard rol="tecnico"/>
-            <ManagUserCard rol="tecnico"/>
-            <ManagUserCard rol="tecnico"/>
-            <ManagUserCard rol="tecnico"/>
-            <ManagUserCard rol="tecnico"/>
-            <ManagUserCard rol="tecnico"/>
-            <ManagUserCard rol="tecnico"/>
-            <ManagUserCard rol="tecnico"/>
-            <ManagUserCard rol="tecnico"/>
+        <div class="w-full h-[70%] overflow-y-auto scrollbar-hidden"> 
+            <div v-for="elm in paginatedData" :key="elm">
+                <ManagUserCard rol="tecnico"/>
+            </div>
+            
+        </div>
+        <div class="h-[15%] w-full border">
+            <PaginationBar 
+                class="w-full h-full border"
+                :pages="pages" 
+                :visible-pages="visiblePages"
+                :elementsPerPage="10"
+                :results="users.length"
+                @dataPagination="getDataPagination"
+                @prevPage="getPreviusPage"
+                @nextPage="getNextPage"
+            />
         </div>
     </div>
 </template>

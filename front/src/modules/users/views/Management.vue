@@ -21,7 +21,7 @@
                     <template v-slot:extra-element>
                         <div class="flex items-center">
                             <SearchingBar class="mr-5"/>
-                            <AddButton :full-size="false" title="Añadir" icon="person_add"/>
+                            <AddButton :full-size="false" title="Añadir" icon="person_add" @click="$router.push({name:'signin'})"/>
                         </div>
                     </template>
                 </NavbarComponent>
