@@ -5,8 +5,8 @@
     <div class="h-screen w-screen flex items-center justify-center" id="login"> 
     <div class="sm:w-full md:w-[50%] lg:w-[30%] sm: md: lg: bg-white flex flex-col justify-center items-center rounded shadow-xl">
       <!-- LOGO -->
-      <div class="w-[50%] mx-auto mt-5">
-        <img src="@/assets/imgs/logofondoblanco.jpg" alt="SGTI logo" class="w-full h-auto">
+      <div class="w-[50%] mx-auto">
+        <img src="@/assets/imgs/arctic.webp" alt="SGTI logo" class="w-full h-auto">
       </div>
       <!-- fORMULARIO -->
       <form  id="form" class="p-10 w-[90%]">

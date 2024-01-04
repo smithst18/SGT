@@ -41,7 +41,7 @@
 
     <!-- logotype -->
     <div class="max-w-sm" :class="is_spanded ? 'inline' : 'hidden'">
-      <img alt="SGTI_LOGO" id="logo" src="@/assets/imgs/artilogohorizontal.png">
+      <img alt="SGTI_LOGO" id="logo" src="@/assets/imgs/Logo-con-fondo.webp" class="">
     </div>
     <div class="mx-0 px-0" :class="!is_spanded ? 'inline' : 'hidden'">
       <img alt="SGTI_LOGO" id="logo" src="@/assets/imgs/sidebarminilogoazul.webp">

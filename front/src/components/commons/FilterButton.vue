@@ -15,7 +15,6 @@ const sendFilter = (filter:string) =>{
     toggleFilters();
 }
 </script>
-
 <template>
     <div class="relative">
         <button @click="toggleFilters"> 
