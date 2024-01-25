@@ -1,14 +1,14 @@
 <script setup lang='ts'>
     import { defineAsyncComponent } from 'vue';
-
     const submitButton = defineAsyncComponent(() => import('@/components/commons/MainButton.vue'));
+
 </script>
 
 <template>
-    <div class="w-full h-full border border-red-700 flex items-center justify-center">
-        <div class="w-3/4 border border-blue-500 p-5">
+    <div class="w-full h-full flex items-center justify-center">
+        <div class="w-3/4 p-5 rounded-md shadow-md">
             <h1 class="text-2xl font-semibold text-center my-5">Nuevo usuario</h1>
-            <form action="" class="p-5 grid grid-cols-2 gap-x-9 border border-purple-500 w-full">
+            <form action="" class="p-5 grid grid-cols-2 gap-x-9 w-full">
                 <div class="relative z-0 w-full mb-10">
                     <input
                         type="text"
@@ -64,7 +64,9 @@
                     <label for="name" class="origin-0">Problema</label>
                 </div>
             </form>
-            <submitButton :full-size="true" title="Agregar" class="text-center"/>
+            <div class="w-[96%] mx-auto">
+                <submitButton :full-size="true" title="Agregar" class="text-center mb-5"/>
+            </div>
         </div>
     </div>
 </template>
