@@ -319,13 +319,13 @@
             <!-- use the modal component, pass in the prop -->
             <UpdateUserModal :show-modal="showModal" @close-modal="showModal = false">
                 <template #header>
-                    <h3>custom header</h3>
+                    <h3 class="mr-3">Modificacion de usuario Existente</h3>
                 </template>
                 <template #body>
-                    <h3>custom body</h3>
+                    <h3>Aqui va el formulario</h3>
                 </template>
                 <template #footer>
-                    <h3>custom footer</h3>
+                    <h3 class="text-">Mensaje de Guardado</h3>
                 </template>
             </UpdateUserModal>
         </Teleport>
