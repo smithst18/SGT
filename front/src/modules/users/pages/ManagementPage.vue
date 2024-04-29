@@ -1,8 +1,9 @@
 <script setup lang='ts'>
-    import { defineAsyncComponent, onMounted, computed } from 'vue';
+    import { defineAsyncComponent, onMounted, computed, ref } from 'vue';
     import { useDataTable } from "@/composables/useDataTble";
     const ManagUserCard = defineAsyncComponent(() => import('@/modules/users/components/ManagUserCard.vue'));
     const PaginationBar = defineAsyncComponent(() => import('@/components/table/PaginationBar.vue'));
+    const UpdateUserModal = defineAsyncComponent(() => import('@/components/commons/GenericModal.vue'));
     const users = [
         {
             icono: "ruta/al/icono",
@@ -248,12 +249,16 @@
         getNextPage
     } = useDataTable(users,10);
     // const results =  computed(() => 40 /** tama;o dela rray de data */);
-    
+    const prueba = () => {
+        alert('hola mundo desde el usuario selccionado')
+    }
+    const showModal = ref(false)
     onMounted(() => getDataPagination(actualPage.value));
 </script>
 
 <template>
     <div class="w-full h-full">
+        <!--INFORMATION INDEX FOR USER TABLE-->
         <div class="w-full h-[15%] grid grid-cols-4">
             <div class="col-span-1 border">
 
@@ -289,15 +294,16 @@
                 </p>
             </div>
         </div>
+        <!-- LOOP FOR USERS DATA-->
         <div class="w-full h-[70%] overflow-y-auto scrollbar-hidden"> 
             <div v-for="elm in paginatedData" :key="elm">
-                <ManagUserCard rol="tecnico"/>
+                <ManagUserCard rol="tecnico" class="hover:bg-primary-light hover:bg-opacity-10 hover:cursor-pointer" @click="showModal = true"/>
             </div>
             
         </div>
         <div class="h-[15%] w-full border">
             <PaginationBar 
-                class="w-full h-full border"
+                class="w-full h-full border px-2"
                 :pages="pages" 
                 :visible-pages="visiblePages"
                 :elementsPerPage="10"
@@ -307,6 +313,22 @@
                 @nextPage="getNextPage"
             />
         </div>
+
+        <!-- mODAL FOR USER UPDATES -->
+        <Teleport to="body">
+            <!-- use the modal component, pass in the prop -->
+            <UpdateUserModal :show-modal="showModal" @close-modal="showModal = false">
+                <template #header>
+                    <h3>custom header</h3>
+                </template>
+                <template #body>
+                    <h3>custom body</h3>
+                </template>
+                <template #footer>
+                    <h3>custom footer</h3>
+                </template>
+            </UpdateUserModal>
+        </Teleport>
     </div>
 </template>
 

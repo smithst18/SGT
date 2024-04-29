@@ -6,7 +6,7 @@
 
 <template>
   <transition name="modal">
-    <div class="modal-mask" v-show="showModal">
+    <div class="modal-mask" v-show="props.showModal">
       <div class="modal-wrapper">
         <div class="modal-container bg-white">
           <!-- header modal  -->

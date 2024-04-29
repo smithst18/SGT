@@ -1,8 +1,8 @@
 <script setup lang='ts'>
-import userCard from '@/components/commons/userCard.vue';
-const props = defineProps<{
-    rol?:string
-}>();
+    import userCard from '@/components/commons/userCard.vue';
+    const props = defineProps<{
+        rol?:string
+    }>();
 </script>
 
 <template>
@@ -22,9 +22,9 @@ const props = defineProps<{
         </div>
         <div class="col-span-1 border">
             <p class="rounded-lg text-center w-fit px-2 text-sm m-auto mt-2" :class="[
-                { 'bg-red-200 border border-red-400 text-red-600 font-medium': rol === 'admin' },
-                { 'bg-blue-100 border border-blue-400 text-blue-600 font-medium': rol === 'tecnico' },
-                { 'bg-slate-200 border border-slate-400 text-slate-600': rol === 'cliente' },
+                { 'bg-red-200 border border-red-400 text-red-600 font-medium': props.rol === 'admin' },
+                { 'bg-blue-100 border border-blue-400 text-blue-600 font-medium': props.rol === 'tecnico' },
+                { 'bg-slate-200 border border-slate-400 text-slate-600': props.rol === 'cliente' },
              ]">
                 {{ rol }} 
             </p>
