@@ -59,7 +59,8 @@ export const general = async (req, res) =>{
         elm => [elm[0], (elm[1] = elm[1] * 100 /tickets.length).toFixed(2) ]
       );
 
-      const ticketsPerEntity = countItems( tickets.map( elem => elem.sendBy.entity.name ) );
+      const ticketsPerEntity = countItems( tickets.filter((elem) => elem.sendBy != undefined || elem.sendBy != null ).map( elem => elem.sendBy.entity.name
+      ));
       
       return res.status(200).send({msg:'stadisticas generales', data : {
         techPersent,
