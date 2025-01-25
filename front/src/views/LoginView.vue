@@ -1,4 +1,39 @@
 <script setup lang="ts">
+  //IMPORT
+  import { ref, reactive } from "vue";
+  import { defineAsyncComponent } from "vue";
+  import { useForm } from 'vee-validate';
+  import * as yup from 'yup';
+
+  //COMPONENTS
+  const MainSpiner = defineAsyncComponent(()=> import('@/components/commons/MainSpinner.vue'));
+  const MainForm = defineAsyncComponent(() => import('@/components/form/MainForm.vue'));
+  const InputField = defineAsyncComponent(() => import('@/components/form/InputField.vue'));
+  const submitButton = defineAsyncComponent(() => import('@/components/commons/MainButton.vue'));
+
+  //CONSTS
+  const { values, errors, defineField, handleSubmit } = useForm({
+    validationSchema: yup.object({
+      ci: yup .string().required('Cedula de indentidad requerida'),
+      password: yup.string().required('contraseña requerida').trim(),
+    }),
+  });
+  const error = ref(false);
+  const apiServerError = ref(false);
+
+  const [ci] = defineField('ci');
+  const [password] = defineField('password');
+  const formData = reactive( { ci:'', password:'' } );
+  const showPassword = ref(false);
+
+  // FUNCTIONS
+  const handleShowPassword = () => showPassword.value = !showPassword.value;
+  
+
+  const onSubmit = handleSubmit(async (values) => {
+
+    alert("form enviado");
+  });
 </script>
 
 <template>
@@ -8,34 +43,36 @@
       <div class="w-[50%] mx-auto">
         <img src="@/assets/imgs/arctic.webp" alt="SGTI logo" class="w-full h-auto">
       </div>
-      <!-- fORMULARIO -->
-      <form  id="form" class="p-10 w-[90%]">
-        <div class="relative z-0 w-full mb-10">
-          <input
-          type="text"
-          name="userName"
-          required
-          placeholder=" "
-          />
-          <label for="name" class="absolute duration-300 top-3 -z-1 origin-0 text-gray-500">Nombre de usuario</label>
-        </div>
-  
-        <div class="relative z-0 w-full mb-10">
-          <input
-          type="password"
-          name="password"
-          required
-          placeholder=" "
-          />
-          <label for="name" class="absolute duration-300 top-3 -z-1 origin-0 text-gray-500">Contraseña</label>
-        </div>
-
-        <button 
-        type="submit"
-        class="px-6 py-2 mt-4 mb-3 w-full text-white bg-primary rounded-sm hover:bg-primary-light focus:ring-2 focus:ring-primary transition delay-75 duration-75 ease-in-out">
-          Iniciar Sesion
-        </button>
-      </form>
+      <MainForm @submit="onSubmit" :cols="1"  id="form" class="w-full pt-2 pb-16 px-16 bg-white rounded-md">
+        <template v-slot:content>
+          <p class="text-center text-2xl text-primary my-8">Inicia sesión en tu cuenta </p>
+          <InputField v-model="ci"  type="text" name="ci" autocomplete="username"  label="Cedula" :error="errors.ci"/>
+          <InputField v-model="password" :type="showPassword ? 'text' : 'password'" name="password" autocomplete="current-password"  label="contraseña" :error="errors.password">
+            <transition name="fade">
+              <span 
+                class="material-symbols-outlined absolute top-3 right-1 cursor-pointer text-primary" 
+                @click="handleShowPassword"
+                v-if="showPassword">
+                visibility
+              </span>
+            </transition>
+            <transition name="fade">
+              <span 
+                class="material-symbols-outlined absolute top-3 right-1 cursor-pointer text-primary" 
+                @click="handleShowPassword"
+                v-if="!showPassword">
+                visibility_off
+              </span>
+            </transition>
+          </InputField>
+          <span class="text-sm text-green-400 text-opacity-90 text-center mb-3" >Sesion Iniciada</span>
+          <span class="text-sm text-red-400 text-opacity-90 text-center" >Usuario o contraseña invalidos</span>
+          <span class="text-sm text-red-400 text-opacity-90 text-center" >Error en la Conexion con Servidor</span>
+          <submitButton :full-size="true" title="Iniciar Sesion" @click="onSubmit" class="mt-10 h-12">
+            <MainSpiner class="ml-[-15px]"/>
+          </submitButton>
+        </template>
+      </MainForm>
     </div> 
   </div>
 </template>

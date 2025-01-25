@@ -67,7 +67,7 @@ const  onSubmit = handleSubmit ( values => {
                         <label for="name" class="absolute duration-300 top-3 -z-1 origin-0 text-gray-500">Descripcion del problema</label>
                     </div>
                     <div class="flex">
-                        <BaseButton  class="bg-red-500 hover:bg-red-300 transition ease-in-out delay-75 active:bg-red-300 focus:outline-none focus:ring-2 focus:ring-red-500 w-24" title="Cancelar" :fullSize="false" @click=""/>
+                        <BaseButton  class="bg-red-500 hover:bg-red-300 transition ease-in-out delay-75 active:bg-red-300 focus:outline-none focus:ring-2 focus:ring-red-500 w-24" title="Cancelar" :fullSize="false" />
                         <BaseButton  class="ml-auto w-24" title="Aceptar" :fullSize="false" @click="onSubmit"/>
                     </div>
                 </form>
