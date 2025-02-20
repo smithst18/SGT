@@ -104,8 +104,8 @@ mongoose.connect(
             },
             {
                 _id:"62e3df964db2354837e3461c",
-                nickName: "rosa",
-                name: "rosa Abreu",
+                nickName: "bossboss",
+                name: "userboss",
                 rol:"boss",
                 password:await encrypt("Pesca12309/?"),
                 position: "62e3df964db2354847e3142c",
