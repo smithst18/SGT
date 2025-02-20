@@ -12,8 +12,10 @@
             <tr v-for="tbData in paginatedData" :key="tbData" class="bg-secondary">
               <td v-for="elem in tbData" 
                   :key="elem" 
-                  class="w-[200px] max-w-[200px] h-36 border break-words whitespace-normal overflow-y-auto p-4">
-                {{ elem }}
+                  class=" p-4">
+                <div class="max-w-[100px] max-h-[100px] break-words whitespace-normal overflow-y-auto">
+                  {{ elem }}
+                </div>
               </td>
             </tr>
           </tbody>
