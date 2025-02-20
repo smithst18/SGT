@@ -14,7 +14,7 @@ const userSchema  = new Schema ({
   },
   rol:{
     type:String,
-    enum: ['user', 'admin','tech'],
+    enum: ['user', 'admin','tech','boss'],
     default:"user",
     required:true,
     trim:true,

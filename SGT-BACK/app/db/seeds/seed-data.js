@@ -23,40 +23,40 @@ mongoose.connect(
 
     Promise.all([
 
-        await entityModel.insertMany([
-            {
-                _id:'62e3df964db2354847e3465c',
-                name:"R.R.H.H",
-                positions:[
-                    "62e3df964db2354847e3142c",
-                    "62e3df964db2354847e3242c",
-                    "62e3df964db2354847e3342c",
-                ],
-                users:[]
-            },
-            {
-                _id:'62e3df964db2352847e3460c',
-                name:"Tecnologia",
-                positions:[
-                    "62e3df964db2354847e3142c",
-                    "62e3df964db2354847e3242c",
-                    "62e3df964db2354847e3342c",
-                ],
-                users:[
-                    "62e3df964db2354847e3463c"
-                ]
-            },
-            {
-                _id:'62e3df964db2352847e3462c',
-                name:"despacho",
-                positions:[
-                    "62e3df964db2354847e3142c",
-                    "62e3df964db2354847e3242c",
-                    "62e3df964db2354847e3342c",
-                ],
-                users:[]
-            }
-        ]),
+        // await entityModel.insertMany([
+        //     {
+        //         _id:'62e3df964db2354847e3465c',
+        //         name:"R.R.H.H",
+        //         positions:[
+        //             "62e3df964db2354847e3142c",
+        //             "62e3df964db2354847e3242c",
+        //             "62e3df964db2354847e3342c",
+        //         ],
+        //         users:[]
+        //     },
+        //     {
+        //         _id:'62e3df964db2352847e3460c',
+        //         name:"Tecnologia",
+        //         positions:[
+        //             "62e3df964db2354847e3142c",
+        //             "62e3df964db2354847e3242c",
+        //             "62e3df964db2354847e3342c",
+        //         ],
+        //         users:[
+        //             "62e3df964db2354847e3463c"
+        //         ]
+        //     },
+        //     {
+        //         _id:'62e3df964db2352847e3462c',
+        //         name:"despacho",
+        //         positions:[
+        //             "62e3df964db2354847e3142c",
+        //             "62e3df964db2354847e3242c",
+        //             "62e3df964db2354847e3342c",
+        //         ],
+        //         users:[]
+        //     }
+        // ]),
         
         await positionModel.insertMany([
             //positions
@@ -85,53 +85,34 @@ mongoose.connect(
             {
                 _id:"62e3df964db2354847e3463c",
                 nickName: "admin",
-                name: "emanuel Abreu",
+                name: "admin",
                 rol:"admin",
-                password:await encrypt("Emanuel12"),
+                password:await encrypt("pesca2025"),
                 position: "62e3df964db2354847e3142c",
-                document: "27571718",
+                document: "12345698",
                 entity: "62e3df964db2352847e3460c"
             },
-            // {
-            //     _id:"62e3df964db2354847e3462c",
-            //     nickName: "jose",
-            //     name: "jose Abreu",
-            //     rol:"tech",
-            //     password:await encrypt("Emanuel12"),
-            //     position: "62e3df964db2354847e3142c",
-            //     document: "27571717",
-            //     entity: "62e3df964db2352847e3460c"
-            // },
-            // {
-            //     _id:"62e3df964db2354837e3461c",
-            //     nickName: "rosa",
-            //     name: "rosa Abreu",
-            //     rol:"user",
-            //     password:await encrypt("Emanuel12"),
-            //     position: "62e3df964db2354847e3142c",
-            //     document: "27571716",
-            //     entity: "62e3df964db2354847e3465c"
-            // },
-            // {
-            //     _id:"62e3df964db2354847e3460c",
-            //     nickName: "maria",
-            //     name: "maria Abreu",
-            //     rol:"user",
-            //     password:await encrypt("Emanuel12"),
-            //     position: "62e3df964db2354847e3142c",
-            //     document: "27571715",
-            //     entity: "62e3df964db2352847e3462c"
-            // },
-            // {
-            //     _id:"62e3df964db2354847e3459c",
-            //     nickName: "pedro",
-            //     name: "pedro Abreu",
-            //     rol:"user",
-            //     password:await encrypt("Emanuel12"),
-            //     position: "62e3df964db2354847e3142c",
-            //     document: "27571714",
-            //     entity: "62e3df964db2352847e3462c"
-            // },
+            {
+                _id:"62e3df964db2354847e3462c",
+                nickName: "pedro",
+                name: "pedro guerra",
+                rol:"boss",
+                password:await encrypt("Pesca12309/?"),
+                position: "62e3df964db2354847e3142c",
+                document: "11111111",
+                entity: "62e3df964db2352847e3460c"
+            },
+            {
+                _id:"62e3df964db2354837e3461c",
+                nickName: "rosa",
+                name: "rosa Abreu",
+                rol:"boss",
+                password:await encrypt("Pesca12309/?"),
+                position: "62e3df964db2354847e3142c",
+                document: "22222222",
+                entity: "62e3df964db2354847e3465c"
+            },
+
         ]),
 
     ]).then((values) =>{
