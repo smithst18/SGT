@@ -85,7 +85,7 @@ mongoose.connect(
             {
                 _id:"62e3df964db2354847e3463c",
                 nickName: "admin",
-                name: "admin",
+                name: "areluz",
                 rol:"admin",
                 password:await encrypt("pesca2025"),
                 position: "62e3df964db2354847e3142c",
@@ -95,21 +95,21 @@ mongoose.connect(
             {
                 _id:"62e3df964db2354847e3462c",
                 nickName: "pedro",
-                name: "pedro guerra",
+                name: "Pedro Emilio Guerra",
                 rol:"boss",
                 password:await encrypt("Pesca12309/?"),
                 position: "62e3df964db2354847e3142c",
-                document: "11111111",
+                document: "12213236",
                 entity: "62e3df964db2352847e3460c"
             },
             {
                 _id:"62e3df964db2354837e3461c",
-                nickName: "bossboss",
-                name: "userboss",
+                nickName: "dismary",
+                name: "Dismary Oropeza",
                 rol:"boss",
                 password:await encrypt("Pesca12309/?"),
                 position: "62e3df964db2354847e3142c",
-                document: "22222222",
+                document: "14154033",
                 entity: "62e3df964db2354847e3465c"
             },
 
