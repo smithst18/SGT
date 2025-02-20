@@ -1,6 +1,6 @@
 <template>
     <div class="h-full">
-      <div class="block w-full overflow-x-auto overflow-y-auto h-[82%]">
+      <div class="block w-full overflow-x-auto overflow-y-auto h-[90%]">
         <table class="items-center bg-transparent w-full border-separate">
           <thead>
             <tr>
@@ -9,8 +9,12 @@
           </thead>
 
           <tbody>
-            <tr v-for="tbData in paginatedData" :key="tbData">
-              <td v-for="elem in tbData" :key="elem"> {{ elem }} </td>
+            <tr v-for="tbData in paginatedData" :key="tbData" class="bg-secondary">
+              <td v-for="elem in tbData" 
+                  :key="elem" 
+                  class="w-[200px] max-w-[200px] h-36 border break-words whitespace-normal overflow-y-auto p-4">
+                {{ elem }}
+              </td>
             </tr>
           </tbody>
 

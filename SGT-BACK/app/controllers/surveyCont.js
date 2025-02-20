@@ -63,10 +63,10 @@ export const findOne = async(req,res) =>{
 export const findAll =  async (req,res) =>{
     try{
         const surveys = await surveyModel.find()
-            .select("_id pre1 pre2 pre3 client")
+            .select("_id pre1 pre2 pre3 pre4 pre5 pre6 pre7 pre8 pre9 pre10 pre11 client")
             .populate({
                 path:'client',
-                select:'name document'
+                select:'document'
             });
 
         if(surveys.length >= 1) return res.status(200).send({surveys});

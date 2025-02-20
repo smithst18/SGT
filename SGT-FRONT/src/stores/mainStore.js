@@ -120,11 +120,18 @@ export const useMainStore = defineStore('main', () => {
 
     return data.map((item) => {
       return {
-        client:item.client.name,
         document:item.client.document,
         pre1:item.pre1,
         pre2:item.pre2,
         pre3:item.pre3,
+        pre4:item.pre4,
+        pre5:item.pre5,
+        pre6:item.pre6,
+        pre7:item.pre7,
+        pre8:item.pre8,
+        pre9:item.pre9,
+        pre10:item.pre10,
+        pre11:item.pre11,
       } 
     });
   });

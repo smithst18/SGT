@@ -67,6 +67,7 @@ const adminLinks = [
   { to: 'adminHome'     , name:'Estadisticas' , icon:['fa','chart-column']          },
   { to: 'userSignin'    , name:'Registrar'    , icon:['fa','user-plus']             },
   { to: 'chatHome'      , name:'Chat'         , icon:['fa','comment']               },
+  { to: 'survey'      , name:'Encuesta'     , icon:['fa','square-poll-vertical']  },
 ];
 
 const bossLinks = [
