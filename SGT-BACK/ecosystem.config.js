@@ -9,6 +9,13 @@ const apps = [
       PRIVATE_KEY: "SgH78/?+_01As",
       PUBLIC_URL: "http://sgt.pescalba.gob.ve:3200/public"
     },
+    watch: ["app"],          // Directorios a observar
+    ignore_watch: [          // Directorios a ignorar
+      "node_modules", 
+      "logs",
+      ".git"
+    ],
+    watch_delay: 3000,   
   },
 ];
 
