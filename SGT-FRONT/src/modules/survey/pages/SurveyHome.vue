@@ -22,9 +22,8 @@ onMounted(async () => {
         <li class="bg-secondary p-5">6: Que areas priorizarias y porque ?</li>
         <li class="bg-secondary p-5">7: Nos sigues en redes sociales como @Pescalba ?</li>
         <li class="bg-secondary p-5">8: En caso de seguirnos, interactuas con nuestro contenido ?</li>
-        <li class="bg-secondary p-5">9: En caso de seguirnos, interactuas con nuestro contenido ?</li>
-        <li class="bg-secondary p-5">10: ¿Estarías dispuesto a participar en nuestras redes sociales (Videos, fotos y contenido en general)?</li>
-        <li class="bg-secondary p-5">11: ¿Conoce cuál es la importancia de la proyección de la empresa para su operatividad y avance?</li>
+        <li class="bg-secondary p-5">9: ¿Estarías dispuesto a participar en nuestras redes sociales (Videos, fotos y contenido en general)?</li>
+        <li class="bg-secondary p-5">10: ¿Conoce cuál es la importancia de la proyección de la empresa para su operatividad y avance?</li>
       </ol>
       <ProgressBar
         :progressporcentage="mainStore.getSurveyPorcentage"
@@ -39,7 +38,7 @@ onMounted(async () => {
     >
       <DataTable
       class="!h-full"
-        :titles="['Cedula', 'pregunta 1', 'pregunta 2', 'pregunta 3','pregunta 4','pregunta 5','pregunta 6','pregunta 7','pregunta 8','pregunta 9','pregunta 10','pregunta 11']"
+        :titles="['Cedula', 'pregunta 1', 'pregunta 2', 'pregunta 3','pregunta 4','pregunta 5','pregunta 6','pregunta 7','pregunta 8','pregunta 9','pregunta 10']"
         :data="mainStore.getSurveys"
         :showPagination="true"
         :elementsPerPage="20"
