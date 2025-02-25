@@ -22,7 +22,6 @@
     pre8:'',
     pre9:'',
     pre10:'',
-    pre11:'',
     client:mainStore.logedUser.id
   };
   
