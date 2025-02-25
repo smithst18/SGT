@@ -131,7 +131,6 @@ export const useMainStore = defineStore('main', () => {
         pre8:item.pre8,
         pre9:item.pre9,
         pre10:item.pre10,
-        pre11:item.pre11,
       } 
     });
   });
