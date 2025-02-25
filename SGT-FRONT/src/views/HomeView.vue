@@ -69,11 +69,6 @@
       maxLength: maxLength(2) 
     },
     pre10:{ 
-      required,
-      minLength: minLength(2),
-      maxLength: maxLength(2)
-    },
-    pre11:{ 
       required, 
       maxLength: maxLength(500) 
     },
@@ -253,10 +248,10 @@
 
           </fieldset>
 
-          <!-- 9 -->
+          <!-- 10 -->
           <fieldset class="mb-3">
 
-            <legend>En caso de seguirnos, interactuas con nuestro contenido ?</legend>
+            <legend>¿Estarías dispuesto a participar en nuestras redes sociales (Videos, fotos y contenido en general)?</legend>
 
             <div class="text-sm mt-1">
               <input type="radio" name="pregunta9" value="si" v-model="form.pre9">
@@ -264,7 +259,7 @@
             </div>
 
             <div class="text-sm">
-              <input type="radio" name="pregunta9" value="no" v-model="form.pre9">
+              <input type="radio" name="pregunta10" value="no" v-model="form.pre9">
               <label>no</label>
             </div>
 
@@ -274,34 +269,13 @@
 
           </fieldset>
 
-          <!-- 10 -->
-          <fieldset class="mb-3">
-
-            <legend>¿Estarías dispuesto a participar en nuestras redes sociales (Videos, fotos y contenido en general)?</legend>
-
-            <div class="text-sm mt-1">
-              <input type="radio" name="pregunta10" value="si" v-model="form.pre10">
-              <label>si</label>
-            </div>
-
-            <div class="text-sm">
-              <input type="radio" name="pregunta10" value="no" v-model="form.pre10">
-              <label>no</label>
-            </div>
-
-            <div class="text-xs mt-2 text-red-300" v-if="v$.pre10.$error">
-              <p><span class="text-sm">* </span>Debes completar este campo</p>
-            </div>
-
-          </fieldset>
-
           <!-- 11 -->
           <div class="mb-3">
             <label for="" class="text-md">¿Conoce cuál es la importancia de la proyección de la empresa para su operatividad y avance?</label>
-            <textarea class="w-full border border-slate-300 focus:outline-slate-300 mt-2 p-2 text-sm" v-model="form.pre11">
+            <textarea class="w-full border border-slate-300 focus:outline-slate-300 mt-2 p-2 text-sm" v-model="form.pre10">
             </textarea>
 
-            <div class="text-xs mt-1 text-red-300" v-if="v$.pre11.$error">
+            <div class="text-xs mt-1 text-red-300" v-if="v$.pre10.$error">
               <p><span class="text-sm">* </span>Maximo 500 caracteres</p>
             </div>
           </div>
