@@ -55,10 +55,6 @@ export const validSurvey = [
         .trim()
         .exists()
         .withMessage('debe existir'),
-    check("pre11")
-        .trim()
-        .exists()
-        .withMessage('debe existir'),
     check("client")
         .exists()
         .withMessage('debe existir')
